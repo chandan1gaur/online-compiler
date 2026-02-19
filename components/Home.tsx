@@ -138,7 +138,8 @@ export default function Home() {
                  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
                  bg-clip-text text-transparent"
             >
-              Online Compiler — HTML/CSS/JS
+              {/* Online Compiler — HTML/CSS/JS */}
+              Online Compiler
             </h1>
           </div>
           <div className="flex items-center gap-3">
