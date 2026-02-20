@@ -149,6 +149,7 @@ export default function Home() {
                bg-blue-600 hover:bg-blue-700 
                text-white text-sm font-medium 
                rounded-md 
+               cursor-pointer
                transition duration-200 
                shadow-sm hover:shadow-md"
             >
@@ -180,6 +181,7 @@ export default function Home() {
                text-white text-sm font-medium 
                rounded-md 
                transition duration-200 
+               cursor-pointer
                shadow-sm hover:shadow-md"
 
             >
