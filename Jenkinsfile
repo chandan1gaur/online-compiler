@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh '''
                 npm install -g vercel
-                vercel deploy --prod --token=$VERCEL_TOKEN
+                npx vercel --prod --token=$VERCEL_TOKEN --yes
                 '''
             }
         }
