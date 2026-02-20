@@ -181,9 +181,8 @@ export default function Home() {
                text-white text-sm font-medium 
                rounded-md 
                transition duration-200 
-               cursor-pointer
+               
                shadow-sm hover:shadow-md"
-
             >
               Download
             </button>
