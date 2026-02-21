@@ -119,7 +119,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 subpixel-antialiased">
+    <div className="bg-gray-50 p-4 subpixel-antialiased">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col sm:flex-row items-center sm:justify-between mb-4">
           <div className="flex items-center gap-3 mt-4 sm:mt-6">
@@ -180,7 +180,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex-1 min-h-[50vh] sm:min-h-[420px] overflow-auto subpixel-antialiased">
+              <div className="flex-1 overflow-auto subpixel-antialiased" style={{ minHeight: '50vh' }}>
                 <MonacoEditor
                   height="100%"
                   defaultLanguage={extFor(activeFile)}
@@ -195,7 +195,7 @@ export default function Home() {
             <div className="w-full lg:w-1/2 bg-white rounded shadow p-2 flex flex-col subpixel-antialiased">
               <div className="font-medium mb-2">Preview</div>
               <div className="mt-1 border rounded overflow-hidden">
-                <iframe ref={iframeRef} title="preview" className="w-full h-[50vh] sm:h-[420px] border-0" sandbox="allow-scripts"></iframe>
+                <iframe ref={iframeRef} title="preview" className="w-full border-0" style={{ height: '50vh' }} sandbox="allow-scripts"></iframe>
               </div>
             </div>
           </div>

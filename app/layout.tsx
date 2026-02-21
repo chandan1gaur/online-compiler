@@ -99,7 +99,7 @@ function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config
         <div style={{minHeight: 'calc(100vh - 120px)'}}>
           {children}
         </div>
-        <footer style={{borderTop: '1px solid #e6e6e6', padding: '1rem', textAlign: 'center'}}>
+        <footer style={{ padding: '0.5rem', textAlign: 'center'}}>
           <div style={{maxWidth: 980, margin: '0 auto', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
             <a href="/privacy">Privacy Policy</a>
             <a href="/contact">Contact</a>
