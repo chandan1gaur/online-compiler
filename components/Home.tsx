@@ -121,40 +121,25 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 p-4 subpixel-antialiased">
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center justify-center gap-3 mt-6">
-            {/* Logo */}
-            <div
-              className="bg-gradient-to-r from-pink-500 to-orange-500 
-                  text-white font-bold px-3 py-1.5 
-                  rounded-lg shadow-md"
-            >
-              OC
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between mb-4">
+          <div className="flex items-center gap-3 mt-4 sm:mt-6">
+            <div className="flex items-center">
+              <img src="/logo-icon.svg" alt="Online Compiler" className="h-8 w-8 sm:h-10 sm:w-10" />
             </div>
 
-            {/* Text */}
-            <h1
-              className="text-3xl font-bold 
-                 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-                 bg-clip-text text-transparent"
-            >
-              {/* Online Compiler — HTML/CSS/JS */}
+            <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Online Compiler
             </h1>
           </div>
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-3 mt-4 sm:mt-0 flex-wrap sm:flex-nowrap">
             <button
               onClick={run}
-              className="px-4 py-1.5 
-               bg-blue-600 hover:bg-blue-700 
-               text-white text-sm font-medium 
-               rounded-md 
-               cursor-pointer
-               transition duration-200 
-               shadow-sm hover:shadow-md"
+              className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md cursor-pointer transition duration-200 shadow-sm hover:shadow-md w-full sm:w-auto"
             >
               Run
             </button>
+
             <select
               value={mode}
               onChange={(e) => {
@@ -162,27 +147,16 @@ export default function Home() {
                 setMode(m);
                 setActiveFile(m === "html" ? "index.html" : "main.js");
               }}
-              className="px-3 py-1.5 
-               bg-gray-100 hover:bg-gray-200 
-               text-gray-800 text-sm 
-               rounded-md 
-               border border-gray-300 
-               cursor-pointer 
-               transition duration-200"
-    aria-label="Mode"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm rounded-md border border-gray-300 cursor-pointer transition duration-200 w-full sm:w-auto"
+              aria-label="Mode"
             >
               <option value="html">HTML</option>
               <option value="js">JavaScript</option>
             </select>
+
             <button
               onClick={download}
-              className="px-4 py-1.5 
-               bg-gray-700 hover:bg-gray-800 
-               text-white text-sm font-medium 
-               rounded-md 
-               transition duration-200 
-               
-               shadow-sm hover:shadow-md"
+              className="px-4 py-1.5 bg-gray-700 hover:bg-gray-800 text-white text-sm font-medium rounded-md transition duration-200 cursor-pointer shadow-sm hover:shadow-md w-full sm:w-auto"
             >
               Download
             </button>
@@ -191,48 +165,37 @@ export default function Home() {
 
         <div className="mb-4">
           <div className="flex flex-col lg:flex-row gap-4">
-            <div className="lg:w-1/2 bg-white rounded shadow p-2">
-              <div className="flex gap-2 border-b pb-2 mb-2">
-                {(mode === "html"
-                  ? ["index.html", "styles.css", "script.js"]
-                  : ["main.js"]
-                ).map((name) => (
+            <div className="w-full lg:w-1/2 bg-white rounded shadow p-2 flex flex-col">
+              <div className="flex gap-2 border-b pb-2 mb-2 flex-wrap">
+                {(mode === "html" ? ["index.html", "styles.css", "script.js"] : ["main.js"]).map((name) => (
                   <button
                     key={name}
                     onClick={() => setActiveFile(name)}
-                    className={`subpixel-antialiased px-3 py-1 rounded ${activeFile === name ? "bg-gray-700" : "bg-gray-200 text-gray-800 hover:bg-gray-300-white"} cursor-pointer`}
+                    className={`subpixel-antialiased px-3 py-1 rounded ${
+                      activeFile === name ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    } cursor-pointer text-sm`}
                   >
                     {name}
                   </button>
                 ))}
               </div>
 
-              <div
-                className="h-[420px] overflow-auto subpixel-antialiased"
-                style={{ minHeight: 220 }}
-              >
+              <div className="flex-1 min-h-[50vh] sm:min-h-[420px] overflow-auto subpixel-antialiased">
                 <MonacoEditor
-                  theme="vs-light"
+                  height="100%"
                   defaultLanguage={extFor(activeFile)}
                   language={extFor(activeFile)}
                   value={files[activeFile]}
-                  onChange={(val) =>
-                    setFiles((f) => ({ ...f, [activeFile]: val || "" }))
-                  }
+                  onChange={(val) => setFiles((f) => ({ ...f, [activeFile]: val || "" }))}
                   options={{ automaticLayout: true, fontSize: 14 }}
                 />
               </div>
             </div>
 
-            <div className="lg:w-1/2 bg-white rounded shadow p-2 flex flex-col subpixel-antialiased">
+            <div className="w-full lg:w-1/2 bg-white rounded shadow p-2 flex flex-col subpixel-antialiased">
               <div className="font-medium mb-2">Preview</div>
-              <div className="flex-1 border">
-                <iframe
-                  ref={iframeRef}
-                  title="preview"
-                  className="w-full h-full"
-                  sandbox="allow-scripts"
-                ></iframe>
+              <div className="mt-1 border rounded overflow-hidden">
+                <iframe ref={iframeRef} title="preview" className="w-full h-[50vh] sm:h-[420px] border-0" sandbox="allow-scripts"></iframe>
               </div>
             </div>
           </div>

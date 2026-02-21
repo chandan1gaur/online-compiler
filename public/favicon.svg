@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Online Compiler</title>
+  <rect width="100%" height="100%" rx="8" ry="8" fill="#0f172a" />
+  <g transform="translate(8,8) scale(0.75)">
+    <rect x="6" y="10" width="44" height="28" rx="3" fill="#0ea5a9" />
+    <text x="22" y="30" font-family="monospace" font-size="12" fill="#08232b" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+</svg>
