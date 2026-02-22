@@ -100,13 +100,15 @@ function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config
           {children}
         </div>
         <footer style={{ padding: '0.5rem', textAlign: 'center'}}>
-          <div style={{maxWidth: 980, margin: '0 auto', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+          <div style={{maxWidth: 980, margin: '0 auto', display: 'flex', gap: '0.6rem', justifyContent: 'center', flexWrap: 'wrap'}}>
             <a href="/privacy">Privacy Policy</a>
-            <a href="/contact">Contact</a>
+            <a href="/terms">Terms & Conditions</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Page</a>
             <a href="/sitemap.xml">Sitemap</a>
             <a href="/">Home</a>
           </div>
-          <div style={{marginTop: 8, color: '#666', fontSize: 13}}>© {new Date().getFullYear()} Online Compiler</div>
+          <div style={{marginTop: 6, color: '#666', fontSize: 12}}>© {new Date().getFullYear()} Online Compiler</div>
         </footer>
       </body>
     </html>

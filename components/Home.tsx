@@ -12,6 +12,7 @@ export default function Home() {
 
   const [mode, setMode] = useState<"html" | "js">("html");
   const [activeFile, setActiveFile] = useState<string>("index.html");
+  const [isRunning, setIsRunning] = useState(false);
 
   const [files, setFiles] = useState<Record<string, string>>({
     "index.html":
@@ -49,7 +50,8 @@ export default function Home() {
   const buildSrcDoc = () => {
     if (mode === "js") {
       const js = files["main.js"] || "";
-      return `<!doctype html>\n<html>\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head>\n<body>\n<div id=\"app\"></div>\n<script>\ntry{\n${js}\n}catch(e){console.error(e)}\n</script>\n</body>\n</html>`;
+      const escapedJs = js.replace(/\\/g, '\\\\').replace(/`/g, '\\`');
+      return `<!doctype html>\n<html>\n<head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><style>body{font-family:monospace;margin:0;padding:8px;background:#f5f5f5}#console{background:white;border:1px solid #ddd;padding:8px;border-radius:4px;max-height:45%;overflow-y:auto;white-space:pre-wrap;word-break:break-all;font-size:12px;line-height:1.4}#console div{margin:2px 0}#console .log{color:#000}#console .error{color:#d32f2f;font-weight:bold}#console .warn{color:#f57c00}#console .debug{color:#666}#console .info{color:#1976d2}#app{padding:8px;margin-top:8px;background:white;border:1px solid #ddd;border-radius:4px}</style></head>\n<body>\n<div id=\"console\"></div>\n<div id=\"app\"></div>\n<script>\nconst consoleDiv = document.getElementById('console');\nconst logs = [];\nfunction logToDiv(className, args) {\n  const msg = Array.from(args).map(a => {\n    if (a === null) return 'null';\n    if (a === undefined) return 'undefined';\n    if (typeof a === 'object') return JSON.stringify(a, null, 2);\n    return String(a);\n  }).join(' ');\n  const div = document.createElement('div');\n  div.className = className;\n  div.textContent = msg;\n  consoleDiv.appendChild(div);\n  logs.push({type: className, msg});\n}\nconst origLog = console.log;\nconst origError = console.error;\nconst origWarn = console.warn;\nconst origDebug = console.debug;\nconst origInfo = console.info;\nconsole.log = function(...a) { logToDiv('log', a); origLog(...a); };\nconsole.error = function(...a) { logToDiv('error', a); origError(...a); };\nconsole.warn = function(...a) { logToDiv('warn', a); origWarn(...a); };\nconsole.debug = function(...a) { logToDiv('debug', a); origDebug(...a); };\nconsole.info = function(...a) { logToDiv('info', a); origInfo(...a); };\nwindow.onerror = function(msg, url, line, col, err) {\n  logToDiv('error', [msg + ' at line ' + line]);\n  return true;\n};\nwindow.onunhandledrejection = function(e) {\n  logToDiv('error', ['Unhandled Promise Rejection: ' + (e.reason || e)]);\n};\ntry{\neval(\`${escapedJs}\`);\n}catch(e){\nconsole.error(e.toString());\n}\n</script>\n</body>\n</html>`;
     }
 
     let html = files["index.html"] || "";
@@ -79,8 +81,11 @@ export default function Home() {
   };
 
   const run = () => {
+    setIsRunning(true);
     const doc = buildSrcDoc();
     if (iframeRef.current) iframeRef.current.srcdoc = doc;
+    // Keep loader visible for at least 500ms
+    setTimeout(() => setIsRunning(false), 500);
   };
 
   // keyboard shortcut: Ctrl/Cmd + Enter to run
@@ -135,9 +140,13 @@ export default function Home() {
           <div className="flex items-center gap-3 mt-4 sm:mt-0 flex-wrap sm:flex-nowrap">
             <button
               onClick={run}
-              className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md cursor-pointer transition duration-200 shadow-sm hover:shadow-md w-full sm:w-auto"
+              disabled={isRunning}
+              className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-500 text-white text-sm font-medium rounded-md cursor-pointer transition duration-200 shadow-sm hover:shadow-md w-full sm:w-auto flex items-center justify-center gap-2"
             >
-              Run
+              {isRunning && (
+                <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              )}
+              {isRunning ? "" : "Run"}
             </button>
 
             <select
@@ -193,7 +202,7 @@ export default function Home() {
             </div>
 
             <div className="w-full lg:w-1/2 bg-white rounded shadow p-2 flex flex-col subpixel-antialiased">
-              <div className="font-medium mb-2">Preview</div>
+              <div className="font-medium mb-2 px-2 py-1 bg-blue-100 text-blue-900 rounded text-sm">📺 Preview</div>
               <div className="mt-1 border rounded overflow-hidden">
                 <iframe ref={iframeRef} title="preview" className="w-full border-0" style={{ height: '50vh' }} sandbox="allow-scripts"></iframe>
               </div>
