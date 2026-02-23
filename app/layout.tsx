@@ -71,13 +71,13 @@ export default function RootLayout({
         <meta name="twitter:description" content={String(metadata.description ?? '')} />
         <meta name="twitter:image" content="/og-image.svg" />
         {/* Google Analytics (GA4) placeholder - replace G-XXXXXXXX with your Measurement ID */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXXX');`,
-          }}
-        />
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS86CGQM03"></script>
+<script
+  dangerouslySetInnerHTML={{
+    __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VS86CGQM03');`,
+  }}
+/>
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/logo-icon.svg" type="image/svg+xml" />
         {/* <link rel="icon" href="/favicon.ico" /> */}
