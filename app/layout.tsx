@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,40 +15,113 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://www.codecompileronline.com";
+const siteTitle = "Online Compiler - Free HTML, CSS & JavaScript Editor";
+const siteDescription =
+  "Build and run HTML, CSS, and JavaScript instantly in your browser. Fast, free, and beginner-friendly online compiler with live preview.";
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-VS86CGQM03";
+
 export const metadata: Metadata = {
-  title: "Free Online HTML CSS JavaScript Compiler | Write & Run Code Live",
-  description:
-    "Write, edit, and run HTML, CSS, and JavaScript code instantly in your browser. A free online compiler with live preview for web developers and learners.",
-  keywords:
-    "online compiler, html compiler, css compiler, javascript compiler, code editor, live code editor, web development tools, html css js editor, online ide, web playground, code sandbox, run code online, free coding tool, learn html css javascript",
-  authors: [
-    {
-      name: "Online Compiler Team",
-    },
-  ],
-  alternates: {
-    canonical: "https://www.codecompileronline.com",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | Online Compiler",
   },
-  viewport: "width=device-width, initial-scale=1",
+  description: siteDescription,
+  keywords: [
+    "online compiler",
+    "html editor",
+    "css editor",
+    "javascript editor",
+    "web playground",
+    "live code preview",
+    "frontend coding tool",
+  ],
+  authors: [{ name: "Online Compiler Team" }],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Online Compiler",
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Online Compiler preview card",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og-image.svg"],
+  },
+  icons: {
+    icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon-192x192.svg" }],
+  },
+  manifest: "/manifest.json",
+  ...(googleVerification
+    ? {
+        verification: {
+          google: googleVerification,
+        },
+      }
+    : {}),
 };
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "Online HTML CSS JavaScript Compiler",
-  description:
-    "Write, edit, and run HTML, CSS, and JavaScript code instantly in your browser. A free online compiler with live preview for web developers and learners.",
-  url: "https://www.codecompileronline.com",
-  applicationCategory: "DeveloperApplication",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  author: {
-    "@type": "Organization",
-    name: "Online Compiler Team",
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Online Compiler",
+      url: siteUrl,
+      description: siteDescription,
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Online Compiler",
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Web",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      url: siteUrl,
+      description: siteDescription,
+    },
+    {
+      "@type": "Organization",
+      name: "Online Compiler",
+      url: siteUrl,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "chandan2gaur@gmail.com",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -55,61 +131,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content={String(metadata.description ?? '')} />
-        <meta name="google-site-verification" content="PUT_GOOGLE_VERIFICATION_TOKEN_HERE" />
-        {/* Open Graph / Social */}
-        <meta property="og:title" content={String(metadata.title ?? '')} />
-        <meta property="og:description" content={String(metadata.description ?? '')} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.codecompileronline.com" />
-        <meta property="og:image" content="/og-image.svg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={String(metadata.title ?? '')} />
-        <meta name="twitter:description" content={String(metadata.description ?? '')} />
-        <meta name="twitter:image" content="/og-image.svg" />
-        {/* Google Analytics (GA4) placeholder - replace G-XXXXXXXX with your Measurement ID */}
-       <script async src="https://www.googletagmanager.com/gtag/js?id=G-VS86CGQM03"></script>
-<script
-  dangerouslySetInnerHTML={{
-    __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VS86CGQM03');`,
-  }}
-/>
-        <meta name="theme-color" content="#ffffff" />
-        <link rel="icon" href="/logo-icon.svg" type="image/svg+xml" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Google Tag Manager (noscript) placeholder - replace GTM-XXXXXX with your GTM id */}
-        <noscript>
-          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} />
-        </noscript>
-        <div style={{minHeight: 'calc(100vh - 120px)'}}>
-          {children}
-        </div>
-        <footer style={{ padding: '0.5rem', textAlign: 'center'}}>
-          <div style={{maxWidth: 980, margin: '0 auto', display: 'flex', gap: '0.6rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms & Conditions</a>
-            <a href="/about">About Us</a>
-            <a href="/contact">Contact Page</a>
-            <a href="/sitemap.xml">Sitemap</a>
-            <a href="/">Home</a>
-          </div>
-          <div style={{marginTop: 6, color: '#666', fontSize: 12}}>© {new Date().getFullYear()} Online Compiler</div>
-        </footer>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 antialiased`}>
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}');`}
+        </Script>
+        <Script id="schema-org" type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </Script>
+
+        <SiteHeader />
+        <main className="min-h-[calc(100vh-144px)]">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
