@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import CookieConsent from "@/components/CookieConsent";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
@@ -20,7 +21,7 @@ const siteTitle = "Online Compiler - Free HTML, CSS & JavaScript Editor";
 const siteDescription =
   "Build and run HTML, CSS, and JavaScript instantly in your browser. Fast, free, and beginner-friendly online compiler with live preview.";
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
-const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-VS86CGQM03";
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||  "G-VS86CGQM03";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -132,13 +133,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 antialiased`}>
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${gaMeasurementId}');`}
-        </Script>
         <Script id="schema-org" type="application/ld+json">
           {JSON.stringify(structuredData)}
         </Script>
@@ -146,6 +140,7 @@ gtag('config', '${gaMeasurementId}');`}
         <SiteHeader />
         <main className="min-h-[calc(100vh-144px)]">{children}</main>
         <SiteFooter />
+        <CookieConsent gaMeasurementId={gaMeasurementId} />
       </body>
     </html>
   );
