@@ -11,6 +11,12 @@ export default function SiteFooter() {
           <Link href="/javascript" className="hover:text-slate-900">
             JavaScript Compiler
           </Link>
+          <Link href="/formatter" className="hover:text-slate-900">
+            JSON/YAML/XML Formatter
+          </Link>
+          <Link href="/regex" className="hover:text-slate-900">
+            Regex Tester
+          </Link>
           <Link href="/privacy" className="hover:text-slate-900">
             Privacy Policy
           </Link>

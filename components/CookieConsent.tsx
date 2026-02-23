@@ -8,6 +8,21 @@ type CookieConsentProps = {
 };
 
 const CONSENT_KEY = "oc-cookie-consent";
+const CONSENT_COOKIE = "oc_cookie_consent";
+
+function persistConsent(value: "granted" | "denied") {
+  try {
+    localStorage.setItem(CONSENT_KEY, value);
+  } catch {}
+  document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=31536000; Path=/; SameSite=Lax`;
+}
+
+function clearConsent() {
+  try {
+    localStorage.removeItem(CONSENT_KEY);
+  } catch {}
+  document.cookie = `${CONSENT_COOKIE}=; Max-Age=0; Path=/; SameSite=Lax`;
+}
 
 export default function CookieConsent({ gaMeasurementId }: CookieConsentProps) {
   const [consent, setConsent] = useState<"granted" | "denied" | null>(() => {
@@ -21,17 +36,21 @@ export default function CookieConsent({ gaMeasurementId }: CookieConsentProps) {
   });
 
   const acceptAll = () => {
-    try {
-      localStorage.setItem(CONSENT_KEY, "granted");
-    } catch {}
+    persistConsent("granted");
     setConsent("granted");
   };
 
   const rejectAll = () => {
-    try {
-      localStorage.setItem(CONSENT_KEY, "denied");
-    } catch {}
+    persistConsent("denied");
+    if (gaMeasurementId) {
+      (window as unknown as Record<string, boolean>)[`ga-disable-${gaMeasurementId}`] = true;
+    }
     setConsent("denied");
+  };
+
+  const reopenChoices = () => {
+    clearConsent();
+    setConsent(null);
   };
 
   const canLoadAnalytics = consent === "granted" && gaMeasurementId;
@@ -75,7 +94,14 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
             </button>
           </div>
         </aside>
-      ) : null}
+      ) : (
+        <button
+          onClick={reopenChoices}
+          className="fixed bottom-3 right-3 z-40 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-md transition hover:bg-slate-100"
+        >
+          Cookies: {consent === "granted" ? "Accepted" : "Rejected"} (Change)
+        </button>
+      )}
     </>
   );
 }

@@ -6,6 +6,8 @@ const navItems = [
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/html", label: "HTML Compiler" },
   { href: "/javascript", label: "JavaScript Compiler" },
+  { href: "/formatter", label: "Formatter" },
+  { href: "/regex", label: "Regex Tester" },
   { href: "/contact", label: "Contact" },
 ];
 
