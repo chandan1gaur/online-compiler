@@ -202,22 +202,22 @@ export default function Home({ initialMode = "html" }: HomeProps) {
             </div>
 
             <div style={{ minHeight: "55vh" }}>
-              <MonacoEditor
-                height="55vh"
-                defaultLanguage={extFor(activeFile)}
-                language={extFor(activeFile)}
+                <MonacoEditor
+                  height="55vh"
+                  defaultLanguage={extFor(activeFile)}
+                  language={extFor(activeFile)}
                 value={files[activeFile]}
                 onChange={(val) => setFiles((f) => ({ ...f, [activeFile]: val || "" }))}
-                options={{
-                  automaticLayout: true,
-                  fontSize: 14,
-                  minimap: { enabled: false },
-                  padding: { top: 12 },
-                  smoothScrolling: true,
-                  scrollBeyondLastLine: false,
-                }}
-                theme="vs-dark"
-              />
+                  options={{
+                    automaticLayout: true,
+                    fontSize: 14,
+                    minimap: { enabled: false },
+                    padding: { top: 12 },
+                    smoothScrolling: true,
+                    scrollBeyondLastLine: false,
+                  }}
+                  theme="vs"
+                />
             </div>
           </article>
 

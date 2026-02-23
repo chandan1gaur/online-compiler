@@ -1,8 +1,20 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
+  --background: #f6f9ff;
   --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border: #dde6f2;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #e5e7eb;
+  --surface: #0f172a;
+  --surface-muted: #111827;
+  --border: #2b3a52;
 }
 
 @theme inline {
@@ -13,8 +25,64 @@
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(1200px 700px at 10% -10%, #e0f2fe 0%, transparent 45%),
+    radial-gradient(1100px 650px at 90% -15%, #dbeafe 0%, transparent 40%), var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   line-height: 1.5;
+}
+
+.dark body {
+  background: radial-gradient(1200px 700px at 8% -10%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+    radial-gradient(1000px 620px at 90% -10%, rgba(59, 130, 246, 0.12) 0%, transparent 40%), var(--background);
+}
+
+.dark .bg-white {
+  background-color: color-mix(in oklab, var(--surface) 92%, #172554 8%) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: color-mix(in oklab, var(--surface-muted) 88%, #0b1220 12%) !important;
+}
+
+.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .border-slate-200,
+.dark .border-slate-300 {
+  border-color: var(--border) !important;
+}
+
+.dark .bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, #0f172a, #101b33, #0b1220) !important;
+}
+
+.dark .shadow-sm,
+.dark .shadow,
+.dark .shadow-lg,
+.dark .shadow-xl {
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.45) !important;
+}
+
+.dark .code-paper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #d1d5db !important;
 }

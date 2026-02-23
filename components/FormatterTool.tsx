@@ -4,12 +4,80 @@ import { useMemo, useState } from "react";
 import yaml from "js-yaml";
 
 type FormatKind = "json" | "yaml" | "xml";
+type Topic = {
+  title: string;
+  description: string;
+  code: string;
+  takeaway: string;
+};
 
 const starterSamples: Record<FormatKind, string> = {
   json: '{\n  "name": "Online Compiler",\n  "features": ["JSON", "YAML", "XML"],\n  "active": true\n}',
   yaml: "name: Online Compiler\nfeatures:\n  - JSON\n  - YAML\n  - XML\nactive: true\n",
   xml: '<root>\n<name>Online Compiler</name>\n<features>\n<item>JSON</item>\n<item>YAML</item>\n<item>XML</item>\n</features>\n<active>true</active>\n</root>',
 };
+
+const basicTopics: Topic[] = [
+  {
+    title: "JSON Formatting Basics",
+    description:
+      "JSON requires strict syntax. Keys and string values need double quotes, arrays use square brackets, and objects use curly braces.",
+    code: `{\n  "user": "chandan",\n  "skills": ["html", "css", "javascript"],\n  "active": true\n}`,
+    takeaway: "Use strict quoting and commas correctly to avoid JSON parse errors.",
+  },
+  {
+    title: "YAML Key-Value Structure",
+    description:
+      "YAML relies on indentation instead of braces. It is common in CI pipelines, Kubernetes files, and config documents.",
+    code: `app: online-compiler\nversion: 1.0\nenabled: true\nfeatures:\n  - formatter\n  - regex`,
+    takeaway: "Keep indentation consistent with spaces to prevent broken YAML structures.",
+  },
+  {
+    title: "XML Element and Attribute Syntax",
+    description:
+      "XML uses start and end tags and can include attributes. Every opened tag must be closed correctly.",
+    code: `<project name=\"online-compiler\">\n  <feature type=\"tool\">formatter</feature>\n  <feature type=\"tool\">regex</feature>\n</project>`,
+    takeaway: "Always match opening and closing tags for valid XML parsing.",
+  },
+  {
+    title: "Copy-Paste API Payload Cleanup",
+    description:
+      "Incoming payloads from APIs are often minified. Formatter tools help make them readable for debugging and team reviews.",
+    code: `{\"id\":12,\"name\":\"Demo\",\"roles\":[\"admin\",\"editor\"],\"meta\":{\"country\":\"IN\"}}`,
+    takeaway: "Formatting payloads first helps you debug faster and avoid missing nested keys.",
+  },
+];
+
+const advancedTopics: Topic[] = [
+  {
+    title: "Nested Object Validation Workflow",
+    description:
+      "Complex objects can hide subtle structure errors. Validate each layer from top-level keys to deeply nested arrays.",
+    code: `{\n  "order": {\n    "id": "A100",\n    "items": [\n      { "sku": "P1", "qty": 2 },\n      { "sku": "P2", "qty": 1 }\n    ]\n  }\n}`,
+    takeaway: "Inspect nested paths step by step instead of scanning entire payload at once.",
+  },
+  {
+    title: "YAML Lists and Nested Maps",
+    description:
+      "Advanced YAML often combines lists and maps. Proper indentation and grouping are critical for deployment configs.",
+    code: `services:\n  web:\n    image: nginx\n    ports:\n      - \"80:80\"\n  api:\n    image: node:20\n    environment:\n      NODE_ENV: production`,
+    takeaway: "Visual hierarchy in YAML is logic hierarchy; one indentation mistake changes meaning.",
+  },
+  {
+    title: "XML Namespaces and Structure Consistency",
+    description:
+      "In larger XML documents, namespaces and consistent node hierarchy reduce conflicts and parsing ambiguity.",
+    code: `<ns:catalog xmlns:ns=\"https://example.com/schema\">\n  <ns:item id=\"1\">\n    <ns:name>Formatter</ns:name>\n  </ns:item>\n</ns:catalog>`,
+    takeaway: "Namespaces are useful when integrating XML from multiple providers.",
+  },
+  {
+    title: "Validation Before Database Insert",
+    description:
+      "Before writing imported payloads to a database, format and validate structure to catch malformed fields early.",
+    code: `{\n  "importedAt": "2026-02-23T10:00:00Z",\n  "records": [\n    { "id": 1, "status": "ok" },\n    { "id": 2, "status": "ok" }\n  ]\n}`,
+    takeaway: "Formatted validation saves downstream cleanup and prevents data integrity issues.",
+  },
+];
 
 function formatXml(xml: string): string {
   const parser = new DOMParser();
@@ -114,7 +182,7 @@ export default function FormatterTool() {
   };
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <section className="mx-auto w-full max-w-[1500px] px-3 py-10 sm:px-4">
       <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-cyan-50 p-6 shadow-lg">
         <div className="mb-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
           <div>
@@ -171,7 +239,7 @@ export default function FormatterTool() {
             <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
               Formatted Output
             </div>
-            <pre className="h-[420px] overflow-auto bg-slate-950 p-3 font-mono text-xs text-cyan-100">
+            <pre className="h-[420px] overflow-auto code-paper bg-white border border-slate-200 p-3 font-mono text-xs text-slate-800">
               {output || "Run validation to see formatted output here."}
             </pre>
           </article>
@@ -192,6 +260,66 @@ export default function FormatterTool() {
               output.
             </p>
           </article>
+        </section>
+
+        <section className="mt-6 rounded-xl border border-slate-200 bg-white p-4">
+          <h2 className="text-lg font-semibold text-slate-900">Common Formatting Errors</h2>
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            <article className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <h3 className="text-sm font-semibold text-slate-900">Invalid JSON token</h3>
+              <p className="mt-2 text-sm text-slate-700">Check commas, quotes, and trailing commas in objects or arrays.</p>
+            </article>
+            <article className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <h3 className="text-sm font-semibold text-slate-900">YAML indentation issue</h3>
+              <p className="mt-2 text-sm text-slate-700">Use consistent spaces for nested keys and list items.</p>
+            </article>
+            <article className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <h3 className="text-sm font-semibold text-slate-900">XML parse error</h3>
+              <p className="mt-2 text-sm text-slate-700">Ensure opening and closing tags match and attribute quotes are valid.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Basic Topics with Examples</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Learn core formatting concepts for JSON, YAML, and XML before handling production payloads.
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {basicTopics.map((topic) => (
+              <article key={topic.title} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900">{topic.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{topic.description}</p>
+                <pre className="mt-3 overflow-x-auto rounded-md code-paper bg-white border border-slate-200 p-3 text-xs text-slate-800">
+                  <code>{topic.code}</code>
+                </pre>
+                <p className="mt-3 text-sm text-slate-600">
+                  <span className="font-semibold text-slate-800">Key takeaway:</span> {topic.takeaway}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Advanced Topics with Examples</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Apply structured validation practices for larger, nested, and integration-heavy data workflows.
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {advancedTopics.map((topic) => (
+              <article key={topic.title} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <h3 className="text-lg font-semibold text-slate-900">{topic.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{topic.description}</p>
+                <pre className="mt-3 overflow-x-auto rounded-md code-paper bg-white border border-slate-200 p-3 text-xs text-slate-800">
+                  <code>{topic.code}</code>
+                </pre>
+                <p className="mt-3 text-sm text-slate-600">
+                  <span className="font-semibold text-slate-800">Key takeaway:</span> {topic.takeaway}
+                </p>
+              </article>
+            ))}
+          </div>
         </section>
       </div>
     </section>

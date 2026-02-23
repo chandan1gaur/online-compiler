@@ -69,7 +69,7 @@ export default function Page() {
   return (
     <>
       <section className="border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-cyan-50">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-2 md:py-20">
+        <div className="mx-auto grid w-full max-w-[1500px] gap-8 px-3 py-14 sm:px-4 md:grid-cols-2 md:py-20">
           <div>
             <p className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-700">
               Free Web Playground
@@ -127,7 +127,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="features" className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <section id="features" className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900">Core Features</h2>
         <p className="mt-3 max-w-3xl text-slate-700">
           A practical browser-based coding platform focused on speed, reliability, and accessibility for modern web
@@ -145,7 +145,7 @@ export default function Page() {
       </section>
 
       <section id="how-it-works" className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900">How It Works</h2>
           <div className="mt-7 grid gap-4 md:grid-cols-3">
             <article className="rounded-xl border border-slate-200 bg-white p-5">
@@ -167,7 +167,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <section className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900">FAQ</h2>
         <div className="mt-6 space-y-4">
           {homeFaq.map((item) => (

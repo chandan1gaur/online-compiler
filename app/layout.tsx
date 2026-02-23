@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import CookieConsent from "@/components/CookieConsent";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -133,14 +134,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 antialiased`}>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`try {
+  var saved = localStorage.getItem('oc-theme');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  }
+} catch (e) {}`}
+        </Script>
         <Script id="schema-org" type="application/ld+json">
           {JSON.stringify(structuredData)}
         </Script>
-
-        <SiteHeader />
-        <main className="min-h-[calc(100vh-144px)]">{children}</main>
-        <SiteFooter />
-        <CookieConsent gaMeasurementId={gaMeasurementId} />
+        <ThemeProvider>
+          <SiteHeader />
+          <main className="min-h-[calc(100vh-144px)]">{children}</main>
+          <SiteFooter />
+          <CookieConsent gaMeasurementId={gaMeasurementId} />
+        </ThemeProvider>
       </body>
     </html>
   );

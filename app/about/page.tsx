@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <main className="mx-auto max-w-6xl px-3 py-12 sm:px-4">
       <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">About Online Compiler</h1>
       <p className="mt-4 text-slate-700">
         Online Compiler is a browser-based coding tool that helps learners and developers write, test, and share
