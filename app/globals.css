@@ -10,11 +10,11 @@
 }
 
 .dark {
-  --background: #030712;
-  --foreground: #e5e7eb;
-  --surface: #0f172a;
-  --surface-muted: #111827;
-  --border: #2b3a52;
+  --background: #121417;
+  --foreground: #eceff4;
+  --surface: #1b1f24;
+  --surface-muted: #22272e;
+  --border: #343b45;
 }
 
 @theme inline {
@@ -33,16 +33,16 @@ body {
 }
 
 .dark body {
-  background: radial-gradient(1200px 700px at 8% -10%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
-    radial-gradient(1000px 620px at 90% -10%, rgba(59, 130, 246, 0.12) 0%, transparent 40%), var(--background);
+  background: radial-gradient(1200px 700px at 10% -10%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
+    radial-gradient(1000px 620px at 90% -10%, rgba(148, 163, 184, 0.06) 0%, transparent 40%), var(--background);
 }
 
 .dark .bg-white {
-  background-color: color-mix(in oklab, var(--surface) 92%, #172554 8%) !important;
+  background-color: var(--surface) !important;
 }
 
 .dark .bg-slate-50 {
-  background-color: color-mix(in oklab, var(--surface-muted) 88%, #0b1220 12%) !important;
+  background-color: var(--surface-muted) !important;
 }
 
 .dark .text-slate-900 {
@@ -54,11 +54,11 @@ body {
 }
 
 .dark .text-slate-700 {
-  color: #cbd5e1 !important;
+  color: #d7dde6 !important;
 }
 
 .dark .text-slate-600 {
-  color: #94a3b8 !important;
+  color: #b1bbc8 !important;
 }
 
 .dark .text-slate-500 {
@@ -71,7 +71,7 @@ body {
 }
 
 .dark .bg-gradient-to-br {
-  background-image: linear-gradient(to bottom right, #0f172a, #101b33, #0b1220) !important;
+  background-image: linear-gradient(to bottom right, #1b1f24, #21262d, #171b21) !important;
 }
 
 .dark .shadow-sm,

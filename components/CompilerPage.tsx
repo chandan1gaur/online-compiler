@@ -367,6 +367,27 @@ export default function CompilerPage({ language }: CompilerPageProps) {
         </article>
       </section>
 
+      {!isHtml ? (
+        <section className="mt-8 rounded-xl border border-slate-200 bg-white p-5">
+          <h2 className="text-xl font-semibold text-slate-900">How to Use Input in JavaScript Compiler</h2>
+          <p className="mt-2 text-sm text-slate-700">
+            Use <code>prompt()</code> in your JavaScript code and provide each input value on a new line in the
+            Program Input panel. Input lines are consumed in order.
+          </p>
+          <pre className="mt-3 overflow-x-auto rounded-md code-paper bg-white border border-slate-200 p-3 text-xs text-slate-800">
+            <code>{`const name = prompt("Enter name:");
+const age = prompt("Enter age:");
+console.log("Name:", name);
+console.log("Age:", age);`}</code>
+          </pre>
+          <p className="mt-2 text-sm text-slate-700">Input lines example:</p>
+          <pre className="mt-2 overflow-x-auto rounded-md code-paper bg-white border border-slate-200 p-3 text-xs text-slate-800">
+            <code>{`Chandan
+26`}</code>
+          </pre>
+        </section>
+      ) : null}
+
       <section className="mt-8 rounded-xl border border-slate-200 bg-white p-5">
         <h2 className="text-xl font-semibold text-slate-900">{content.exampleTitle}</h2>
         <p className="mt-2 text-sm text-slate-700">Try this starter snippet and modify it in the compiler above.</p>
