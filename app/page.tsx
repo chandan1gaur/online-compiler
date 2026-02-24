@@ -124,46 +124,46 @@ export default function Page() {
   return (
     <>
       <section className="relative border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:border-slate-700 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
-        <div className="mx-auto w-full max-w-[1200px] px-3 py-14 sm:px-4 lg:py-20">
+        <div className="mx-auto w-full max-w-[1200px] px-3 py-8 sm:px-4 sm:py-14 lg:py-20">
           <div className="text-center">
             <p className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-300">
               Browser-Based Coding Platform
             </p>
-            <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
+            <h1 className="mx-auto mt-3 max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:mt-4 sm:text-5xl">
               Online Compiler for HTML, CSS, JavaScript, Regex, and Formatter Tools
             </h1>
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-700 dark:text-slate-300 sm:text-lg">
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:mt-5 sm:text-lg">
               Build, test, and debug faster with a practical coding workspace and utility tools.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <div className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-7 sm:gap-3">
               <Link
                 href="/html/online-compiler"
-                className="rounded-md bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
+                className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 sm:px-5 sm:py-2.5"
               >
                 Start Coding
               </Link>
               <Link
                 href="/#tools"
-                className="rounded-md border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
+                className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700 sm:px-5 sm:py-2.5"
               >
                 Explore Tools
               </Link>
             </div>
 
-            <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+            <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:mt-8 sm:p-4">
               <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Quick Launch</p>
-              <div className="mt-3 flex flex-wrap justify-center gap-2">
+              <div className="mt-3 flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
                 {quickLaunchLinks.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                    className="whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                   >
                     {item.label}
                   </Link>
                 ))}
               </div>
-              <div className="mt-4 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-4 hidden gap-2 text-sm sm:grid sm:grid-cols-2 lg:grid-cols-4">
                 {valuePoints.map((point) => (
                   <div key={point} className="rounded-md bg-slate-50 px-3 py-2 text-slate-700 dark:bg-slate-800 dark:text-slate-200">
                     {point}
@@ -175,18 +175,18 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="tools" className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
+      <section id="tools" className="mx-auto w-full max-w-[1500px] px-3 py-10 sm:px-4 sm:py-14">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Compiler and Tool Pages</h2>
         <p className="mt-2 max-w-3xl text-slate-700 dark:text-slate-300">
           Open any tool directly from the image cards.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 md:mt-8 md:grid md:gap-4 md:overflow-visible md:pb-0 md:snap-none md:grid-cols-2 xl:grid-cols-5">
           {toolCards.map((tool) => (
             <Link
               key={tool.title}
               href={tool.href}
-              className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700 dark:bg-slate-900"
+              className="group min-w-[84%] snap-start overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700 dark:bg-slate-900 md:min-w-0"
             >
               <Image
                 src={tool.image}
@@ -206,12 +206,20 @@ export default function Page() {
       </section>
 
       <section className="border-y border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900/70">
-        <div className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
+        <div className="mx-auto w-full max-w-[1500px] px-3 py-10 sm:px-4 sm:py-14">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">How It Works</h2>
           <p className="mt-2 max-w-3xl text-slate-700 dark:text-slate-300">
             Simple workflow for new users and learners.
           </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 space-y-2 sm:hidden">
+            {quickStartSteps.map((step, idx) => (
+              <div key={step} className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+                <span className="mr-2 font-semibold text-cyan-700">Step {idx + 1}</span>
+                {step}
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 hidden gap-4 sm:grid md:grid-cols-2 lg:grid-cols-4">
             {quickStartSteps.map((step, idx) => (
               <article
                 key={step}
@@ -238,14 +246,14 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
+      <section className="mx-auto w-full max-w-[1500px] px-3 py-10 sm:px-4 sm:py-14">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Tutorials</h2>
         <p className="mt-2 max-w-3xl text-slate-700 dark:text-slate-300">
           Start learning directly on compiler pages with topic-wise explanations and code.
         </p>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 md:mt-6 md:grid md:gap-4 md:overflow-visible md:pb-0 md:snap-none md:grid-cols-3">
           {tutorials.map((item) => (
-            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+            <article key={item.title} className="min-w-[88%] snap-start rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 md:min-w-0 md:p-5">
               <div className="flex items-start justify-between gap-2">
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{item.title}</h3>
                 {item.comingSoon ? (
@@ -269,9 +277,9 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
+      <section className="mx-auto w-full max-w-[1500px] px-3 py-10 sm:px-4 sm:py-14">
         <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-5 space-y-3 md:mt-6 md:grid md:gap-4 md:space-y-0 md:grid-cols-3">
           {homeFaq.map((item) => (
             <article key={item.q} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
               <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{item.q}</h3>
