@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+  <title id="t">Regex logo style preview</title>
+  <desc id="d">Regex testing card icon style.</desc>
+  <rect width="640" height="360" fill="#f3f4f6"/>
+  <rect x="150" y="24" width="340" height="312" rx="10" fill="#e5e7eb" stroke="#9ca3af" stroke-width="6"/>
+  <text x="320" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="54" font-weight="800" fill="#111827">REGEX</text>
+  <rect x="210" y="114" width="220" height="188" rx="12" fill="#16a34a"/>
+  <text x="320" y="178" text-anchor="middle" font-family="Courier New,monospace" font-size="34" fill="#ffffff">/^a.+z$/</text>
+  <text x="320" y="224" text-anchor="middle" font-family="Courier New,monospace" font-size="24" fill="#dcfce7">match: true</text>
+  <circle cx="260" cy="262" r="12" fill="#ffffff"/>
+  <rect x="284" y="250" width="74" height="24" rx="5" fill="#ffffff"/>
+</svg>

@@ -10,6 +10,7 @@ const supportedLanguages: SupportedLanguage[] = ["html", "javascript", "formatte
 
 type PageProps = {
   params: Promise<{ language: string }>;
+  searchParams: Promise<{ code?: string | string[]; run?: string | string[] }>;
 };
 
 function isSupportedLanguage(language: string): language is SupportedLanguage {
@@ -61,15 +62,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function OnlineCompilerByLanguagePage({ params }: PageProps) {
+export default async function OnlineCompilerByLanguagePage({ params, searchParams }: PageProps) {
   const { language } = await params;
+  const query = await searchParams;
 
   if (!isSupportedLanguage(language)) {
     notFound();
   }
 
-  if (language === "html") return <CompilerPage language="html" />;
-  if (language === "javascript") return <CompilerPage language="javascript" />;
+  const codeParam = Array.isArray(query.code) ? query.code[0] : query.code;
+  const runParam = Array.isArray(query.run) ? query.run[0] : query.run;
+  const autoRun = runParam === "1";
+
+  if (language === "html") return <CompilerPage language="html" initialCode={codeParam} autoRun={autoRun} />;
+  if (language === "javascript") return <CompilerPage language="javascript" initialCode={codeParam} autoRun={autoRun} />;
   if (language === "formatter") return <FormatterTool />;
   return <RegexPlayground />;
 }

@@ -1,8 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import Home from "@/components/Home";
 
 type CompilerPageProps = {
   language: "html" | "javascript";
+  initialCode?: string;
+  autoRun?: boolean;
 };
 
 type Topic = {
@@ -27,6 +30,7 @@ type CompilerContent = {
   basicTopics: Topic[];
   advancedTopics: Topic[];
   faq: { q: string; a: string }[];
+  visualAlt: string;
 };
 
 const htmlContent: CompilerContent = {
@@ -140,6 +144,7 @@ const htmlContent: CompilerContent = {
       a: "Yes. The interface is responsive and works on desktop, tablet, and mobile screens.",
     },
   ],
+  visualAlt: "Visual preview of HTML online compiler with editor and live output",
 };
 
 const jsContent: CompilerContent = {
@@ -299,6 +304,7 @@ const jsContent: CompilerContent = {
       a: "Yes. This page includes practical examples for closures, promises, async/await, ES6 syntax, throttling, generators, and more.",
     },
   ],
+  visualAlt: "Visual preview of JavaScript online compiler with input and console output",
 };
 
 function TopicCard({ topic }: { topic: Topic }) {
@@ -316,7 +322,7 @@ function TopicCard({ topic }: { topic: Topic }) {
   );
 }
 
-export default function CompilerPage({ language }: CompilerPageProps) {
+export default function CompilerPage({ language, initialCode, autoRun = false }: CompilerPageProps) {
   const isHtml = language === "html";
   const content = isHtml ? htmlContent : jsContent;
 
@@ -341,7 +347,32 @@ export default function CompilerPage({ language }: CompilerPageProps) {
         <p className="mt-2 max-w-4xl text-sm text-slate-600 sm:text-base">{content.intro}</p>
       </div>
 
-      <Home initialMode={isHtml ? "html" : "js"} />
+      <Home initialMode={isHtml ? "html" : "js"} initialCode={initialCode} autoRun={autoRun} />
+
+      <section className="mt-8 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+          <Image
+            src="/compiler-preview.svg"
+            alt={content.visualAlt}
+            width={1200}
+            height={720}
+            className="h-auto w-full"
+          />
+        </div>
+        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Visual Walkthrough</h2>
+          <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+            The left panel is your code editor, and the right panel shows output. Use tabs for files, add input lines
+            when using <code>prompt()</code>, then click Run to refresh result instantly.
+          </p>
+          <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700 dark:text-slate-300">
+            <li>Pick the correct mode: HTML or JavaScript.</li>
+            <li>Edit code in active file tab and keep snippets focused.</li>
+            <li>For JavaScript input, add one value per line in Program Input.</li>
+            <li>Run and read output or error logs to debug quickly.</li>
+          </ol>
+        </article>
+      </section>
 
       <section className="mt-8 grid gap-4 lg:grid-cols-2">
         <article className="rounded-xl border border-slate-200 bg-white p-5">

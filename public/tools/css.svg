@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+  <title id="t">CSS logo style preview</title>
+  <desc id="d">CSS style badge icon for compiler card.</desc>
+  <rect width="640" height="360" fill="#f3f4f6"/>
+  <rect x="150" y="24" width="340" height="312" rx="10" fill="#e5e7eb" stroke="#9ca3af" stroke-width="6"/>
+  <text x="320" y="72" text-anchor="middle" font-family="Arial,sans-serif" font-size="62" font-weight="800" fill="#111827">CSS</text>
+  <path d="M230 104h180l-18 198-72 22-72-22z" fill="#2563eb"/>
+  <path d="M320 104h90l-14 179-76 24z" fill="#1d4ed8" opacity="0.85"/>
+  <path d="M273 156h96l-3 28h-66l2 22h62l-7 67-37 11-37-11-3-31h28l1 9 11 3 11-3 2-21h-58l-7-84z" fill="#ffffff"/>
+</svg>

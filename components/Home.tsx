@@ -9,6 +9,8 @@ type CompilerMode = "html" | "js";
 
 type HomeProps = {
   initialMode?: CompilerMode;
+  initialCode?: string;
+  autoRun?: boolean;
 };
 
 const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
@@ -19,7 +21,7 @@ const FILES_STORAGE_KEY = "oc:snippet_files";
 const STDIN_STORAGE_KEY = "oc:stdin";
 const SPLIT_STORAGE_KEY = "oc:split";
 
-export default function Home({ initialMode = "html" }: HomeProps) {
+export default function Home({ initialMode = "html", initialCode, autoRun = false }: HomeProps) {
   const router = useRouter();
   const { theme } = useTheme();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -35,8 +37,9 @@ export default function Home({ initialMode = "html" }: HomeProps) {
     "main.js": "// main.js\nconsole.log('hello from main.js')",
   };
 
-  const [mode, setMode] = useState<CompilerMode>(initialMode);
-  const [activeFile, setActiveFile] = useState<string>(initialMode === "html" ? "index.html" : "main.js");
+  const startingMode: CompilerMode = initialCode ? "js" : initialMode;
+  const [mode, setMode] = useState<CompilerMode>(startingMode);
+  const [activeFile, setActiveFile] = useState<string>(startingMode === "html" ? "index.html" : "main.js");
   const [isRunning, setIsRunning] = useState(false);
   const [splitPercent, setSplitPercent] = useState<number>(() => {
     if (typeof window === "undefined") return 54;
@@ -51,12 +54,19 @@ export default function Home({ initialMode = "html" }: HomeProps) {
     if (typeof window === "undefined") return defaultFiles;
     try {
       const saved = localStorage.getItem(FILES_STORAGE_KEY);
-      if (!saved) return defaultFiles;
-      return { ...defaultFiles, ...JSON.parse(saved) };
+      const merged = saved ? { ...defaultFiles, ...JSON.parse(saved) } : defaultFiles;
+      if (initialCode) {
+        return { ...merged, "main.js": initialCode };
+      }
+      return merged;
     } catch {
+      if (initialCode) {
+        return { ...defaultFiles, "main.js": initialCode };
+      }
       return defaultFiles;
     }
   });
+  const hasAutoRun = useRef(false);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -125,6 +135,13 @@ export default function Home({ initialMode = "html" }: HomeProps) {
     if (iframeRef.current) iframeRef.current.srcdoc = doc;
     setTimeout(() => setIsRunning(false), 350);
   }, [buildSrcDoc]);
+
+  useEffect(() => {
+    if (!autoRun || hasAutoRun.current) return;
+    hasAutoRun.current = true;
+    const timer = setTimeout(() => run(), 180);
+    return () => clearTimeout(timer);
+  }, [autoRun, run, files]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
