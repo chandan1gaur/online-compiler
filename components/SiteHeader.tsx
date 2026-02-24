@@ -5,10 +5,10 @@ import ThemeToggle from "@/components/ThemeToggle";
 const navItems = [
   { href: "/#features", label: "Features" },
   { href: "/#how-it-works", label: "How It Works" },
-  { href: "/html", label: "HTML Compiler" },
-  { href: "/javascript", label: "JavaScript Compiler" },
-  { href: "/formatter", label: "Formatter" },
-  { href: "/regex", label: "Regex Tester" },
+  { href: "/html/online-compiler", label: "HTML Compiler" },
+  { href: "/javascript/online-compiler", label: "JavaScript Compiler" },
+  { href: "/formatter/online-compiler", label: "Formatter" },
+  { href: "/regex/online-compiler", label: "Regex Tester" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -32,7 +32,7 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Link
-            href="/html"
+            href="/html/online-compiler"
             className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-700 dark:bg-cyan-600 dark:hover:bg-cyan-500 sm:text-sm"
           >
             Start Coding

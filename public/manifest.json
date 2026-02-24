@@ -34,13 +34,13 @@
       "name": "Open HTML Mode",
       "short_name": "HTML",
       "description": "Start coding in HTML mode",
-      "url": "/html"
+      "url": "/html/online-compiler"
     },
     {
       "name": "Open JavaScript Mode",
       "short_name": "JS",
       "description": "Start coding in JavaScript mode",
-      "url": "/javascript"
+      "url": "/javascript/online-compiler"
     }
   ]
 }

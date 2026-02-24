@@ -162,7 +162,7 @@ export default function Home({ initialMode = "html" }: HomeProps) {
   const changeMode = (m: CompilerMode) => {
     setMode(m);
     setActiveFile(m === "html" ? "index.html" : "main.js");
-    router.push(m === "html" ? "/html" : "/javascript");
+    router.push(m === "html" ? "/html/online-compiler" : "/javascript/online-compiler");
   };
 
   const startResize = () => {
@@ -267,7 +267,7 @@ export default function Home({ initialMode = "html" }: HomeProps) {
             className="h-24 w-full resize-y rounded border border-slate-300 bg-white p-2 font-mono text-xs text-slate-900 outline-none"
             spellCheck={false}
           />
-          <div className="mt-2 rounded border border-slate-200 bg-white p-2 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+          {/* <div className="mt-2 rounded border border-slate-200 bg-white p-2 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
             <p className="font-semibold text-slate-700 dark:text-slate-200">Example (JavaScript mode)</p>
             <pre className="mt-1 overflow-x-auto rounded code-paper bg-white border border-slate-200 p-2 text-[11px] text-slate-800">{`const name = prompt("Enter your name:");
 const age = prompt("Enter your age:");
@@ -275,7 +275,7 @@ console.log("Name:", name, "Age:", age);`}</pre>
             <p className="mt-1">Input lines example:</p>
             <pre className="overflow-x-auto rounded code-paper bg-white border border-slate-200 p-2 text-[11px] text-slate-800">{`Chandan
 26`}</pre>
-          </div>
+          </div> */}
         </div>
       </div>
     </article>

@@ -5,16 +5,16 @@ export default function SiteFooter() {
     <footer className="border-t border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-950/80">
       <div className="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-3 py-8 sm:px-4">
         <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
-          <Link href="/html" className="hover:text-slate-900 dark:hover:text-white">
+          <Link href="/html/online-compiler" className="hover:text-slate-900 dark:hover:text-white">
             HTML Compiler
           </Link>
-          <Link href="/javascript" className="hover:text-slate-900 dark:hover:text-white">
+          <Link href="/javascript/online-compiler" className="hover:text-slate-900 dark:hover:text-white">
             JavaScript Compiler
           </Link>
-          <Link href="/formatter" className="hover:text-slate-900 dark:hover:text-white">
+          <Link href="/formatter/online-compiler" className="hover:text-slate-900 dark:hover:text-white">
             JSON/YAML/XML Formatter
           </Link>
-          <Link href="/regex" className="hover:text-slate-900 dark:hover:text-white">
+          <Link href="/regex/online-compiler" className="hover:text-slate-900 dark:hover:text-white">
             Regex Tester
           </Link>
           <Link href="/privacy" className="hover:text-slate-900 dark:hover:text-white">

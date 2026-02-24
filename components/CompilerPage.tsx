@@ -362,7 +362,7 @@ export default function CompilerPage({ language }: CompilerPageProps) {
             ))}
           </ol>
           <p className="mt-4 text-sm text-slate-600">
-            Use the <Link href="/formatter" className="text-cyan-700 hover:underline">formatter</Link> for JSON/YAML/XML cleanup and the <Link href="/regex" className="text-cyan-700 hover:underline">regex tester</Link> for parsing and validation workflows.
+            Use the <Link href="/formatter/online-compiler" className="text-cyan-700 hover:underline">formatter</Link> for JSON/YAML/XML cleanup and the <Link href="/regex/online-compiler" className="text-cyan-700 hover:underline">regex tester</Link> for parsing and validation workflows.
           </p>
         </article>
       </section>

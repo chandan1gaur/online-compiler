@@ -83,13 +83,13 @@ export default function Page() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/html"
+                href="/html/online-compiler"
                 className="rounded-md bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700"
               >
                 Open HTML Compiler
               </Link>
               <Link
-                href="/javascript"
+                href="/javascript/online-compiler"
                 className="rounded-md bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700"
               >
                 Open JavaScript Compiler
@@ -101,13 +101,13 @@ export default function Page() {
                 Explore Features
               </Link>
               <Link
-                href="/formatter"
+                href="/formatter/online-compiler"
                 className="rounded-md border border-cyan-300 px-5 py-2.5 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-50"
               >
                 Open Formatter
               </Link>
               <Link
-                href="/regex"
+                href="/regex/online-compiler"
                 className="rounded-md border border-emerald-300 px-5 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50"
               >
                 Open Regex Tester
