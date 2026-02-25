@@ -40,6 +40,8 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
   const startingMode: CompilerMode = initialCode ? "js" : initialMode;
   const [mode, setMode] = useState<CompilerMode>(startingMode);
   const [activeFile, setActiveFile] = useState<string>(startingMode === "html" ? "index.html" : "main.js");
+  const [mobilePanel, setMobilePanel] = useState<"editor" | "output">("editor");
+  const [showMobileInput, setShowMobileInput] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [splitPercent, setSplitPercent] = useState<number>(() => {
     if (typeof window === "undefined") return 54;
@@ -212,7 +214,7 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
     };
   }, []);
 
-  const editorPanel = (
+  const editorPanel = (compact = false) => (
     <article className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
       <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
         Editor
@@ -233,9 +235,9 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
         ))}
       </div>
 
-      <div style={{ minHeight: "56vh" }}>
+      <div style={{ minHeight: compact ? "38vh" : "56vh" }}>
         <MonacoEditor
-          height="56vh"
+          height={compact ? "38vh" : "56vh"}
           defaultLanguage={extFor(activeFile)}
           language={extFor(activeFile)}
           value={files[activeFile]}
@@ -254,7 +256,7 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
     </article>
   );
 
-  const outputPanel = (
+  const outputPanel = (compact = false) => (
     <article className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
       <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
         {mode === "html" ? "Live Preview" : "Output"}
@@ -263,27 +265,39 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
         <iframe
           ref={iframeRef}
           title="preview"
-          className="h-[42vh] w-full rounded-lg border border-slate-200 bg-white"
+          className={`${compact ? "h-[34vh]" : "h-[42vh]"} w-full rounded-lg border border-slate-200 bg-white`}
           sandbox="allow-scripts"
         ></iframe>
 
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-slate-700 dark:bg-slate-800">
           <div className="mb-1 flex items-center justify-between">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300">Program Input (stdin)</p>
-            <button
-              onClick={() => setStdinInput("")}
-              className="rounded border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-700"
-            >
-              Clear
-            </button>
+            <div className="flex items-center gap-2">
+              {compact ? (
+                <button
+                  onClick={() => setShowMobileInput((prev) => !prev)}
+                  className="rounded border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-700"
+                >
+                  {showMobileInput ? "Hide" : "Show"}
+                </button>
+              ) : null}
+              <button
+                onClick={() => setStdinInput("")}
+                className="rounded border border-slate-300 bg-white px-2 py-1 text-xs text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-700"
+              >
+                Clear
+              </button>
+            </div>
           </div>
-          <textarea
-            value={stdinInput}
-            onChange={(e) => setStdinInput(e.target.value)}
-            placeholder="Each line is consumed by prompt() in order"
-            className="h-24 w-full resize-y rounded border border-slate-300 bg-white p-2 font-mono text-xs text-slate-900 outline-none"
-            spellCheck={false}
-          />
+          {!compact || showMobileInput ? (
+            <textarea
+              value={stdinInput}
+              onChange={(e) => setStdinInput(e.target.value)}
+              placeholder="Each line is consumed by prompt() in order"
+              className={`${compact ? "h-20" : "h-24"} w-full resize-y rounded border border-slate-300 bg-white p-2 font-mono text-xs text-slate-900 outline-none`}
+              spellCheck={false}
+            />
+          ) : null}
           {/* <div className="mt-2 rounded border border-slate-200 bg-white p-2 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
             <p className="font-semibold text-slate-700 dark:text-slate-200">Example (JavaScript mode)</p>
             <pre className="mt-1 overflow-x-auto rounded code-paper bg-white border border-slate-200 p-2 text-[11px] text-slate-800">{`const name = prompt("Enter your name:");
@@ -343,7 +357,7 @@ console.log("Name:", name, "Age:", age);`}</pre>
         <div className="hidden lg:block" ref={desktopLayoutRef}>
           <div className="flex items-stretch">
             <div style={{ width: `${splitPercent}%` }} className="pr-1.5">
-              {editorPanel}
+              {editorPanel()}
             </div>
 
             <button
@@ -352,13 +366,36 @@ console.log("Name:", name, "Age:", age);`}</pre>
               className="mx-0.5 w-2 cursor-col-resize rounded bg-slate-200 transition hover:bg-cyan-300 dark:bg-slate-700 dark:hover:bg-cyan-700"
             />
 
-            <div className="flex-1 pl-1.5">{outputPanel}</div>
+            <div className="flex-1 pl-1.5">{outputPanel()}</div>
           </div>
         </div>
 
         <div className="grid gap-4 lg:hidden">
-          {editorPanel}
-          {outputPanel}
+          <div className="flex rounded-lg border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-900">
+            <button
+              type="button"
+              onClick={() => setMobilePanel("editor")}
+              className={`flex-1 rounded-md px-3 py-2 text-sm font-semibold ${
+                mobilePanel === "editor"
+                  ? "bg-slate-900 text-white"
+                  : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+              }`}
+            >
+              Editor
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobilePanel("output")}
+              className={`flex-1 rounded-md px-3 py-2 text-sm font-semibold ${
+                mobilePanel === "output"
+                  ? "bg-slate-900 text-white"
+                  : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+              }`}
+            >
+              {mode === "html" ? "Preview" : "Output"}
+            </button>
+          </div>
+          {mobilePanel === "editor" ? editorPanel(true) : outputPanel(true)}
         </div>
       </div>
     </section>
