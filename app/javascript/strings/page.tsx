@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Strings Tutorial",
   description:
     "Learn JavaScript string methods, template literals, slicing, searching, and text processing patterns.",
+  keywords: [
+    "javascript strings",
+    "string methods",
+    "template literals",
+    "text processing",
+    "js tutorial",
+  ],
   alternates: { canonical: "/javascript/strings" },
 };
 

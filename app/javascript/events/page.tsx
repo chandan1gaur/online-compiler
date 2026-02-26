@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Events Tutorial",
   description:
     "Master JavaScript events, event listeners, bubbling, delegation, and form handling with examples.",
+  keywords: [
+    "javascript events",
+    "event handling",
+    "dom events",
+    "bubbling delegation",
+    "js tutorial",
+  ],
   alternates: { canonical: "/javascript/events" },
 };
 

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Interview Questions and Answers",
   description:
     "JavaScript interview preparation page with frequent questions, clear answers, and practical code examples.",
+  keywords: [
+    "javascript interview questions",
+    "js coding interview",
+    "common javascript questions",
+    "interview prep",
+    "learn javascript",
+  ],
   alternates: { canonical: "/javascript/interview-questions" },
 };
 

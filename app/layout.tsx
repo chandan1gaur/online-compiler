@@ -63,7 +63,8 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/og-image.svg",
+        // use absolute URL so crawlers can fetch the asset correctly
+        url: `${siteUrl}/og-image.svg`,
         width: 1200,
         height: 630,
         alt: "Online Compiler preview card",
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/og-image.svg"],
+    images: [`${siteUrl}/og-image.svg`],
   },
   icons: {
     icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],

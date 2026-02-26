@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Variables: var vs let vs const",
   description:
     "Deep tutorial on JavaScript variables, scope, hoisting, and temporal dead zone with practical examples and FAQs.",
+  keywords: [
+    "javascript variables",
+    "var let const",
+    "variable scope",
+    "hoisting",
+    "js tutorial",
+  ],
   alternates: { canonical: "/javascript/variables" },
 };
 

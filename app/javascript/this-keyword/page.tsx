@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript this Keyword Tutorial",
   description:
     "Deep guide to JavaScript this keyword across objects, functions, arrow functions, call/apply/bind.",
+  keywords: [
+    "javascript this keyword",
+    "this binding",
+    "function context",
+    "call apply bind",
+    "js tutorial",
+  ],
   alternates: { canonical: "/javascript/this-keyword" },
 };
 

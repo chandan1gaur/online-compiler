@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Operators Tutorial",
   description:
     "Master JavaScript arithmetic, comparison, logical, assignment, and ternary operators with practical examples.",
+  keywords: [
+    "javascript operators",
+    "arithmetic operators",
+    "logical operators",
+    "operator precedence",
+    "js tutorial",
+  ],
   alternates: { canonical: "/javascript/operators" },
 };
 

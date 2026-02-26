@@ -82,9 +82,7 @@ export default function JavascriptSidebar() {
                       {section.topics.map((topic, index) => {
                         if (topic.href) {
                           const isFundamentalsSection = section.id === 1;
-                          const targetHref = isFundamentalsSection
-                            ? topic.href
-                            : `/javascript/coming-soon?topic=${encodeURIComponent(topic.title)}`;
+                          const targetHref = isFundamentalsSection ? topic.href : "/javascript/coming-soon";
                           const active = isFundamentalsSection
                             ? pathname === targetHref
                             : pathname === "/javascript/coming-soon";

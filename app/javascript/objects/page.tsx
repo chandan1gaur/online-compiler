@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Objects Tutorial",
   description:
     "Deep tutorial on JavaScript objects, property access, methods, cloning, and object iteration patterns.",
+  keywords: [
+    "javascript objects",
+    "object tutorial",
+    "property access",
+    "cloning iteration",
+    "js data structures",
+  ],
   alternates: { canonical: "/javascript/objects" },
 };
 

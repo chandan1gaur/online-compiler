@@ -116,7 +116,7 @@ export default function Home({ initialMode = "html", initialCode, autoRun = fals
     let html = files["index.html"] || "";
     const css = files["styles.css"] || "";
     const js = files["script.js"] || "";
-
+https://www.codecompileronline.com/
     try {
       html = html.replace(/<script\s+[^>]*src=["']script\.js["'][^>]*>\s<\/script>/gi, "");
       html = html.replace(/<script\s+[^>]*src=["']script\.js["'][^>]*>\s*?/gi, "");

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Array Methods Tutorial",
   description:
     "Deep tutorial on JavaScript array methods including map, filter, reduce, find, sort, and interview patterns.",
+  keywords: [
+    "javascript array methods",
+    "map filter reduce",
+    "js arrays tutorial",
+    "array manipulation",
+    "learn javascript",
+  ],
   alternates: { canonical: "/javascript/array-methods" },
 };
 

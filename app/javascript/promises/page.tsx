@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Promises Tutorial",
   description:
     "Learn JavaScript promises deeply: states, chaining, combinators, and robust error handling.",
+  keywords: [
+    "javascript promises",
+    "async programming",
+    "promise chaining",
+    "js async await",
+    "learn javascript",
+  ],
   alternates: { canonical: "/javascript/promises" },
 };
 

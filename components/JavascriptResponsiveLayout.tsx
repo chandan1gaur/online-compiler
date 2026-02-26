@@ -28,7 +28,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
 
   const getTopicHref = (sectionId: number, title: string, href?: string) => {
     if (sectionId === 1 && href) return href;
-    return `/javascript/coming-soon?topic=${encodeURIComponent(title)}`;
+    return "/javascript/coming-soon";
   };
 
   return (

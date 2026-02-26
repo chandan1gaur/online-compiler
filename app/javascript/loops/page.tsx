@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "JavaScript Loops Tutorial",
   description:
     "Learn JavaScript loops including for, while, do...while, for...of, and loop control statements.",
+  keywords: [
+    "javascript loops",
+    "for loop js",
+    "while loop",
+    "iteration tutorial",
+    "js control flow",
+  ],
   alternates: { canonical: "/javascript/loops" },
 };
 
