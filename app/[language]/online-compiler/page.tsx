@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: "HTML Compiler Online",
       description:
-        "Use the free online HTML compiler with CSS and JavaScript support. Write code, run live preview, and download your files.",
+        "Use the free online HTML compiler with CSS and JavaScript support. Write code, run live preview, download files, and explore related tutorials and tools on the site.",
       keywords: [
         "online html compiler",
         "html editor online",
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: "JavaScript Compiler Online",
       description:
-        "Run JavaScript online in your browser with instant output and a lightweight coding interface. No installation required.",
+        "Run JavaScript online in your browser with instant output and a lightweight coding interface. No installation required – tutorials, examples, regex and formatter tools are also available.",
       keywords: [
         "online javascript compiler",
         "js editor online",
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: "JSON YAML XML Formatter and Validator",
       description:
-        "Free online JSON, YAML, and XML formatter and validator. Validate syntax, format data, and debug structured payloads.",
+        "Free online JSON, YAML, and XML formatter and validator. Validate syntax, format data, debug payloads, and access tutorials, compilers, and regex tools.",
       keywords: [
         "json formatter",
         "yaml formatter",
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: "Regex Tester and Parser Playground",
     description:
-      "Test and debug regular expressions online with match lists, groups, and parsed JSON output in real time.",
+      "Test and debug regular expressions online with match lists, groups, and parsed JSON output in real time. Also access compilers, formatter, and tutorial content on the site.",
     keywords: [
       "online regex tester",
       "regex playground",
