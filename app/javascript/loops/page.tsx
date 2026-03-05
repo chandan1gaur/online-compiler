@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "for-in loop",
     "array iteration",
     "break continue",
+    "nested loops",
   ],
   openGraph: {
     title: "JavaScript Loops Complete Guide",
@@ -28,6 +29,51 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/javascript/loops" },
 };
+
+const loopTypesQuickRef = [
+  {
+    title: "for Loop",
+    description: "Traditional loop for a known number of iterations",
+    href: "/javascript/loops/for-loop",
+    color: "cyan",
+    use: "Array iteration, known counts",
+  },
+  {
+    title: "while Loop",
+    description: "Loop while condition is true",
+    href: "/javascript/loops/while-loop",
+    color: "blue",
+    use: "Condition-based iteration",
+  },
+  {
+    title: "do...while Loop",
+    description: "Execute at least once, then check condition",
+    href: "/javascript/loops/do-while-loop",
+    color: "purple",
+    use: "Guaranteed execution, menus",
+  },
+  {
+    title: "break Statement",
+    description: "Exit loop immediately",
+    href: "/javascript/loops/break-statement",
+    color: "orange",
+    use: "Early termination",
+  },
+  {
+    title: "continue Statement",
+    description: "Skip to next iteration",
+    href: "/javascript/loops/continue-statement",
+    color: "amber",
+    use: "Filtering, skipping",
+  },
+  {
+    title: "Nested Loops",
+    description: "Loops within loops",
+    href: "/javascript/loops/nested-loops",
+    color: "rose",
+    use: "2D arrays, matrices",
+  },
+];
 
 const sections = [
   {
@@ -261,6 +307,82 @@ export default function JavascriptLoopsPage() {
           Loops are fundamental to all programming. They process data, build interfaces, automate tasks, and drive logic.
           Choosing the right loop type improves code clarity and prevents common bugs like infinite loops or index errors.
         </p>
+      </div>
+
+      {/* Quick Reference Cards */}
+      <div className="mt-6">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Quick Reference</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {loopTypesQuickRef.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="group rounded-lg border border-slate-200 bg-white p-4 hover:shadow-lg transition-all dark:border-slate-800 dark:bg-slate-900/80 hover:border-slate-400 dark:hover:border-slate-600"
+            >
+              <h3 className={`text-base font-bold text-${item.color}-700 dark:text-${item.color}-300 group-hover:text-${item.color}-800 dark:group-hover:text-${item.color}-200`}>
+                {item.title}
+              </h3>
+              <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{item.description}</p>
+              <p className="mt-2 text-xs font-medium text-slate-700 dark:text-slate-300">
+                <span className="text-gray-500 dark:text-gray-400">Use for: </span>{item.use}
+              </p>
+              <div className={`mt-3 inline-flex text-xs font-semibold text-${item.color}-700 dark:text-${item.color}-300`}>
+                Learn More →
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Learning Path Section */}
+      <div className="mt-8 rounded-xl border border-slate-200 bg-gradient-to-br from-blue-50 to-cyan-50 p-5 dark:border-slate-800 dark:from-slate-900/60 dark:to-slate-900/40">
+        <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">📚 Recommended Learning Path</h2>
+        <div className="space-y-3 text-sm">
+          <div className="flex gap-3">
+            <div className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-cyan-700 dark:bg-cyan-600 text-white text-xs font-bold">1</div>
+            <div>
+              <p className="font-semibold text-slate-900 dark:text-white">
+                <Link href="/javascript/loops/for-loop" className="text-cyan-700 hover:text-cyan-800 dark:text-cyan-300">
+                  for Loop
+                </Link>
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">Master the foundation - iteration, array access, and loop control</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <div className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-blue-700 dark:bg-blue-600 text-white text-xs font-bold">2</div>
+            <div>
+              <p className="font-semibold text-slate-900 dark:text-white">
+                <Link href="/javascript/loops/while-loop" className="text-blue-700 hover:text-blue-800 dark:text-blue-300">
+                  while Loop
+                </Link>
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">Learn condition-based iteration and when to use while over for</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <div className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-purple-700 dark:bg-purple-600 text-white text-xs font-bold">3</div>
+            <div>
+              <p className="font-semibold text-slate-900 dark:text-white">
+                <Link href="/javascript/loops/break-statement" className="text-orange-700 hover:text-orange-800 dark:text-orange-300">
+                  break & continue
+                </Link>
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">Control loop flow with early exit and iteration skipping</p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <div className="flex-shrink-0 flex items-center justify-center h-6 w-6 rounded-full bg-rose-700 dark:bg-rose-600 text-white text-xs font-bold">4</div>
+            <div>
+              <p className="font-semibold text-slate-900 dark:text-white">
+                <Link href="/javascript/loops/nested-loops" className="text-rose-700 hover:text-rose-800 dark:text-rose-300">
+                  Nested Loops
+                </Link>
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">Handle multi-dimensional data, matrices, and complex structures</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="mt-6 space-y-6">
