@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0369a1" />
+      <stop offset="1" stop-color="#06b6d4" />
+    </linearGradient>
+    <style>
+      .bg { fill: #0f172a; }
+      .card { fill: url(#g); opacity: 0.06; }
+      .title { fill: #ffffff; font-family: Inter, system-ui, Arial; font-weight: 700; font-size: 44px; }
+      .subtitle { fill: #e6f6f6; font-family: Inter, system-ui, Arial; font-size: 20px; }
+      .tag { fill: #06b6d4; font-family: Inter, system-ui, Arial; font-weight: 600; font-size: 18px; }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="#071023" />
+  <rect x="60" y="60" width="1080" height="510" rx="18" class="card" />
+
+  <text x="120" y="170" class="tag">JavaScript Tutorial</text>
+  <text x="120" y="230" class="title">Variable Scope</text>
+  <text x="120" y="280" class="subtitle">Block, function, and global scope explained with examples</text>
+
+  <text x="120" y="520" fill="#94a3b8" font-family="Inter, system-ui, Arial" font-size="14">https://www.codecompileronline.com</text>
+</svg>

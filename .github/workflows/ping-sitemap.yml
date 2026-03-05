@@ -1,0 +1,20 @@
+name: Ping Sitemaps
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google with sitemap
+        run: |
+          echo "Pinging Google sitemap..."
+          curl -sSf "https://www.google.com/ping?sitemap=https://www.codecompileronline.com/sitemap.xml" || true
+      - name: Ping Bing with sitemap
+        run: |
+          echo "Pinging Bing sitemap..."
+          curl -sSf "https://www.bing.com/ping?sitemap=https://www.codecompileronline.com/sitemap.xml" || true
+      - name: Done
+        run: echo "Sitemap ping completed"

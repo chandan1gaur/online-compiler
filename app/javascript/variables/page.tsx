@@ -105,6 +105,7 @@ demo();`,
         },
       ]}
       related={[
+        { label: "Var, Let & Const (Deep Dive)", href: "/javascript/variables/var-let-const" },
         { label: "Functions", href: "/javascript/functions" },
         { label: "Closures", href: "/javascript/closures" },
         { label: "Interview Questions", href: "/javascript/interview-questions" },

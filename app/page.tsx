@@ -6,6 +6,22 @@ export const metadata: Metadata = {
   title: "Free Online HTML CSS JavaScript Compiler",
   description:
     "Use a free online HTML, CSS, and JavaScript compiler with instant live preview. Build snippets fast, test ideas, and download your code.",
+  keywords: ["online compiler", "html compiler", "css compiler", "javascript compiler", "code editor", "live code editor", "web development tools"],
+  openGraph: {
+    title: "Free Online HTML CSS JavaScript Compiler",
+    description:
+      "Use a free online HTML, CSS, and JavaScript compiler with instant live preview. Build snippets fast, test ideas, and download your code.",
+    url: "https://www.codecompileronline.com",
+    type: "website",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Online HTML CSS JavaScript Compiler",
+    description:
+      "Use a free online HTML, CSS, and JavaScript compiler with instant live preview. Build snippets fast, test ideas, and download your code.",
+    images: ["/og-image.svg"],
+  },
   alternates: {
     canonical: "/",
   },

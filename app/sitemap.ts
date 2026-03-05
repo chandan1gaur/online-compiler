@@ -5,6 +5,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
   const tutorialSlugs = [
     "variables",
+    "variables/var-let-const",
+    "variables/scope",
+    "variables/hoisting",
+    "variables/data-types",
+    "variables/primitive-types",
+    "variables/non-primitive-types",
+    "variables/type-conversion",
+    "variables/typeof-operator",
+    "variables/dynamic-typing",
     "functions",
     "closures",
     "async-await",

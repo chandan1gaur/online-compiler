@@ -81,11 +81,10 @@ export default function JavascriptSidebar() {
                     <ul id={`roadmap-section-${section.id}`} className="space-y-1 border-t border-slate-200 p-2 dark:border-slate-800">
                       {section.topics.map((topic, index) => {
                         if (topic.href) {
-                          const isFundamentalsSection = section.id === 1;
-                          const targetHref = isFundamentalsSection ? topic.href : "/javascript/coming-soon";
-                          const active = isFundamentalsSection
-                            ? pathname === targetHref
-                            : pathname === "/javascript/coming-soon";
+                          // Link directly to the topic if a published href exists,
+                          // otherwise fall back to the coming-soon placeholder.
+                          const targetHref = topic.href ?? "/javascript/coming-soon";
+                          const active = pathname === targetHref;
                           return (
                             <li key={`${section.id}-${topic.title}-${index}`}>
                               <Link
