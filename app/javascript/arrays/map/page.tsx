@@ -42,11 +42,12 @@ export default function MapPage() {
             The map() method creates a new array by calling a function for each element in the original array. It doesn't modify the original array and always returns a new array with the same length.
           </p>
           <CodeExample
+          title='Basic Example: Double Array Values Using map()'
             code={`const numbers = [1, 2, 3, 4, 5];
 const doubled = numbers.map(num => num * 2);
 console.log(doubled); // [2, 4, 6, 8, 10]
 console.log(numbers); // [1, 2, 3, 4, 5] - original unchanged`}
-            language="javascript"
+            explanation="Use map() to transform each element in an array and return a new array without modifying the original."
           />
         </section>
 
@@ -54,11 +55,12 @@ console.log(numbers); // [1, 2, 3, 4, 5] - original unchanged`}
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Syntax</h2>
           <CodeExample
+          title='JavaScript map() Syntax'
             code={`array.map((element, index, array) => {
   // Return the transformed element
   return newElement;
 });`}
-            language="javascript"
+            explanation="The map() method executes a callback for every element and returns a new array containing the transformed results."
           />
           <div className="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
             <p><strong>element:</strong> The current element being processed</p>
@@ -76,16 +78,18 @@ console.log(numbers); // [1, 2, 3, 4, 5] - original unchanged`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">1. Transform Numbers</h3>
               <CodeExample
+              title='Transform Numbers with map()'
                 code={`const numbers = [1, 2, 3, 4];
 const squared = numbers.map(n => n * n);
 console.log(squared); // [1, 4, 9, 16]`}
-                language="javascript"
+                explanation="map() can perform mathematical operations on array elements and return a new transformed array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">2. Extract Properties from Objects</h3>
               <CodeExample
+              title='Extract Object Properties Using map()'
                 code={`const users = [
   { name: 'Alice', age: 25 },
   { name: 'Bob', age: 30 },
@@ -94,40 +98,43 @@ console.log(squared); // [1, 4, 9, 16]`}
 
 const names = users.map(user => user.name);
 console.log(names); // ['Alice', 'Bob', 'Charlie']`}
-                language="javascript"
+                explanation="map() is commonly used to extract specific properties from objects and create a new array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">3. Convert Strings to Numbers</h3>
               <CodeExample
+              title='Convert String Array to Numbers'
                 code={`const strings = ['1', '2', '3', '4'];
 const numbers = strings.map(Number);
 console.log(numbers); // [1, 2, 3, 4]`}
-                language="javascript"
+                explanation="You can use map() with the Number function to quickly convert string values into numeric values."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">4. Using Index Parameter</h3>
               <CodeExample
+              title='Using Index in map() Callback'
                 code={`const letters = ['a', 'b', 'c'];
 const indexed = letters.map((letter, index) => 
   \`\${index}: \${letter}\`
 );
 console.log(indexed); // ['0: a', '1: b', '2: c']`}
-                language="javascript"
+                explanation="The map() callback receives the element and its index, allowing you to generate indexed or formatted results."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">5. Create JSX Elements (React)</h3>
               <CodeExample
+              title='Render Lists in React Using map()'
                 code={`const items = ['Apple', 'Banana', 'Orange'];
 const listItems = items.map((item, index) => (
   <li key={index}>{item}</li>
 ));`}
-                language="javascript"
+                explanation="In React, map() is commonly used to render lists of JSX elements from an array of data."
               />
             </div>
           </div>
@@ -170,6 +177,7 @@ const listItems = items.map((item, index) => (
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Chaining map() with Other Methods</h2>
           <CodeExample
+          title='Method Chaining with map(), filter(), and reduce()'
             code={`const numbers = [1, 2, 3, 4, 5];
 
 // Chain map with filter
@@ -179,7 +187,7 @@ const result = numbers
   .reduce((a, b) => a + b, 0); // 24
 
 console.log(result); // 24`}
-            language="javascript"
+            explanation="map() can be chained with other array methods like filter() and reduce() to perform powerful data transformations."
           />
         </section>
 
@@ -191,6 +199,7 @@ console.log(result); // 24`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting map() Returns a New Array</h3>
               <CodeExample
+              title='Mistake: Ignoring map() Return Value'
                 code={`const numbers = [1, 2, 3];
 numbers.map(n => n * 2); // Doesn't save result!
 console.log(numbers); // [1, 2, 3] - unchanged
@@ -198,13 +207,14 @@ console.log(numbers); // [1, 2, 3] - unchanged
 // Correct:
 const doubled = numbers.map(n => n * 2);
 console.log(doubled); // [2, 4, 6]`}
-                language="javascript"
+                explanation="map() returns a new array. If you don't store the result, the transformation will be lost."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Not Returning a Value from Callback</h3>
               <CodeExample
+              title='Mistake: Not Returning a Value in map()'
                 code={`const numbers = [1, 2, 3];
 const result = numbers.map(n => {
   n * 2; // Forgot return!
@@ -217,20 +227,21 @@ const result = numbers.map(n => n * 2);
 const result = numbers.map(n => {
   return n * 2;
 });`}
-                language="javascript"
+                explanation="The callback function must return a value. Otherwise, the new array will contain undefined."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Using map() for Side Effects Only</h3>
               <CodeExample
+              title='Mistake: Using map() for Side Effects'
                 code={`// Don't use map() just for side effects
 const numbers = [1, 2, 3];
 numbers.map(n => console.log(n)); // Wasteful
 
 // Use forEach() instead:
 numbers.forEach(n => console.log(n));`}
-                language="javascript"
+                explanation="Use forEach() when you only need side effects like logging. map() should be used for data transformation."
               />
             </div>
           </div>
@@ -249,10 +260,11 @@ numbers.forEach(n => console.log(n));`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can I use map() on strings?</h3>
               <CodeExample
+              title='Mapping Characters from a String'
                 code={`const str = 'hello';
 const chars = Array.from(str).map(char => char.toUpperCase());
 console.log(chars); // ['H', 'E', 'L', 'L', 'O']`}
-                language="javascript"
+                explanation="Convert a string into an array using Array.from() and apply map() to transform each character."
               />
             </div>
 
@@ -264,10 +276,11 @@ console.log(chars); // ['H', 'E', 'L', 'L', 'O']`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can map() return different types?</h3>
               <CodeExample
+              title='Returning Different Data Types with map()'
                 code={`const values = [1, 'two', true];
 const mixed = values.map(v => typeof v);
 console.log(mixed); // ['number', 'string', 'boolean']`}
-                language="javascript"
+                explanation="map() can return any type of value, allowing flexible transformations of array elements."
               />
             </div>
           </div>

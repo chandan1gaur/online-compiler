@@ -40,19 +40,21 @@ export default function FlatPage() {
             The flat() method creates a new array with all sub-array elements concatenated into it. It flattens nested arrays up to a specified depth (default is 1).
           </p>
           <CodeExample
+          title='Basic flat() Example'
             code={`const nested = [1, [2, 3], [4, [5, 6]]];
 const flat = nested.flat();
 console.log(flat); // [1, 2, 3, 4, [5, 6]]
 console.log(nested); // Original unchanged`}
-            language="javascript"
+            explanation="This example shows how the <code>flat()</code> method removes one level of nesting from an array and returns a new flattened array without modifying the original array."
           />
         </section>
 
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Syntax</h2>
           <CodeExample
+          title='flat() Syntax'
             code={`array.flat(depth);`}
-            language="javascript"
+            explanation="he <code>flat()</code> method takes an optional depth parameter that defines how many nested levels should be flattened."
           />
           <div className="mt-4 text-slate-700 dark:text-slate-300">
             <p><strong>depth (optional):</strong> How many levels deep to flatten (default: 1)</p>
@@ -67,30 +69,33 @@ console.log(nested); // Original unchanged`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Flatten One Level (Default)</h3>
               <CodeExample
+              title='Flatten One Level of Array'
                 code={`const arr = [1, [2, 3], [4, 5]];
 console.log(arr.flat()); // [1, 2, 3, 4, 5]
 
 // Same as:
 console.log(arr.flat(1)); // [1, 2, 3, 4, 5]`}
-                language="javascript"
+                explanation="By default, <code>flat()</code> removes only one level of nesting from an array. This example demonstrates flattening a simple nested array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Flatten Multiple Levels</h3>
               <CodeExample
+              title='Flatten Deeply Nested Arrays'
                 code={`const nested = [1, [2, [3, [4, 5]]]];
 console.log(nested.flat(1)); // [1, 2, [3, [4, 5]]]
 console.log(nested.flat(2)); // [1, 2, 3, [4, 5]]
 console.log(nested.flat(3)); // [1, 2, 3, 4, 5]
 console.log(nested.flat(Infinity)); // [1, 2, 3, 4, 5]`}
-                language="javascript"
+                explanation="You can pass a depth value to flatten multiple nested levels. Using <code>Infinity</code> completely flattens deeply nested arrays."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Flatten Arrays from API Response</h3>
               <CodeExample
+              title='Flatten API Response Data'
                 code={`const apiResponse = {
   users: [
     { name: 'Alice', items: [1, 2, 3] },
@@ -102,16 +107,17 @@ const allItems = apiResponse.users
   .map(user => user.items)
   .flat();
 console.log(allItems); // [1, 2, 3, 4, 5]`}
-                language="javascript"
+                explanation="This example shows how <code>map()</code> and <code>flat()</code> can be combined to merge nested arrays returned from an API into a single array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Remove Empty Values</h3>
               <CodeExample
+              title='Remove Empty Array Slots'
                 code={`const arr = [1, [2, [3], 4], , 5]; // Note the empty element
 console.log(arr.flat()); // [1, 2, [3], 4, 5] (empty removed)`}
-                language="javascript"
+                explanation="The <code>flat()</code> method automatically removes empty slots while flattening arrays, producing a clean array result."
               />
             </div>
           </div>
@@ -120,6 +126,7 @@ console.log(arr.flat()); // [1, 2, [3], 4, 5] (empty removed)`}
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">flat() vs flatMap()</h2>
           <CodeExample
+          title='flat() vs flatMap() Example'
             code={`const arr = [1, 2, 3];
 
 // flat() - just flattens
@@ -127,7 +134,7 @@ arr.flat().map(x => x * 2); // Two operations
 
 // flatMap() - map and flatten in one
 arr.flatMap(x => [x, x * 2]); // [1, 2, 2, 4, 3, 6]`}
-            language="javascript"
+            explanation="This example compares <code>flat()</code> and <code>flatMap()</code>. While <code>flat()</code> only flattens arrays, <code>flatMap()</code> performs mapping and flattening in a single operation."
           />
         </section>
 
@@ -138,6 +145,7 @@ arr.flatMap(x => [x, x * 2]); // [1, 2, 2, 4, 3, 6]`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Using flat() Instead of flatMap()</h3>
               <CodeExample
+              title='Using flatMap() for Better Performance'
                 code={`const arr = [1, 2, 3];
 
 // Inefficient
@@ -145,17 +153,18 @@ const result = arr.map(x => [x, x * 2]).flat();
 
 // Better
 const result = arr.flatMap(x => [x, x * 2]);`}
-                language="javascript"
+                explanation="Instead of using <code>map()</code> followed by <code>flat()</code>, you can use <code>flatMap()</code> to perform both operations in a single step."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting Depth Can Matter</h3>
               <CodeExample
+              title='Depth Parameter Matters'
                 code={`const deeply = [1, [2, [3, [4]]]];
 console.log(deeply.flat()); // [1, 2, [3, [4]]] (only 1 level)
 console.log(deeply.flat(Infinity)); // [1, 2, 3, 4] (fully flat)`}
-                language="javascript"
+                explanation="The default depth of <code>flat()</code> is 1. If your array contains deeper nesting, you must increase the depth or use <code>Infinity</code>."
               />
             </div>
           </div>
@@ -178,9 +187,10 @@ console.log(deeply.flat(Infinity)); // [1, 2, 3, 4] (fully flat)`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can flat() remove empty slots?</h3>
               <CodeExample
+              title='Removing Empty Slots with flat()'
                 code={`const arr = [1, , [2, , 3], 4];
 console.log(arr.flat()); // [1, 2, 3, 4] (empties removed)`}
-                language="javascript"
+                explanation="The <code>flat()</code> method removes empty slots while flattening arrays, helping produce a clean and continuous array."
               />
             </div>
           </div>

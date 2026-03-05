@@ -40,6 +40,7 @@ export default function MultidimensionalPage() {
             A multidimensional array is an array that contains other arrays. The most common type is a 2D array (array of arrays), which represents a matrix or table structure.
           </p>
           <CodeExample
+          title='Create 2D and 3D Arrays in JavaScript'
             code={`// 2D Array (matrix)
 const matrix = [
   [1, 2, 3],
@@ -52,7 +53,7 @@ const cube = [
   [[1, 2], [3, 4]],
   [[5, 6], [7, 8]]
 ];`}
-            language="javascript"
+            explanation="This example shows how to create multidimensional arrays such as 2D matrices and 3D nested arrays for storing structured data."
           />
         </section>
 
@@ -63,6 +64,7 @@ const cube = [
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Create a 2D Array</h3>
               <CodeExample
+              title='Create a Dynamic 2D Array with Default Values'
                 code={`// Literal syntax
 const grid = [
   [1, 2, 3],
@@ -76,19 +78,20 @@ const cols = 4;
 const newGrid = Array(rows).fill(null).map(() => Array(cols).fill(0));
 console.log(newGrid);
 // [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]`}
-                language="javascript"
+                explanation="This example demonstrates how to create a grid or matrix dynamically using Array().fill() and map() to generate rows and columns."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Create with Different Data Types</h3>
               <CodeExample
+              title='Multidimensional Array with Different Data Types'
                 code={`const mixed = [
   [1, 'a'],
   [true, { name: 'John' }],
   [[1, 2], [3, 4]]
 ];`}
-                language="javascript"
+                explanation="Nested arrays can store mixed data types like numbers, strings, objects, and even other arrays within the same structure."
               />
             </div>
           </div>
@@ -101,6 +104,7 @@ console.log(newGrid);
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Access 2D Array Elements</h3>
               <CodeExample
+              title='Access Elements in a 2D Array Using Indexes'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6],
@@ -110,13 +114,14 @@ console.log(newGrid);
 console.log(matrix[0][0]); // 1 (row 0, col 0)
 console.log(matrix[1][2]); // 6 (row 1, col 2)
 console.log(matrix[2][0]); // 7 (row 2, col 0)`}
-                language="javascript"
+                explanation="Use two indexes [row][column] to access values inside a 2D array matrix."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Access 3D Array Elements</h3>
               <CodeExample
+              title='Access Values in a 3D Nested Array'
                 code={`const cube = [
   [[1, 2], [3, 4]],
   [[5, 6], [7, 8]]
@@ -124,7 +129,7 @@ console.log(matrix[2][0]); // 7 (row 2, col 0)`}
 
 console.log(cube[0][0][0]); // 1
 console.log(cube[1][1][1]); // 8`}
-                language="javascript"
+                explanation="In a 3D array, you use three indexes to access elements inside deeply nested arrays."
               />
             </div>
           </div>
@@ -137,6 +142,7 @@ console.log(cube[1][1][1]); // 8`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Nested forEach Loops</h3>
               <CodeExample
+              title='Loop Through a 2D Array with Nested forEach'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6],
@@ -148,13 +154,14 @@ matrix.forEach((row, rowIndex) => {
     console.log(\`[\${rowIndex}][\${colIndex}] = \${element}\`);
   });
 });`}
-                language="javascript"
+                explanation="This example uses nested forEach() loops to iterate through rows and columns of a multidimensional array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Nested for Loops</h3>
               <CodeExample
+              title='Traverse a Multidimensional Array Using for Loops'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6],
@@ -166,13 +173,14 @@ for (let i = 0; i < matrix.length; i++) {
     console.log(matrix[i][j]);
   }
 }`}
-                language="javascript"
+                explanation="Traditional for loops allow precise control when iterating through rows and columns in nested arrays."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Using map() on 2D Array</h3>
               <CodeExample
+              title='Use map() to Transform Values in a 2D Array'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6]
@@ -184,7 +192,7 @@ const doubled = matrix.map(row =>
 
 console.log(doubled);
 // [[2, 4, 6], [8, 10, 12]]`}
-                language="javascript"
+                explanation="You can use nested map() methods to transform each element inside a multidimensional array."
               />
             </div>
           </div>
@@ -197,6 +205,7 @@ console.log(doubled);
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Transpose a Matrix</h3>
               <CodeExample
+              title='Transpose a Matrix in JavaScript'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6]
@@ -208,13 +217,14 @@ const transposed = matrix[0].map((_, colIndex) =>
 
 console.log(transposed);
 // [[1, 4], [2, 5], [3, 6]]`}
-                language="javascript"
+                explanation="This example swaps rows and columns of a matrix using map() to create a transposed array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Tic-Tac-Toe Game Board</h3>
               <CodeExample
+              title='Represent a Game Board Using a 2D Array'
                 code={`const board = [
   ['X', 'O', ''],
   ['', 'X', 'O'],
@@ -226,13 +236,14 @@ const cell = board[0][1]; // 'O'
 
 // Update a cell
 board[1][1] = 'X';`}
-                language="javascript"
+                explanation="A 2D array is useful for representing grids like a Tic-Tac-Toe board where each cell holds a value."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">2D Coordinates</h3>
               <CodeExample
+              title='Store and Iterate Coordinates Using Arrays'
                 code={`const points = [
   [10, 20],
   [30, 40],
@@ -245,7 +256,7 @@ points.forEach(([x, y]) => {
 // Point: (10, 20)
 // Point: (30, 40)
 // Point: (50, 60)`}
-                language="javascript"
+                explanation="This example stores (x, y) coordinates in a 2D array and iterates through them using array destructuring."
               />
             </div>
           </div>
@@ -258,6 +269,7 @@ points.forEach(([x, y]) => {
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Sharing Reference Instead of Copying</h3>
               <CodeExample
+              title='Avoid Shared References When Creating 2D Arrays'
                 code={`// Wrong - all rows point to the same array
 const grid = Array(3).fill(Array(3).fill(0));
 grid[0][0] = 1;
@@ -267,13 +279,14 @@ console.log(grid[1][0]); // 1 (unexpected!)
 const grid = Array(3).fill(null).map(() => Array(3).fill(0));
 grid[0][0] = 1;
 console.log(grid[1][0]); // 0`}
-                language="javascript"
+                explanation="Using fill() incorrectly can create shared references. Use map() to generate independent rows."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Wrong Index Order</h3>
               <CodeExample
+              title='Correct Index Order in Multidimensional Arrays'
                 code={`const matrix = [
   [1, 2, 3],
   [4, 5, 6]
@@ -284,7 +297,7 @@ console.log(matrix[3][0]); // undefined
 
 // Correct - [row][column]
 console.log(matrix[0][2]); // 3`}
-                language="javascript"
+                explanation="Always access elements using [row][column]. Reversing the order can lead to unexpected results."
               />
             </div>
           </div>
@@ -297,16 +310,18 @@ console.log(matrix[0][2]); // 3`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">How do I flatten a multidimensional array?</h3>
               <CodeExample
+              title='Flatten Nested Arrays with flat()'
                 code={`const matrix = [[1, 2], [3, 4], [5, 6]];
 const flat = matrix.flat(); // [1, 2, 3, 4, 5, 6]
 const flat2 = matrix.flat(Infinity);`}
-                language="javascript"
+                explanation="The flat() method converts nested arrays into a single array. Use flat(Infinity) to flatten deeply nested arrays."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">How do I copy a 2D array?</h3>
               <CodeExample
+              title='Shallow vs Deep Copy of 2D Arrays'
                 code={`const original = [[1, 2], [3, 4]];
 
 // Shallow copy (copies outer array, inner arrays still referenced)
@@ -316,7 +331,7 @@ const shallow = [...original];
 const deep = JSON.parse(JSON.stringify(original));
 // or
 const deep = original.map(row => [...row]);`}
-                language="javascript"
+                explanation="A shallow copy duplicates the outer array, while a deep copy creates a completely independent nested array structure."
               />
             </div>
           </div>

@@ -40,22 +40,24 @@ export default function ForEachPage() {
             The forEach() method executes a provided function once for each array element. It doesn't return anything and is used for performing actions on each element (side effects).
           </p>
           <CodeExample
+          title='Basic forEach() Example'
             code={`const numbers = [1, 2, 3, 4, 5];
 numbers.forEach(num => {
   console.log(num * 2);
 });
 // Logs: 2, 4, 6, 8, 10`}
-            language="javascript"
+            explanation="This example demonstrates how the <code>forEach()</code> method loops through an array and executes a function for every element."
           />
         </section>
 
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Syntax</h2>
           <CodeExample
+          title='forEach() Syntax'
             code={`array.forEach((element, index, array) => {
   // Code to execute for each element
 });`}
-            language="javascript"
+            explanation="The <code>forEach()</code> method accepts a callback function that runs for each element in the array. It can receive the element, index, and original array as parameters."
           />
         </section>
 
@@ -66,43 +68,48 @@ numbers.forEach(num => {
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Log Each Element</h3>
               <CodeExample
+              title='Loop Through Array Elements'
                 code={`const fruits = ['apple', 'banana', 'orange'];
 fruits.forEach(fruit => {
   console.log(fruit);
 });
 // Logs: apple, banana, orange`}
-                language="javascript"
+                explanation="This example shows how <code>forEach()</code> iterates through an array and logs each element to the console.
+</p>"
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Update DOM Elements</h3>
               <CodeExample
+              title='Update DOM with forEach()'
                 code={`const items = ['Item 1', 'Item 2', 'Item 3'];
 items.forEach(item => {
   const li = document.createElement('li');
   li.textContent = item;
   document.getElementById('list').appendChild(li);
 });`}
-                language="javascript"
+                explanation="The <code>forEach()</code> method is commonly used to create or update DOM elements by looping through data arrays."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Using Index Parameter</h3>
               <CodeExample
+              title='Access Element Index'
                 code={`const colors = ['red', 'green', 'blue'];
 colors.forEach((color, index) => {
   console.log(\`\${index + 1}. \${color}\`);
 });
 // Logs: 1. red, 2. green, 3. blue`}
-                language="javascript"
+                explanation="The callback function in <code>forEach()</code> provides an index parameter that allows you to track the position of each element."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Accumulate Values</h3>
               <CodeExample
+              title='Calculate Sum with forEach()'
                 code={`let sum = 0;
 const numbers = [1, 2, 3, 4, 5];
 numbers.forEach(num => {
@@ -110,13 +117,14 @@ numbers.forEach(num => {
 });
 console.log(sum); // 15
 // Better: use reduce() for this!`}
-                language="javascript"
+                explanation="This example shows how <code>forEach()</code> can accumulate values such as calculating the sum of numbers in an array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Iterate Objects in Array</h3>
               <CodeExample
+              title='Iterate Objects in an Array'
                 code={`const users = [
   { name: 'Alice', age: 25 },
   { name: 'Bob', age: 30 }
@@ -124,7 +132,7 @@ console.log(sum); // 15
 users.forEach(user => {
   console.log(\`\${user.name} is \${user.age} years old\`);
 });`}
-                language="javascript"
+                explanation="You can use <code>forEach()</code> to loop through arrays of objects and access their properties easily."
               />
             </div>
           </div>
@@ -169,19 +177,21 @@ users.forEach(user => {
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Expecting forEach() to Return a Value</h3>
               <CodeExample
+              title='forEach() Does Not Return a Value'
                 code={`const numbers = [1, 2, 3];
 const result = numbers.forEach(n => n * 2);
 console.log(result); // undefined
 
 // Use map() if you need results:
 const result = numbers.map(n => n * 2); // [2, 4, 6]`}
-                language="javascript"
+                explanation="The <code>forEach()</code> method always returns <code>undefined</code>. If you need to transform data and return a new array, use <code>map()</code>."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Using forEach() When You Need break/continue</h3>
               <CodeExample
+              title='forEach() Does Not Support break or continue'
                 code={`// forEach doesn't support break
 numbers.forEach(n => {
   if (n > 3) break; // SyntaxError!
@@ -192,19 +202,20 @@ for (const n of numbers) {
   if (n > 3) break;
   console.log(n);
 }`}
-                language="javascript"
+                explanation="Unlike traditional loops, <code>forEach()</code> cannot use <code>break</code> or <code>continue</code>. Use a <code>for</code> loop or <code>for...of</code> when control flow is required."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Modifying Array While Iterating</h3>
               <CodeExample
+              title='Avoid Modifying Arrays During Iteration'
                 code={`const arr = [1, 2, 3, 4];
 arr.forEach(n => {
   if (n > 2) arr.push(n * 2); // Dangerous!
 });
 // Results in an infinite or unexpected loop`}
-                language="javascript"
+                explanation="Changing the array while iterating with <code>forEach()</code> can lead to unexpected behavior or infinite loops."
               />
             </div>
           </div>
@@ -227,6 +238,7 @@ arr.forEach(n => {
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can I skip elements in forEach()?</h3>
               <CodeExample
+              title='Skipping Elements in forEach()'
                 code={`// You can't use continue, but you can use return
 const numbers = [1, 2, 3, 4, 5];
 numbers.forEach(n => {
@@ -234,7 +246,7 @@ numbers.forEach(n => {
   console.log(n);
 });
 // Logs: 3, 4, 5`}
-                language="javascript"
+                explanation="Although <code>forEach()</code> does not support <code>continue</code>, you can use <code>return</code> inside the callback to skip the current iteration."
               />
             </div>
           </div>

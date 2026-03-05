@@ -40,6 +40,7 @@ export default function FindIndexPage() {
             The findIndex() method returns the index of the first element in the array that satisfies the testing function. If no element is found, it returns -1.
           </p>
           <CodeExample
+          title='Find Index of Object by Property'
             code={`const users = [
   { id: 1, name: 'Alice' },
   { id: 2, name: 'Bob' },
@@ -48,18 +49,19 @@ export default function FindIndexPage() {
 
 const index = users.findIndex(u => u.id === 2);
 console.log(index); // 1 (Bob is at index 1)`}
-            language="javascript"
+            explanation="Use findIndex() to locate the position of an object in an array based on a specific property value."
           />
         </section>
 
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Syntax</h2>
           <CodeExample
+          title='findIndex() Syntax in JavaScript'
             code={`array.findIndex((element, index, array) => {
   // Return true for the element you're looking for
   return condition;
 });`}
-            language="javascript"
+            explanation="The findIndex() method accepts a callback function and returns the index of the first element that satisfies the condition."
           />
         </section>
 
@@ -70,16 +72,18 @@ console.log(index); // 1 (Bob is at index 1)`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Index of First Match</h3>
               <CodeExample
+              title='Find Index Using a Condition'
                 code={`const numbers = [10, 20, 30, 40, 50];
 const index = numbers.findIndex(n => n > 25);
 console.log(index); // 2 (30 is first number > 25)`}
-                language="javascript"
+                explanation="This example finds the index of the first number greater than 25 in an array."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find and Update Element</h3>
               <CodeExample
+              title='Update Array Item Using findIndex()'
                 code={`const items = ['apple', 'banana', 'orange', 'apple'];
 const index = items.findIndex(item => item === 'banana');
 
@@ -88,13 +92,14 @@ if (index !== -1) {
 }
 
 console.log(items); // ['apple', 'blueberry', 'orange', 'apple']`}
-                language="javascript"
+                explanation="Use findIndex() to locate an element and update its value safely using the returned index."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find and Remove Element</h3>
               <CodeExample
+              title='Remove Element by Index'
                 code={`const todos = [
   { id: 1, text: 'Learn JavaScript' },
   { id: 2, text: 'Build a project' },
@@ -108,13 +113,14 @@ if (index !== -1) {
 
 console.log(todos);
 // [{id: 1, ...}, {id: 3, ...}]`}
-                language="javascript"
+                explanation="Combine findIndex() with splice() to remove an object from an array based on a condition."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Index with Complex Condition</h3>
               <CodeExample
+              title='Find Index with Multiple Conditions'
                 code={`const products = [
   { name: 'Laptop', price: 1000, inStock: false },
   { name: 'Mouse', price: 25, inStock: true },
@@ -126,7 +132,7 @@ const index = products.findIndex(p =>
 );
 
 console.log(index); // 1 (Mouse matches the criteria)`}
-                language="javascript"
+                explanation="findIndex() can evaluate multiple conditions like price and stock availability to locate an element."
               />
             </div>
           </div>
@@ -171,6 +177,7 @@ console.log(index); // 1 (Mouse matches the criteria)`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting to Check for -1</h3>
               <CodeExample
+              title='Difference Between find() and findIndex()'
                 code={`const arr = [1, 2, 3];
 const index = arr.findIndex(n => n > 10);
 arr[index] = 99; // index is -1, modifies arr[-1]!
@@ -179,13 +186,14 @@ arr[index] = 99; // index is -1, modifies arr[-1]!
 if (index !== -1) {
   arr[index] = 99;
 }`}
-                language="javascript"
+                explanation="find() returns the matching element, while findIndex() returns the position of that element in the array."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Using indexOf() for Objects</h3>
               <CodeExample
+              title='Using indexOf() for Objects'
                 code={`const users = [
   { id: 1, name: 'Alice' },
   { id: 2, name: 'Bob' }
@@ -196,7 +204,7 @@ users.indexOf({ id: 1 }); // -1
 
 // Correct
 users.findIndex(u => u.id === 1); // 0`}
-                language="javascript"
+                explanation="Using indexOf() for Objects"
               />
             </div>
           </div>
@@ -209,6 +217,7 @@ users.findIndex(u => u.id === 1); // 0`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">What's the difference between find() and findIndex()?</h3>
               <CodeExample
+              title='find() vs findIndex() Example'
                 code={`const arr = [{id: 1}, {id: 2}, {id: 3}];
 
 // find() returns the element
@@ -216,7 +225,7 @@ const element = arr.find(x => x.id === 2); // {id: 2}
 
 // findIndex() returns the index
 const index = arr.findIndex(x => x.id === 2); // 1`}
-                language="javascript"
+                explanation="This example demonstrates the difference between <code>find()</code> and <code>findIndex()</code>. "
               />
             </div>
 
@@ -228,10 +237,13 @@ const index = arr.findIndex(x => x.id === 2); // 1`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can I use findIndex() on non-array objects?</h3>
               <CodeExample
+              title='Using findIndex() on Array-Like Objects'
                 code={`const arrayLike = { 0: 'a', 1: 'b', 2: 'c', length: 3 };
 const index = Array.prototype.findIndex.call(arrayLike, x => x === 'b');
 console.log(index); // 1`}
-                language="javascript"
+                explanation="This example shows how <code>findIndex()</code> can be used on array-like objects 
+using <code>Array.prototype.findIndex.call()</code>. It works when the object has 
+numeric keys and a <code>length</code> property."
               />
             </div>
           </div>

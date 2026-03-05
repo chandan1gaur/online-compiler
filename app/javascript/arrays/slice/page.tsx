@@ -40,11 +40,12 @@ export default function SlicePage() {
             The slice() method returns a shallow copy of a portion of an array without modifying the original array. It takes a start and end index.
           </p>
           <CodeExample
+          title='Extract Array Elements Using slice()'
             code={`const fruits = ['apple', 'banana', 'orange', 'grape'];
 const sliced = fruits.slice(1, 3);
 console.log(sliced); // ['banana', 'orange']
 console.log(fruits); // Original unchanged`}
-            language="javascript"
+            explanation="The slice() method returns a new array containing selected elements between the start and end index without modifying the original array."
           />
         </section>
 
@@ -54,11 +55,12 @@ console.log(fruits); // Original unchanged`}
             The splice() method removes elements from an array and optionally inserts new elements at the same position. It modifies the original array.
           </p>
           <CodeExample
+          title='Modify Arrays Using splice()'
             code={`const fruits = ['apple', 'banana', 'orange', 'grape'];
 const removed = fruits.splice(1, 2, 'mango', 'kiwi');
 console.log(removed); // ['banana', 'orange']
 console.log(fruits); // ['apple', 'mango', 'kiwi', 'grape']`}
-            language="javascript"
+            explanation="The splice() method removes elements from an array and optionally inserts new ones at the same position. It modifies the original array."
           />
         </section>
 
@@ -69,23 +71,25 @@ console.log(fruits); // ['apple', 'mango', 'kiwi', 'grape']`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Basic Slicing</h3>
               <CodeExample
+              title='Common slice() Usage Examples'
                 code={`const arr = [1, 2, 3, 4, 5];
 console.log(arr.slice(0, 2)); // [1, 2]
 console.log(arr.slice(2)); // [3, 4, 5]
 console.log(arr.slice(-2)); // [4, 5] (last 2)`}
-                language="javascript"
+                explanation="These examples show different ways to extract array portions using start index, end index, and negative indices."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Copy an Array</h3>
               <CodeExample
+              title='Copy an Array Using slice()'
                 code={`const original = [1, 2, 3];
 const copy = original.slice();
 copy[0] = 99;
 console.log(original); // [1, 2, 3] - unchanged
 console.log(copy); // [99, 2, 3]`}
-                language="javascript"
+                explanation="Calling slice() without arguments creates a shallow copy of the array, leaving the original array unchanged."
               />
             </div>
           </div>
@@ -98,30 +102,33 @@ console.log(copy); // [99, 2, 3]`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Remove Elements</h3>
               <CodeExample
+              title='Remove Elements from an Array Using splice()'
                 code={`const arr = [1, 2, 3, 4, 5];
 arr.splice(2, 2); // Remove 2 elements starting at index 2
 console.log(arr); // [1, 2, 5]`}
-                language="javascript"
+                explanation="You can remove elements from an array by specifying the start index and number of elements to delete."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Insert Elements</h3>
               <CodeExample
+              title='nsert Elements into an Array Using splice()'
                 code={`const arr = [1, 2, 5];
 arr.splice(2, 0, 3, 4); // Insert at index 2 without removing
 console.log(arr); // [1, 2, 3, 4, 5]`}
-                language="javascript"
+                explanation="By setting the delete count to 0, splice() can insert new elements into an array without removing existing items."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Replace Elements</h3>
               <CodeExample
+              title='Replace Array Elements Using splice()'
                 code={`const arr = ['a', 'b', 'c', 'd'];
 arr.splice(1, 2, 'x', 'y', 'z');
 console.log(arr); // ['a', 'x', 'y', 'z', 'd']`}
-                language="javascript"
+                explanation="splice() can remove existing elements and insert new ones at the same position in a single operation."
               />
             </div>
           </div>
@@ -166,6 +173,7 @@ console.log(arr); // ['a', 'x', 'y', 'z', 'd']`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Confusing slice() and splice()</h3>
               <CodeExample
+              title='Difference Between slice() and splice()'
                 code={`// slice() - doesn't modify original
 const arr = [1, 2, 3];
 arr.slice(1); // Returns [2, 3]
@@ -174,13 +182,14 @@ console.log(arr); // [1, 2, 3] - unchanged
 // splice() - modifies original
 arr.splice(1); // Removes elements and modifies arr
 console.log(arr); // [1]`}
-                language="javascript"
+                explanation="slice() creates a new array without modifying the original, while splice() directly changes the original array."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ splice() Second Parameter Confusion</h3>
               <CodeExample
+              title='Understanding splice() deleteCount Parameter'
                 code={`const arr = [1, 2, 3, 4, 5];
 arr.splice(1, 2); // Removes 2 elements (2, 3)
 console.log(arr); // [1, 4, 5]
@@ -189,7 +198,7 @@ console.log(arr); // [1, 4, 5]
 const arr2 = [1, 2, 3, 4, 5];
 arr2.splice(1); // Removes all from index 1
 console.log(arr2); // [1]`}
-                language="javascript"
+                explanation="The second parameter in splice() defines how many elements to remove. If omitted, all elements from the start index are removed."
               />
             </div>
           </div>
@@ -202,19 +211,21 @@ console.log(arr2); // [1]`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can slice() accept negative indices?</h3>
               <CodeExample
+              title='Using Negative Indices in slice()'
                 code={`const arr = ['a', 'b', 'c', 'd'];
 console.log(arr.slice(-2)); // ['c', 'd'] (last 2)
 console.log(arr.slice(0, -1)); // ['a', 'b', 'c']`}
-                language="javascript"
+                explanation="slice() supports negative indices, allowing you to extract elements starting from the end of the array."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">What's the difference in syntax?</h3>
               <CodeExample
+              title='slice() vs splice() Syntax Comparison'
                 code={`slice(start, end)     // end is NOT included
 splice(start, deleteCount, item1, item2...)`}
-                language="javascript"
+                explanation="slice(start, end) extracts elements without modifying the array, while splice(start, deleteCount, items) removes or replaces elements in the original array."
               />
             </div>
           </div>

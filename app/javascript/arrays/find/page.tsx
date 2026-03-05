@@ -40,6 +40,7 @@ export default function FindPage() {
             The find() method returns the first element in the array that satisfies the testing function. If no element is found, it returns undefined.
           </p>
           <CodeExample
+          title='Find Object in Array by Property'
             code={`const users = [
   { id: 1, name: 'Alice' },
   { id: 2, name: 'Bob' },
@@ -48,7 +49,7 @@ export default function FindPage() {
 
 const user = users.find(u => u.id === 2);
 console.log(user); // { id: 2, name: 'Bob' }`}
-            language="javascript"
+            explanation="Use the JavaScript find() method to return the first object that matches a condition."
           />
         </section>
 
@@ -58,6 +59,7 @@ console.log(user); // { id: 2, name: 'Bob' }`}
             The findIndex() method returns the index of the first element that satisfies the testing function. If no element is found, it returns -1.
           </p>
           <CodeExample
+          title='Find Index of Object in Array'
             code={`const users = [
   { id: 1, name: 'Alice' },
   { id: 2, name: 'Bob' },
@@ -66,7 +68,7 @@ console.log(user); // { id: 2, name: 'Bob' }`}
 
 const index = users.findIndex(u => u.id === 2);
 console.log(index); // 1`}
-            language="javascript"
+            explanation="The findIndex() method returns the index of the first element that satisfies a condition."
           />
         </section>
 
@@ -77,16 +79,18 @@ console.log(index); // 1`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Number by Condition</h3>
               <CodeExample
+              title='Find First Number Greater Than Value'
                 code={`const numbers = [5, 12, 8, 130, 44];
 const found = numbers.find(n => n > 10);
 console.log(found); // 12 (first match)`}
-                language="javascript"
+                explanation="Use find() to return the first number in an array that matches a condition."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Product by ID</h3>
               <CodeExample
+              title='Find Product by ID in Array'
                 code={`const products = [
   { id: 101, name: 'Laptop', price: 999 },
   { id: 102, name: 'Mouse', price: 25 },
@@ -96,20 +100,21 @@ console.log(found); // 12 (first match)`}
 const product = products.find(p => p.id === 102);
 console.log(product); 
 // { id: 102, name: 'Mouse', price: 25 }`}
-                language="javascript"
+                explanation="Use find() to search an array of objects and return the matching item by ID."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Get Index to Modify Element</h3>
               <CodeExample
+              title='Modify Array Element Using findIndex()'
                 code={`const items = ['apple', 'banana', 'orange'];
 const index = items.findIndex(item => item === 'banana');
 if (index !== -1) {
   items[index] = 'blueberry';
 }
 console.log(items); // ['apple', 'blueberry', 'orange']`}
-                language="javascript"
+                explanation="Use findIndex() to locate an element's index and update the value in the array."
               />
             </div>
           </div>
@@ -154,6 +159,7 @@ console.log(items); // ['apple', 'blueberry', 'orange']`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Not Checking for undefined</h3>
               <CodeExample
+              title='Handle Undefined Result from find()'
                 code={`const arr = [1, 2, 3];
 const found = arr.find(n => n > 10);
 console.log(found.something); // TypeError: Cannot read property
@@ -162,13 +168,14 @@ console.log(found.something); // TypeError: Cannot read property
 if (found) {
   console.log(found.something);
 }`}
-                language="javascript"
+                explanation="Always check if find() returns undefined before accessing properties."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting -1 Check for findIndex()</h3>
               <CodeExample
+              title='Check -1 Result from findIndex()'
                 code={`const arr = ['a', 'b', 'c'];
 const idx = arr.findIndex(item => item === 'z');
 arr[idx] = 'new'; // This modifies arr[-1]!
@@ -177,7 +184,7 @@ arr[idx] = 'new'; // This modifies arr[-1]!
 if (idx !== -1) {
   arr[idx] = 'new';
 }`}
-                language="javascript"
+                explanation="findIndex() returns -1 if no match is found, so always validate the index before modifying the array."
               />
             </div>
           </div>

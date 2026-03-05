@@ -40,21 +40,23 @@ export default function ReducePage() {
             The reduce() method processes each element in an array sequentially and returns a single accumulated value. It's perfect for calculating sums, products, or combining array elements into a new data structure.
           </p>
           <CodeExample
+          title='Calculate Sum Using reduce()'
             code={`const numbers = [1, 2, 3, 4, 5];
 const sum = numbers.reduce((acc, num) => acc + num, 0);
 console.log(sum); // 15`}
-            language="javascript"
+            explanation="This example shows how the reduce() method iterates through an array and accumulates values to calculate the total sum."
           />
         </section>
 
         <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Syntax</h2>
           <CodeExample
+          title='JavaScript reduce() Syntax Explained'
             code={`array.reduce((accumulator, currentValue, index, array) => {
   // Return the updated accumulator
   return accumulator;
 }, initialValue);`}
-            language="javascript"
+            explanation="The reduce() method takes a callback function and an optional initial value. The callback updates the accumulator for each element in the array."
           />
           <div className="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
             <p><strong>accumulator:</strong> The accumulated result carried through iterations</p>
@@ -70,41 +72,45 @@ console.log(sum); // 15`}
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Sum an Array</h3>
               <CodeExample
+              title='Sum All Numbers in an Array with reduce()'
                 code={`const numbers = [10, 20, 30, 40];
 const sum = numbers.reduce((acc, num) => acc + num, 0);
 console.log(sum); // 100`}
-                language="javascript"
+                explanation="Use reduce() to combine all numbers in an array and return the total sum."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Maximum Value</h3>
               <CodeExample
+              title='Find the Maximum Number Using reduce()'
                 code={`const numbers = [5, 2, 8, 1, 9, 3];
 const max = numbers.reduce((acc, num) => 
   num > acc ? num : acc
 );
 console.log(max); // 9`}
-                language="javascript"
+                explanation="This example compares each element and keeps the largest value in the accumulator."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Convert Array to Object</h3>
               <CodeExample
+              title='Convert an Array into an Object with reduce()'
                 code={`const arr = ['a', 'b', 'c'];
 const obj = arr.reduce((acc, val, idx) => {
   acc[idx] = val;
   return acc;
 }, {});
 console.log(obj); // {0: 'a', 1: 'b', 2: 'c'}`}
-                language="javascript"
+                explanation="reduce() can transform arrays into objects by building key-value pairs during iteration."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Group Objects by Property</h3>
               <CodeExample
+              title='Group Array Objects by Property Using reduce()'
                 code={`const users = [
   { name: 'Alice', role: 'admin' },
   { name: 'Bob', role: 'user' },
@@ -119,19 +125,20 @@ const grouped = users.reduce((acc, user) => {
 
 console.log(grouped);
 // { admin: ['Alice', 'Charlie'], user: ['Bob'] }`}
-                language="javascript"
+                explanation="This example groups users based on their role by dynamically creating keys in the accumulator object."
               />
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Flatten an Array</h3>
               <CodeExample
+              title='Flatten Nested Arrays Using reduce()'
                 code={`const nested = [[1, 2], [3, 4], [5]];
 const flat = nested.reduce((acc, arr) => 
   acc.concat(arr), []
 );
 console.log(flat); // [1, 2, 3, 4, 5]`}
-                language="javascript"
+                explanation="reduce() can flatten arrays by concatenating each inner array into a single accumulator array."
               />
             </div>
           </div>
@@ -144,19 +151,21 @@ console.log(flat); // [1, 2, 3, 4, 5]`}
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting Initial Value</h3>
               <CodeExample
+              title='Avoid Missing Initial Value in reduce()'
                 code={`const arr = [1, 2, 3];
 const sum = arr.reduce((acc, num) => acc + num);
 // If first element is not a number, you'll get an error!
 
 // Better:
 const sum = arr.reduce((acc, num) => acc + num, 0);`}
-                language="javascript"
+                explanation="If the initial value is not provided, reduce() uses the first array element as the accumulator, which can lead to unexpected errors."
               />
             </div>
 
             <div>
               <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting to Return Accumulator</h3>
               <CodeExample
+              title='Always Return the Accumulator in reduce()'
                 code={`const arr = [1, 2, 3];
 const sum = arr.reduce((acc, num) => {
   acc + num; // Forgot return!
@@ -165,7 +174,7 @@ console.log(sum); // undefined
 
 // Correct:
 const sum = arr.reduce((acc, num) => acc + num, 0);`}
-                language="javascript"
+                explanation="The callback must return the updated accumulator; otherwise, the result becomes undefined."
               />
             </div>
           </div>
@@ -178,10 +187,11 @@ const sum = arr.reduce((acc, num) => acc + num, 0);`}
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">What happens if the array is empty?</h3>
               <CodeExample
+              title='reduce() Behavior with Empty Arrays'
                 code={`const empty = [];
 console.log(empty.reduce((a, b) => a + b, 0)); // 0
 console.log(empty.reduce((a, b) => a + b)); // TypeError!`}
-                language="javascript"
+                explanation="Calling reduce() on an empty array without an initial value throws a TypeError. Always provide a default value to avoid errors."
               />
             </div>
 

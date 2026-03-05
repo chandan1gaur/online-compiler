@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'JavaScript Arrays - Complete Guide',
     description: 'Master JavaScript arrays with our comprehensive guide. Learn array methods, manipulation, and best practices.',
   },
-  canonical: 'https://www.online-compiler.com/javascript/arrays',
+  // canonical: 'https://www.online-compiler.com/javascript/arrays',
 };
 
 export default function ArraysOverviewPage() {
