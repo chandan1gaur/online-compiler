@@ -26,14 +26,14 @@ export const metadata: Metadata = {
       "Master all JavaScript operators: arithmetic, assignment, comparison, logical, bitwise, ternary, nullish coalescing, optional chaining, and operator precedence.",
     url: "/javascript/operators",
     type: "article",
-    images: ["/og-operators.svg"],
+    images: ["/og-image.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "JavaScript Operators: Complete Guide",
     description:
       "Master all JavaScript operators: arithmetic, assignment, comparison, logical, bitwise, ternary, nullish coalescing, optional chaining, and operator precedence.",
-    images: ["/og-operators.svg"],
+    images: ["/og-image.svg"],
   },
   alternates: { canonical: "/javascript/operators" },
 };

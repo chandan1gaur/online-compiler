@@ -5,6 +5,28 @@ export const metadata: Metadata = {
   title: "JavaScript Closures Tutorial",
   description:
     "Understand JavaScript closures with deep explanations, interview-ready examples, and practical use cases.",
+  keywords: [
+    "javascript closures",
+    "closure functions",
+    "lexical scope",
+    "javascript tutorial",
+    "function scope",
+  ],
+  openGraph: {
+    title: "JavaScript Closures Tutorial",
+    description:
+      "Understand JavaScript closures with deep explanations, interview-ready examples, and practical use cases.",
+    url: "/javascript/closures",
+    type: "article",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JavaScript Closures Tutorial",
+    description:
+      "Understand JavaScript closures with deep explanations, interview-ready examples, and practical use cases.",
+    images: ["/og-image.svg"],
+  },
   alternates: { canonical: "/javascript/closures" },
 };
 

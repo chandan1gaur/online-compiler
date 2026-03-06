@@ -22,10 +22,14 @@ export const metadata: Metadata = {
       "Deep dive into JavaScript internals: engine, execution context, call stack, event loop, Web APIs, hoisting, and how JavaScript handles async operations.",
     url: "/javascript/how-javascript-works",
     type: "article",
+    images: ["/og-image.svg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "How JavaScript Works",
+    description:
+      "Deep dive into JavaScript internals: engine, execution context, call stack, event loop, Web APIs, hoisting, and how JavaScript handles async operations.",
+    images: ["/og-image.svg"],
   },
   alternates: { canonical: "/javascript/how-javascript-works" },
 };

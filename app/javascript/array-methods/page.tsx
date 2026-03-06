@@ -12,6 +12,21 @@ export const metadata: Metadata = {
     "array manipulation",
     "learn javascript",
   ],
+  openGraph: {
+    title: "JavaScript Array Methods Tutorial",
+    description:
+      "Deep tutorial on JavaScript array methods including map, filter, reduce, find, sort, and interview patterns.",
+    url: "/javascript/array-methods",
+    type: "article",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JavaScript Array Methods Tutorial",
+    description:
+      "Deep tutorial on JavaScript array methods including map, filter, reduce, find, sort, and interview patterns.",
+    images: ["/og-image.svg"],
+  },
   alternates: { canonical: "/javascript/array-methods" },
 };
 

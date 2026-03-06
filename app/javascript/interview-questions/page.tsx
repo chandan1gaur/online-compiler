@@ -12,6 +12,21 @@ export const metadata: Metadata = {
     "interview prep",
     "learn javascript",
   ],
+  openGraph: {
+    title: "JavaScript Interview Questions and Answers",
+    description:
+      "JavaScript interview preparation page with frequent questions, clear answers, and practical code examples.",
+    url: "/javascript/interview-questions",
+    type: "article",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JavaScript Interview Questions and Answers",
+    description:
+      "JavaScript interview preparation page with frequent questions, clear answers, and practical code examples.",
+    images: ["/og-image.svg"],
+  },
   alternates: { canonical: "/javascript/interview-questions" },
 };
 
