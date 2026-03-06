@@ -524,7 +524,7 @@ export default function JavascriptThisKeywordPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <article className="max-w-4xl mx-auto px-4 pt-0 pb-12">
+      <article className="w-full px-4 pt-0 pb-12">
         <h1 className="text-4xl font-bold mb-6 text-center">
           JavaScript 'this' Keyword - Complete Guide to Context and Binding
         </h1>

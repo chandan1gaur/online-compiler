@@ -250,7 +250,7 @@ export default function TemplateLiteralsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="max-w-4xl mx-auto px-4 pt-0 pb-6">
+      <div className="w-full px-4 pt-0 pb-6">
         <h1 className="text-4xl font-bold mb-6 text-center">
           JavaScript Template Literals
         </h1>

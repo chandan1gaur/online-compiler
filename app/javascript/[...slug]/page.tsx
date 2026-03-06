@@ -16,7 +16,7 @@ export function generateMetadata({ params }: Props): Metadata {
 export default function GenericComingSoon({ params }: Props) {
   const title = params.slug.join(" / ") || "JavaScript";
   return (
-    <main className="max-w-4xl mx-auto px-4 pt-0 pb-12 text-center">
+    <main className="w-full px-4 pt-0 pb-12 text-center">
       <h1 className="text-4xl font-extrabold">Topic Coming Soon</h1>
       <p className="mt-4 text-lg">
         The page for <strong>{title}</strong> is not available yet.

@@ -89,7 +89,7 @@ export default function JavascriptInterviewQuestionsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <article className="max-w-4xl mx-auto px-4 pt-0 pb-12">
+      <article className="w-full px-4 pt-0 pb-12">
         <h1 className="text-4xl font-bold mb-6 text-center">
           JavaScript Interview Questions: 100+ Questions with Code Examples
         </h1>

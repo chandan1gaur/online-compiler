@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function TemplateLiteralsPage() {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12">
+    <main className="w-full px-4 py-12">
       <article className="prose prose-slate max-w-none dark:prose-invert">
         <h1 className="text-4xl font-bold mb-6">JavaScript Template Literals: Complete String Guide</h1>
 

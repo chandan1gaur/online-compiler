@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function ArrayMethodsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <article className="max-w-4xl mx-auto px-4 py-12">
+      <article className="w-full px-4 py-12">
         {/* Header */}
         <div className="mb-12">
           <div className="inline-block bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 px-4 py-2 rounded-full text-sm font-semibold mb-4">

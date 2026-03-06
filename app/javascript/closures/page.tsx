@@ -41,7 +41,7 @@ export default function ClosuresPage() {
           }),
         }}
       />
-      <article className="max-w-4xl mx-auto px-4 pt-0 pb-12">
+      <article className="w-full px-4 pt-0 pb-12">
         {/* Header */}
         <div className="mb-12">
           <div className="inline-block bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full text-sm font-semibold mb-4">

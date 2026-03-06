@@ -56,7 +56,7 @@ export default function JavaScriptClassesPage() {
           }),
         }}
       />
-      <main className="max-w-4xl mx-auto px-4 pt-0 pb-12">
+      <main className="w-full px-4 pt-0 pb-12">
       <article className="prose prose-slate max-w-none dark:prose-invert">
         <h1 className="text-4xl font-bold mb-6">JavaScript Classes & Inheritance: Complete OOP Guide</h1>
 

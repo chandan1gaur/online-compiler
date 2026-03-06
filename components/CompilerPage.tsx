@@ -344,7 +344,7 @@ export default function CompilerPage({ language, initialCode, autoRun = false }:
       <div className="mb-6">
         <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700">{content.badge}</p>
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{content.title}</h1>
-        <p className="mt-2 max-w-4xl text-sm text-slate-600 sm:text-base">{content.intro}</p>
+        <p className="mt-2 w-full text-sm text-slate-600 sm:text-base">{content.intro}</p>
       </div>
 
       <Home initialMode={isHtml ? "html" : "js"} initialCode={initialCode} autoRun={autoRun} />

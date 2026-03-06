@@ -59,7 +59,7 @@ export default function ArraysOverviewPage() {
           }),
         }}
       />
-      <article className="max-w-4xl mx-auto px-4 pt-0 pb-12">
+      <article className="w-full px-4 pt-0 pb-12">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">
