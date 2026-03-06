@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
@@ -26,7 +27,26 @@ export const metadata: Metadata = {
 
 export default function ScopePage() {
   return (
-    <JsTutorialTemplate
+    <>
+      <Script
+        id="json-ld-scope"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'JavaScript Scope — var, let, const & Lexical Scope',
+            description: 'Understand JavaScript scope: global, function, block scope, and lexical scope. Learn best practices for var, let, and const to avoid bugs.',
+            author: {
+              '@type': 'Organization',
+              name: 'Online JavaScript Compiler',
+            },
+            datePublished: '2024-01-01',
+            dateModified: '2024-01-01',
+          }),
+        }}
+      />
+      <JsTutorialTemplate
       title="JavaScript Scope"
       intro="Scope controls where variables are accessible. Mastering scope prevents common bugs and improves code clarity. In JavaScript, scope determines the visibility and lifetime of variables, functions, and objects. Understanding scope is crucial for writing maintainable code and avoiding issues like variable hoisting, unintended global variables, and closure-related memory leaks."
       why="Knowing scope helps you choose `let`, `const`, or `var` and reason about closures, modules, and component state. Proper scope management leads to cleaner code architecture, better performance, and fewer runtime errors. It also helps in understanding how JavaScript's execution context works and how variables are resolved in nested functions."
@@ -258,5 +278,6 @@ console.log(Calculator.recall()); // 42`,
       ]}
       related={[{ label: "Variables", href: "/javascript/variables" }, { label: "var, let, const", href: "/javascript/variables/var-let-const" }, { label: "Hoisting", href: "/javascript/variables/hoisting" }, { label: "Closures", href: "/javascript/closures" }]}
     />
+    </>
   );
 }

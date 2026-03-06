@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'JavaScript reduce() Method - Combine & Transform Arrays | Online Compiler',
   description: 'Master the reduce() method to combine array elements into a single value. Learn with practical examples involving sums, products, objects.',
-  keywords: 'reduce method, array aggregation, accumulator, JavaScript tutorials',
+  keywords: 'reduce method, array aggregation, accumulator, JavaScript tutorials, ES6 reduce, functional programming, array folding',
   openGraph: {
     title: 'JavaScript reduce() - Combine Array Elements',
     description: 'Learn to use reduce() for powerful array transformations.',
@@ -139,6 +139,17 @@ const flat = nested.reduce((acc, arr) =>
 );
 console.log(flat); // [1, 2, 3, 4, 5]`}
                 explanation="reduce() can flatten arrays by concatenating each inner array into a single accumulator array."
+              />
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Using reduceRight</h3>
+              <CodeExample
+              title='Iterate from Right to Left with reduceRight()'
+                code={`const words = ['world', 'hello'];
+const sentence = words.reduceRight((acc, word) => acc + ' ' + word);
+console.log(sentence); // "hello world"`}
+                explanation="reduceRight() works like reduce() but processes elements from right to left, useful when order matters."
               />
             </div>
           </div>

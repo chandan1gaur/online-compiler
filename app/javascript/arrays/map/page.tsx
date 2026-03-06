@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'JavaScript map() Method - Transform Array Elements | Online Compiler',
   description: 'Learn the JavaScript map() method with practical examples. Transform array elements and create new arrays with mapped values.',
-  keywords: 'map method, array transformation, array methods, JavaScript tutorials',
+  keywords: 'map method, array transformation, array methods, JavaScript tutorials, ES6 map, functional programming, javascript map example, array mapping',
   openGraph: {
     title: 'JavaScript map() - Transform Array Elements',
     description: 'Master array transformation with the map() method. Learn with practical examples.',
@@ -135,6 +135,24 @@ const listItems = items.map((item, index) => (
   <li key={index}>{item}</li>
 ));`}
                 explanation="In React, map() is commonly used to render lists of JSX elements from an array of data."
+              />
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">6. Asynchronous Mapping</h3>
+              <CodeExample
+              title='Use map() with async calls and Promise.all'
+                code={`const urls = ['https://api.example.com/1', 'https://api.example.com/2'];
+
+async function fetchAll() {
+  const results = await Promise.all(
+    urls.map(url => fetch(url).then(res => res.json()))
+  );
+  console.log(results);
+}
+
+fetchAll();`}
+                explanation="map() works with promises when combined with Promise.all, allowing you to fetch multiple resources in parallel."
               />
             </div>
           </div>

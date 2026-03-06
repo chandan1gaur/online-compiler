@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
@@ -10,7 +11,26 @@ export const metadata: Metadata = {
 
 export default function JavascriptAsyncAwaitPage() {
   return (
-    <JsTutorialTemplate
+    <>
+      <Script
+        id="json-ld-async-await"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'JavaScript Async Await Tutorial',
+            description: 'Deep tutorial on async await with sequential vs parallel execution, error handling, and production-safe patterns.',
+            author: {
+              '@type': 'Organization',
+              name: 'Online JavaScript Compiler',
+            },
+            datePublished: '2024-01-01',
+            dateModified: '2024-01-01',
+          }),
+        }}
+      />
+      <JsTutorialTemplate
       title="JavaScript Async Await: From Basics to Production Patterns"
       intro="async/await makes asynchronous code easier to read and maintain. It is built on promises and is widely used in modern JavaScript."
       why="Most apps depend on async operations such as API calls and storage reads. Async/await clarity reduces error-prone callback chains."
@@ -124,5 +144,6 @@ loadConfig().then(console.log);`,
         { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
       ]}
     />
+    </>
   );
 }

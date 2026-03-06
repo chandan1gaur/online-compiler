@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
@@ -17,7 +18,26 @@ export const metadata: Metadata = {
 
 export default function JavascriptStringsPage() {
   return (
-    <JsTutorialTemplate
+    <>
+      <Script
+        id="json-ld-strings"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'JavaScript Strings Tutorial',
+            description: 'Learn JavaScript string methods, template literals, slicing, searching, and text processing patterns.',
+            author: {
+              '@type': 'Organization',
+              name: 'Online JavaScript Compiler',
+            },
+            datePublished: '2024-01-01',
+            dateModified: '2024-01-01',
+          }),
+        }}
+      />
+      <JsTutorialTemplate
       title="JavaScript Strings: Methods, Templates, and Text Processing"
       intro="String handling is critical for form validation, parsing, search features, and output formatting."
       why="Most user data and API payload content are text-heavy. Robust string handling improves reliability and user experience."
@@ -26,7 +46,7 @@ export default function JavascriptStringsPage() {
           heading: "String Basics and Template Literals",
           paragraphs: [
             "Strings are immutable in JavaScript. Methods return new strings rather than changing original values.",
-            "Template literals with backticks simplify interpolation and multiline output.",
+            "Template literals with backticks simplify interpolation and multiline output. See our dedicated page for Template Literals.",
             "Use trim and normalization for user input before validation checks.",
           ],
         },
@@ -96,12 +116,12 @@ console.log(skills.join(" | "));`,
           a: "Use replaceAll for direct cases, or global regex with replace for advanced patterns.",
         },
       ]}
-      related={[
-        { label: "Regex Tester", href: "/regex/online-compiler" },
+      related={[        { label: "Template Literals", href: "/javascript/strings/template-literals" },        { label: "Regex Tester", href: "/regex/online-compiler" },
         { label: "Operators", href: "/javascript/operators" },
         { label: "Interview Questions", href: "/javascript/interview-questions" },
         { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
       ]}
     />
+    </>
   );
 }

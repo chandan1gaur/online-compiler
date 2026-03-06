@@ -32,7 +32,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
   };
 
   return (
-    <section className="mx-auto w-full max-w-[1700px] px-3 py-6 sm:px-4 sm:py-8">
+    <section className="mx-auto w-full max-w-[1700px] px-3 pt-0 pb-6 sm:px-4 sm:pb-8">
       <div className="mb-2 lg:hidden">
         <button
           type="button"

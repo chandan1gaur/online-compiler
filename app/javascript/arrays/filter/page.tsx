@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'JavaScript filter() Method - Filter Array Elements | Online Compiler',
   description: 'Master the filter() method to select array elements that match conditions. Learn with practical examples and best practices.',
-  keywords: 'filter method, array filtering, conditional filtering, JavaScript tutorials',
+  keywords: 'filter method, array filtering, conditional filtering, JavaScript tutorials, ES6 filter, remove falsy values, functional programming',
   openGraph: {
     title: 'JavaScript filter() - Filter Array Elements',
     description: 'Learn to filter arrays based on conditions.',
@@ -120,6 +120,17 @@ const result = products
   .map(p => \`\${p.name}: $\${p.price}\`);
 console.log(result); // ['Laptop: $1000', 'Keyboard: $75']`}
                 explanation="Chaining filter() and map() methods together"
+              />
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Remove Falsy Values</h3>
+              <CodeExample
+                title="Filter Out Falsy Values"
+                code={`const mixed = [0, 1, false, 2, '', 3, null, undefined];
+const truthy = mixed.filter(Boolean);
+console.log(truthy); // [1, 2, 3]`}
+                explanation="Using Boolean as a callback removes falsy values like 0, '', null, undefined, and false."
               />
             </div>
           </div>

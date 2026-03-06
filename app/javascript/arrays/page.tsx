@@ -1,4 +1,5 @@
 import CodeExample from '@/components/CodeExample';
+import Script from 'next/script';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -39,8 +40,26 @@ export default function ArraysOverviewPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <article className="max-w-4xl mx-auto px-4 py-12">
+    <>
+      <Script
+        id="json-ld-arrays"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'JavaScript Arrays - Complete Guide',
+            description: 'Master JavaScript arrays with our comprehensive guide. Learn array methods, manipulation, and best practices with interactive examples.',
+            author: {
+              '@type': 'Organization',
+              name: 'Online JavaScript Compiler',
+            },
+            datePublished: '2024-01-01',
+            dateModified: '2024-01-01',
+          }),
+        }}
+      />
+      <article className="max-w-4xl mx-auto px-4 pt-0 pb-12">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">
@@ -453,6 +472,6 @@ console.log(unique); // [1, 2, 3, 4]`}
           }),
         }}
       />
-    </div>
+    </>
   );
 }

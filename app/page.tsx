@@ -145,10 +145,10 @@ export default function Page() {
             <p className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-300">
               Browser-Based Coding Platform
             </p>
-            <h1 className="mx-auto mt-3 max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:mt-4 sm:text-5xl">
+            <h1 className="mx-auto mt-3 w-full text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:mt-4 sm:text-5xl">
               Online Compiler for HTML, CSS, JavaScript, Regex, and Formatter Tools
             </h1>
-            <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:mt-5 sm:text-lg">
+            <p className="mx-auto mt-3 w-full text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:mt-5 sm:text-lg">
               Build, test, and debug faster with a practical coding workspace and utility tools.
             </p>
             <div className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-7 sm:gap-3">
@@ -166,7 +166,7 @@ export default function Page() {
               </Link>
             </div>
 
-            <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:mt-8 sm:p-4">
+            <div className="mx-auto mt-6 w-full rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:mt-8 sm:p-4">
               <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Quick Launch</p>
               <div className="mt-3 flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
                 {quickLaunchLinks.map((item) => (

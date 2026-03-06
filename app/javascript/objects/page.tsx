@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
@@ -17,7 +18,26 @@ export const metadata: Metadata = {
 
 export default function JavascriptObjectsPage() {
   return (
-    <JsTutorialTemplate
+    <>
+      <Script
+        id="json-ld-objects"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: 'JavaScript Objects Tutorial',
+            description: 'Deep tutorial on JavaScript objects, property access, methods, cloning, and object iteration patterns.',
+            author: {
+              '@type': 'Organization',
+              name: 'Online JavaScript Compiler',
+            },
+            datePublished: '2024-01-01',
+            dateModified: '2024-01-01',
+          }),
+        }}
+      />
+      <JsTutorialTemplate
       title="JavaScript Objects: Structure, Methods, and Practical Patterns"
       intro="Objects are core to modeling real-world entities in JavaScript. Mastering object behavior is essential for application architecture."
       why="Most business data is represented as objects. Weak object handling creates mutation bugs and unpredictable state."
@@ -107,5 +127,6 @@ for (const [key, value] of Object.entries(stats)) {
         { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
       ]}
     />
+    </>
   );
 }
