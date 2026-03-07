@@ -139,55 +139,108 @@ export default function Page() {
 
   return (
     <>
-      <section className="relative border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:border-slate-700 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
-        <div className="mx-auto w-full max-w-[1200px] px-3 py-8 sm:px-4 sm:py-14 lg:py-20">
-          <div className="text-center">
-            <p className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-300">
-              Browser-Based Coding Platform
-            </p>
-            <h1 className="mx-auto mt-3 w-full text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:mt-4 sm:text-5xl">
-              Online Compiler for HTML, CSS, JavaScript, Regex, and Formatter Tools
-            </h1>
-            <p className="mx-auto mt-3 w-full text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:mt-5 sm:text-lg">
-              Build, test, and debug faster with a practical coding workspace and utility tools.
-            </p>
-            <div className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-7 sm:gap-3">
-              <Link
-                href="/html/online-compiler"
-                className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 sm:px-5 sm:py-2.5"
-              >
-                Start Coding
-              </Link>
-              <Link
-                href="/#tools"
-                className="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700 sm:px-5 sm:py-2.5"
-              >
-                Explore Tools
-              </Link>
-            </div>
-
-            <div className="mx-auto mt-6 w-full rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:mt-8 sm:p-4">
-              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Quick Launch</p>
-              <div className="mt-3 flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0">
-                {quickLaunchLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+      <section className="relative bg-gradient-to-br from-cyan-50 to-white dark:from-cyan-900 dark:to-slate-900 border-b border-slate-200 dark:border-slate-700">
+        <div className="mx-auto w-full max-w-[1400px] px-3 py-16 sm:px-4 sm:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* left column: text & actions */}
+            <div className="text-center lg:text-left">
+              <h1 className="mx-auto lg:mx-0 max-w-3xl text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
+                Run HTML, CSS &amp; JavaScript Code Instantly
+              </h1>
+              <p className="mt-4 mx-auto lg:mx-0 max-w-2xl text-xl text-slate-700 dark:text-slate-300">
+                Write, run, and preview code in your browser – free and no signup
+                required. Plus tutorials, interview questions, and handy web tools.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+                <Link
+                  href="/html/online-compiler"
+                  className="rounded-md bg-slate-900 px-5 py-3 text-base font-semibold text-white transition hover:bg-slate-700"
+                >
+                  Start Coding
+                </Link>
+                <Link
+                  href="/javascript"
+                  className="rounded-md border border-slate-300 px-5 py-3 text-base font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
+                >
+                  View Tutorials
+                </Link>
               </div>
-              <div className="mt-4 hidden gap-2 text-sm sm:grid sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 max-w-xl mx-auto lg:mx-0">
                 {valuePoints.map((point) => (
-                  <div key={point} className="rounded-md bg-slate-50 px-3 py-2 text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                  <div
+                    key={point}
+                    className="flex items-center gap-2 rounded-lg bg-white px-4 py-3 shadow-sm text-sm text-slate-800 dark:bg-slate-900 dark:text-slate-200"
+                  >
+                    <svg
+                      className="h-5 w-5 text-cyan-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
                     {point}
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* right column: screenshot */}
+            <div className="flex justify-center lg:justify-end">
+              <Image
+                src="/compiler-preview.svg"
+                alt="Compiler preview"
+                width={600}
+                height={360}
+                className="w-full max-w-md rounded-xl shadow-lg animate-fade-in"
+              />
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* trust banner */}
+      <div className="bg-slate-100 dark:bg-slate-800 py-4">
+        <p className="text-center text-sm text-slate-700 dark:text-slate-300">
+          Trusted by <strong>20,000+</strong> developers and students worldwide
+        </p>
+      </div>
+
+      {/* featured topics */}
+      <section className="mx-auto w-full max-w-[1500px] px-3 py-14 sm:px-4">
+        <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 text-center">
+          Popular Tutorials
+        </h2>
+        <p className="mt-2 text-center text-slate-700 dark:text-slate-300 max-w-3xl mx-auto">
+          Jump straight into the most requested JavaScript topics.
+        </p>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: 'Arrays', href: '/javascript/arrays' },
+            { title: 'Functions', href: '/javascript/functions' },
+            { title: 'Promises', href: '/javascript/promises' },
+          ].map((topic) => (
+            <Link
+              key={topic.href}
+              href={topic.href}
+              className="group block rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-700 dark:bg-slate-900"
+            >
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+                {topic.title}
+              </h3>
+              <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+                Detailed tutorials with examples and interactive code.
+              </p>
+              <span className="mt-4 inline-block text-sm font-semibold text-cyan-700 group-hover:underline">
+                Explore →
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 

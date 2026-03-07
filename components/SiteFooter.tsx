@@ -29,6 +29,9 @@ export default function SiteFooter() {
           <Link href="/contact" className="hover:text-slate-900 dark:hover:text-white">
             Contact
           </Link>
+          <Link href="/disclaimer" className="hover:text-slate-900 dark:hover:text-white">
+            Disclaimer
+          </Link>
           <Link href="/sitemap.xml" className="hover:text-slate-900 dark:hover:text-white">
             Sitemap
           </Link>
