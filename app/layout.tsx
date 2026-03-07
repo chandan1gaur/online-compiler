@@ -136,6 +136,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="1fab9F5zz7Yn1e3_5duA9d0bMz-h-8gKfRR0RhTL-YI" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7958786093082386"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 antialiased`}>
         <Script id="theme-init" strategy="beforeInteractive">

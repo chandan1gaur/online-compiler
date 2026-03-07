@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import JavascriptSidebar from "@/components/JavascriptSidebar";
-import { javascriptRoadmapSections, javascriptStartHere } from "@/data/javascriptRoadmap";
+import { javascriptRoadmapSections, javascriptStartHere, type RoadmapTopic } from "@/data/javascriptRoadmap";
 
 function getDefaultOpenSections(pathname: string) {
   const match = javascriptRoadmapSections.find((section) => section.topics.some((topic) => topic.href === pathname));
@@ -16,6 +16,23 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [openSectionIds, setOpenSectionIds] = useState<number[]>(() => getDefaultOpenSections(pathname));
+
+  // create linear list of published topic hrefs for prev/next navigation
+  const flatTopics = useMemo(
+    () =>
+      javascriptRoadmapSections
+        .flatMap((section) => section.topics)
+        .filter((topic): topic is RoadmapTopic & { href: string } => Boolean(topic.href))
+        .map((t) => t.href!),
+    []
+  );
+
+  const currentIndex = flatTopics.findIndex((h) => h === pathname);
+  const prevHref = currentIndex > 0 ? flatTopics[currentIndex - 1] : null;
+  const nextHref =
+    currentIndex >= 0 && currentIndex < flatTopics.length - 1
+      ? flatTopics[currentIndex + 1]
+      : null;
 
   const startHereLinks = useMemo(
     () => javascriptStartHere.filter((topic): topic is { title: string; href: string } => Boolean(topic.href)),
@@ -149,6 +166,20 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-950 sm:p-4">
           {children}
+        </div>
+
+        {/* prev/next links derived from roadmap order */}
+        <div className="mt-8 flex justify-between text-sm">
+          {prevHref && (
+            <Link href={prevHref} className="text-cyan-700 hover:underline">
+              ← Previous topic
+            </Link>
+          )}
+          {nextHref && (
+            <Link href={nextHref} className="text-cyan-700 hover:underline">
+              Next topic →
+            </Link>
+          )}
         </div>
       </div>
     </section>
