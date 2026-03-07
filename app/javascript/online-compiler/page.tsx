@@ -1,34 +1,39 @@
 import type { Metadata } from "next";
 import CompilerPage from "@/components/CompilerPage";
 
-export const metadata: Metadata = {
-  title: "JavaScript Online Compiler | Run JavaScript Code in Browser",
-  description:
-    "Write, test, and run JavaScript code instantly in your browser. Interactive JavaScript online compiler with live output and error handling.",
-  keywords: [
-    "javascript compiler",
-    "online javascript editor",
-    "run javascript online",
-    "javascript playground",
-    "web-based ide",
-  ],
-  openGraph: {
+export async function generateMetadata({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
+  const hasParams = searchParams && (searchParams.code || searchParams.run);
+
+  return {
     title: "JavaScript Online Compiler | Run JavaScript Code in Browser",
     description:
-      "Write, test, and run JavaScript code instantly in your browser. Interactive JavaScript online compiler with live output.",
-    url: "/javascript/online-compiler",
-    type: "article",
-    images: ["/og-image.svg"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "JavaScript Online Compiler",
-    description:
-      "Write, test, and run JavaScript code instantly in your browser.",
-    images: ["/og-image.svg"],
-  },
-  alternates: { canonical: "/javascript/online-compiler" },
-};
+      "Write, test, and run JavaScript code instantly in your browser. Interactive JavaScript online compiler with live output and error handling.",
+    keywords: [
+      "javascript compiler",
+      "online javascript editor",
+      "run javascript online",
+      "javascript playground",
+      "web-based ide",
+    ],
+    openGraph: {
+      title: "JavaScript Online Compiler | Run JavaScript Code in Browser",
+      description:
+        "Write, test, and run JavaScript code instantly in your browser. Interactive JavaScript online compiler with live output.",
+      url: "/javascript/online-compiler",
+      type: "article",
+      images: ["/og-image.svg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "JavaScript Online Compiler",
+      description:
+        "Write, test, and run JavaScript code instantly in your browser.",
+      images: ["/og-image.svg"],
+    },
+    alternates: { canonical: "/javascript/online-compiler" },
+    robots: hasParams ? { index: false, follow: true } : { index: true, follow: true },
+  };
+}
 
 export default function JavascriptOnlineCompilerPage() {
   return (
