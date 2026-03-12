@@ -221,6 +221,7 @@ export const javascriptRoadmapSections: RoadmapSection[] = [
     ] },
   { id: 25, title: "Interview Preparation", level: "advanced", topics: [
       { title: "Top 100 JavaScript Coding Interview Questions", href: "/javascript/interview-questions" },
+      { title: "JavaScript Output Based Questions", href: "/javascript/output-based-questions" },
       { title: "Hoisting Deep Dive", href: "/javascript/interview-questions/hoisting" },
       { title: "Closure Interview Questions", href: "/javascript/interview-questions/closures" },
       { title: "Event Loop Scenarios", href: "/javascript/interview-questions/event-loop" },

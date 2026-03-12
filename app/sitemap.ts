@@ -79,6 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "closures",
     "classes",
     "this-keyword",
+    "output-based-questions",
     "array-methods",
     "data-types",
     "spread-operator",
