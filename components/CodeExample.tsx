@@ -3,15 +3,17 @@
 import Link from "next/link";
 
 interface CodeExampleProps {
+  index?: number;
   title: string;
   code: string;
   explanation: string;
 }
 
-export default function CodeExample({ title, code, explanation }: CodeExampleProps) {
+export default function CodeExample({ index, title, code, explanation }: CodeExampleProps) {
+  const label = typeof index === "number" ? `${index}. ${title}` : title;
   return (
     <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
-      <h4 className="font-semibold text-slate-900 dark:text-slate-100">{title}</h4>
+      <h4 className="font-semibold text-slate-900 dark:text-slate-100">{label}</h4>
       <pre className="mt-2 overflow-x-auto rounded bg-slate-800 p-3 text-sm text-slate-100">
         <code>{code}</code>
       </pre>

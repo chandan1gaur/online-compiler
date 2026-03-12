@@ -79,7 +79,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "closures",
     "classes",
     "this-keyword",
-    "interview-questions",
     "array-methods",
     "data-types",
     "spread-operator",
@@ -131,6 +130,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/javascript/interview-questions`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/privacy`,
