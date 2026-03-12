@@ -141,7 +141,7 @@ https://www.codecompileronline.com/
   useEffect(() => {
     if (!autoRun || hasAutoRun.current) return;
     hasAutoRun.current = true;
-    const timer = setTimeout(() => run(), 180);
+    const timer = setTimeout(() => run(), 4000);
     return () => clearTimeout(timer);
   }, [autoRun, run, files]);
 

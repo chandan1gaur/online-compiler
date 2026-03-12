@@ -18,7 +18,7 @@ export default function CodeExample({ title, code, explanation }: CodeExamplePro
       <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{explanation}</p>
       <div className="mt-3 flex gap-2">
         <Link
-          href="/javascript/online-compiler"
+          href={`/javascript/online-compiler?code=${encodeURIComponent(code)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center rounded-md bg-cyan-600 px-3 py-1 text-xs font-semibold text-white hover:bg-cyan-700"

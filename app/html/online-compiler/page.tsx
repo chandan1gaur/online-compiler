@@ -32,11 +32,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/html/online-compiler" },
 };
 
-export default function HtmlOnlineCompilerPage() {
+export default async function HtmlOnlineCompilerPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ code?: string; run?: string }>;
+}) {
+  const params = await searchParams;
+  const code = params?.code ? decodeURIComponent(params.code) : "";
+  const autoRun = params?.run === "1";
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       <CompilerPage
         language="html"
+        initialCode={code}
+        autoRun={autoRun}
       />
       
       <section className="mt-12 prose prose-slate max-w-none">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CompilerPage from "@/components/CompilerPage";
 
 export async function generateMetadata({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } }): Promise<Metadata> {
-  const hasParams = searchParams && (searchParams.code || searchParams.run);
+  const hasParams = searchParams && (searchParams.code || searchParams.run || '');
 
   return {
     title: "JavaScript Online Compiler | Run JavaScript Code in Browser",
@@ -35,12 +35,21 @@ export async function generateMetadata({ searchParams }: { searchParams?: { [key
   };
 }
 
-export default function JavascriptOnlineCompilerPage() {
+export default async function JavascriptOnlineCompilerPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ code?: string; run?: string }>;
+}) {
+  const params = await searchParams;
+  const code = params?.code ? decodeURIComponent(params.code) : "";
+  const autoRun = params?.run === "1";
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
-      <CompilerPage
-        language="javascript"
-      />
+  <CompilerPage
+  language="javascript"
+  initialCode={code}
+  autoRun={autoRun}
+/>
       
       <section className="mt-12 prose prose-slate max-w-none">
         <h2 className="text-3xl font-bold mt-8 mb-4">What is a JavaScript Online Compiler?</h2>
