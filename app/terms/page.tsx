@@ -1,17 +1,43 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions",
+  title: "Terms and Conditions - Online Compiler Usage Policy",
   description:
-    "Terms and Conditions for using Online Compiler, including acceptable use, content rules, and limitations.",
+    "Read Online Compiler's terms and conditions. Learn about acceptable use, intellectual property, liability limitations, and service availability.",
+  keywords: [
+    "terms and conditions",
+    "usage policy",
+    "acceptable use",
+    "liability",
+    "service terms",
+    "legal agreement",
+  ],
   alternates: {
     canonical: "/terms",
   },
 };
 
+const termsSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Terms and Conditions",
+  "description": "Legal terms and conditions for using Online Compiler platform",
+  "url": "https://www.codecompileronline.com/terms",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Online Compiler",
+    "url": "https://www.codecompileronline.com"
+  }
+};
+
 export default function TermsPage() {
   return (
-    <main className="mx-auto max-w-6xl px-3 py-12 sm:px-4">
+    <>
+      <Script id="terms-schema" type="application/ld+json">
+        {JSON.stringify(termsSchema)}
+      </Script>
+      <main className="mx-auto max-w-6xl px-3 py-12 sm:px-4">
       <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Terms and Conditions</h1>
       <p className="mt-2 text-sm text-slate-500">Last updated: February 23, 2026</p>
 
@@ -77,5 +103,6 @@ export default function TermsPage() {
         </p>
       </section>
     </main>
+    </>
   );
 }

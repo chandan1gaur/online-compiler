@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     images: [
       {
         // use absolute URL so crawlers can fetch the asset correctly
-        url: `${siteUrl}/og-image.svg`,
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Online Compiler preview card",
@@ -75,11 +75,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [`${siteUrl}/og-image.svg`],
+    images: [`${siteUrl}/og-image.png`],
   },
   icons: {
-    icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon-192x192.svg" }],
+    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    apple: [{ url: "/apple-touch-icon.png" }],
   },
   manifest: "/manifest.json",
   ...(googleVerification
