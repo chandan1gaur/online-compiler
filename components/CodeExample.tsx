@@ -1,23 +1,44 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 interface CodeExampleProps {
   index?: number;
   title: string;
   code: string;
-  explanation: string;
+  explanation?: string;
+  maxLines?: number;
 }
 
-export default function CodeExample({ index, title, code, explanation }: CodeExampleProps) {
+export default function CodeExample({ index, title, code, explanation, maxLines = 10 }: CodeExampleProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const label = typeof index === "number" ? `${index}. ${title}` : title;
+  const explanationText =
+    explanation ??
+    "This example shows how the code works. You can run it in the online compiler to see the output and experiment with variations.";
+
+  const codeLines = code.split('\n');
+  const shouldTruncate = codeLines.length > maxLines;
+  const displayCode = shouldTruncate && !isExpanded
+    ? codeLines.slice(0, maxLines).join('\n') + '\n...'
+    : code;
+
   return (
     <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
       <h4 className="font-semibold text-slate-900 dark:text-slate-100">{label}</h4>
       <pre className="mt-2 overflow-x-auto rounded bg-slate-800 p-3 text-sm text-slate-100">
-        <code>{code}</code>
+        <code>{displayCode}</code>
       </pre>
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{explanation}</p>
+      {shouldTruncate && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-2 text-xs text-cyan-600 hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
+        >
+          {isExpanded ? 'Show less' : `Show ${codeLines.length - maxLines} more lines`}
+        </button>
+      )}
+      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{explanationText}</p>
       <div className="mt-3 flex gap-2">
         <Link
           href={`/javascript/online-compiler?code=${encodeURIComponent(code)}`}

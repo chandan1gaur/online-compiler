@@ -13,7 +13,6 @@ export type RoadmapSection = {
 };
 
 export const javascriptStartHere: RoadmapTopic[] = [
-  { title: "Introduction to JavaScript", href: "/javascript" },
   { title: "JavaScript Compiler", href: "/javascript/online-compiler" },
 ];
 
@@ -38,7 +37,7 @@ export const javascriptRoadmapSections: RoadmapSection[] = [
       { title: "Type Conversion", href: "/javascript/variables/type-conversion" },
       { title: "typeof Operator", href: "/javascript/variables/typeof-operator" },
       { title: "Dynamic Typing", href: "/javascript/variables/dynamic-typing" },
-      { title: "JSON", href: "/javascript/working-with-json" },
+      { title: "Working with JSON", href: "/javascript/working-with-json" },
     ] },
   { id: 3, title: "Operators", level: "beginner", topics: [
       { title: "Operators Overview", href: "/javascript/operators" },
@@ -75,7 +74,7 @@ export const javascriptRoadmapSections: RoadmapSection[] = [
       { title: "Parameters and Arguments", href: "/javascript/functions/parameters-arguments" },
       { title: "Default Parameters", href: "/javascript/functions/default-parameters" },
       { title: "Rest Parameters", href: "/javascript/functions/rest-parameters" },
-      { title: "Spread Operator", href: "/javascript/functions/spread-operator" },
+      { title: "Spread Operator in Functions", href: "/javascript/functions/spread-operator" },
       { title: "Callback Functions", href: "/javascript/functions/callback-functions" },
       { title: "Higher-Order Functions", href: "/javascript/functions/higher-order-functions" },
       { title: "Pure Functions", href: "/javascript/functions/pure-functions" },
@@ -137,11 +136,14 @@ export const javascriptRoadmapSections: RoadmapSection[] = [
       { title: "Common Events", href: "/javascript/events/common" },
     ] },
   { id: 12, title: "ES6+ Features", level: "intermediate", topics: [
-      { title: "let/const", href: "/javascript/es6/let-const" },
+      { title: "let/const vs var", href: "/javascript/es6/let-const" },
       { title: "Arrow Functions", href: "/javascript/es6/arrow-functions" },
-      { title: "Modules", href: "/javascript/es6/modules" },
+      { title: "Template Literals", href: "/javascript/es6/template-literals" },
       { title: "Destructuring", href: "/javascript/es6/destructuring" },
-      { title: "Spread & Rest", href: "/javascript/es6/spread-rest" },
+      { title: "Spread & Rest Operators", href: "/javascript/es6/spread-rest" },
+      { title: "Default Parameters", href: "/javascript/es6/default-parameters" },
+      { title: "ES6 Modules", href: "/javascript/es6/modules" },
+      { title: "Promises", href: "/javascript/es6/promises" },
       { title: "Classes", href: "/javascript/es6/classes" },
     ] },
   { id: 13, title: "Asynchronous JavaScript", level: "intermediate", topics: [
@@ -163,12 +165,13 @@ export const javascriptRoadmapSections: RoadmapSection[] = [
       { title: "Event Loop", href: "/javascript/execution-context/event-loop" },
       { title: "Microtasks vs Macrotasks", href: "/javascript/execution-context/micro-macrotasks" },
     ] },
-  { id: 16, title: "Prototypes & OOP", level: "intermediate", topics: [
+  { id: 16, title: "Object-Oriented Programming", level: "intermediate", topics: [
       { title: "Prototypal Inheritance", href: "/javascript/prototypes" },
       { title: "Prototype Chain", href: "/javascript/prototypes/chain" },
-      { title: "Classes & Inheritance", href: "/javascript/classes" },
       { title: "Constructor Functions", href: "/javascript/classes/constructor" },
+      { title: "Classes & Inheritance", href: "/javascript/classes" },
       { title: "Getters/Setters", href: "/javascript/classes/getters-setters" },
+      { title: "this Keyword in Classes", href: "/javascript/this-keyword" },
     ] },
   { id: 17, title: "Error Handling", level: "intermediate", topics: [
       { title: "try...catch", href: "/javascript/error-handling/try-catch" },
