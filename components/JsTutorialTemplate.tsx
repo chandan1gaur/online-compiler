@@ -129,7 +129,7 @@ export default function JsTutorialTemplate({
 
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-700/80 dark:text-orange-200/80">JavaScript Tutorial</p>
         <h1 className="mt-1 font-[var(--font-display)] text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">{title}</h1>
-        <div id="introduction" className="mt-1.5 space-y-1  text-slate-700 dark:text-slate-300 sm:text-base leading-relaxed">
+        <div id="introduction" className="mt-1.5 space-y-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
           {introParagraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
@@ -138,7 +138,7 @@ export default function JsTutorialTemplate({
         <div className="mt-3 grid gap-3 lg:grid-cols-[1.2fr,0.8fr]">
           <section className="rounded-2xl border border-slate-200/80 bg-white/80 p-3 backdrop-blur dark:border-slate-800/80 dark:bg-slate-900/80 sm:p-4">
             <h2 className="font-[var(--font-display)] text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-slate-900 dark:text-slate-100">Contents</h2>
-            <div className="mt-2 grid gap-x-4 gap-y-1.5  leading-snug text-slate-700 dark:text-slate-300 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs leading-snug text-slate-700 dark:text-slate-300 sm:grid-cols-3 sm:text-sm lg:grid-cols-4">
               {tocItems.map((item) => (
                 <Link
                   key={item.id}
@@ -154,12 +154,12 @@ export default function JsTutorialTemplate({
 
           <section className="rounded-2xl border border-slate-200/80 bg-white/80 p-3 backdrop-blur dark:border-slate-800/80 dark:bg-slate-900/80 sm:p-4">
             <h2 className="font-[var(--font-display)] text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-slate-900 dark:text-slate-100">Quick Actions</h2>
-            <div className="mt-3 flex flex-wrap gap-3">
+            <div className="mt-3 grid gap-2 sm:flex sm:flex-wrap">
               <Link
                 href={compilerBaseHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-100 px-4 py-2  font-semibold text-orange-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-orange-200 dark:border-orange-400/40 dark:bg-orange-500/20 dark:text-orange-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-orange-200 bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-orange-200 dark:border-orange-400/40 dark:bg-orange-500/20 dark:text-orange-100 sm:w-auto"
               >
                 Open Compiler
               </Link>
@@ -167,7 +167,7 @@ export default function JsTutorialTemplate({
                 href={getRunInCompilerHref(examples[0]?.code || "console.log('Hello JavaScript');")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-100 px-4 py-2  font-semibold text-cyan-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-200 dark:border-cyan-400/40 dark:bg-cyan-500/20 dark:text-cyan-100"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-cyan-200 bg-cyan-100 px-4 py-2 text-sm font-semibold text-cyan-800 shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-200 dark:border-cyan-400/40 dark:bg-cyan-500/20 dark:text-cyan-100 sm:w-auto"
               >
                 Run First Example
               </Link>
@@ -176,23 +176,23 @@ export default function JsTutorialTemplate({
         </div>
       </div>
 
-      <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/90">
+      <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/90 sm:p-6">
         <h2 id="why-we-need-it" className="font-[var(--font-display)] text-lg font-semibold text-slate-900 dark:text-slate-100">Why We Need It</h2>
-        <div className="mt-2 space-y-2  text-slate-700 dark:text-slate-300">
+        <div className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
           {whyParagraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
       </div>
 
-      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 sm:p-6">
         <h2 id="syntax" className="font-[var(--font-display)] text-xl font-semibold text-slate-900 dark:text-white">Syntax</h2>
-        <pre className="mt-3 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs text-slate-100 shadow-inner dark:border-slate-700">
+        <pre className="mt-3 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-3 text-[0.72rem] text-slate-100 shadow-inner dark:border-slate-700 sm:p-4 sm:text-xs">
           <code>{syntaxLines.join("\n")}</code>
         </pre>
       </section>
 
-      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 sm:p-6">
         <h2 id="basic-example" className="font-[var(--font-display)] text-xl font-semibold text-slate-900 dark:text-white">Basic Example</h2>
         {resolvedBasicExample ? (
           <CodeExample
@@ -202,11 +202,11 @@ export default function JsTutorialTemplate({
             explanation={resolvedBasicExample.explanation}
           />
         ) : (
-          <p className="mt-2  text-slate-700 dark:text-slate-300">Add a basic example for this tutorial.</p>
+          <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 sm:text-base">Add a basic example for this tutorial.</p>
         )}
       </section>
 
-      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+      <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 sm:p-6">
         <h2 id="real-world-example" className="font-[var(--font-display)] text-xl font-semibold text-slate-900 dark:text-white">Real World Example</h2>
         {resolvedRealWorldExample ? (
           <CodeExample
@@ -216,16 +216,16 @@ export default function JsTutorialTemplate({
             explanation={resolvedRealWorldExample.explanation}
           />
         ) : (
-          <p className="mt-2  text-slate-700 dark:text-slate-300">Add a real world example for this tutorial.</p>
+          <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 sm:text-base">Add a real world example for this tutorial.</p>
         )}
       </section>
 
       <div id="use-cases" className="mt-5 grid gap-4 lg:grid-cols-2">
         <h2 className="font-[var(--font-display)] text-2xl font-semibold tracking-tight text-slate-900 dark:text-white lg:col-span-2">Multiple Use Cases</h2>
         {sections.map((section) => (
-          <article key={section.heading} className="h-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+          <article key={section.heading} className="h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 sm:p-5">
             <h3 className="font-[var(--font-display)] text-lg font-semibold text-slate-900 dark:text-white">{section.heading}</h3>
-            <div className="mt-2 space-y-2 text-slate-700 dark:text-slate-300">
+            <div className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
               {section.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
@@ -258,18 +258,18 @@ export default function JsTutorialTemplate({
         </section>
       ) : null}
 
-      <section id="comparison" className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/85">
+      <section id="comparison" className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/85 sm:p-6">
         <h2 className="font-[var(--font-display)] text-xl font-semibold text-slate-900 dark:text-white">Comparison</h2>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
           <div>
-            <p className=" font-semibold text-slate-900 dark:text-slate-100">Without</p>
-            <pre className="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs text-slate-100 shadow-inner dark:border-slate-700">
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Without</p>
+            <pre className="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-3 text-[0.72rem] text-slate-100 shadow-inner dark:border-slate-700 sm:p-4 sm:text-xs">
               <code>{comparisonWithout}</code>
             </pre>
           </div>
           <div>
-            <p className=" font-semibold text-slate-900 dark:text-slate-100">With</p>
-            <pre className="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-4 text-xs text-slate-100 shadow-inner dark:border-slate-700">
+            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">With</p>
+            <pre className="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-slate-950 p-3 text-[0.72rem] text-slate-100 shadow-inner dark:border-slate-700 sm:p-4 sm:text-xs">
               <code>{comparisonWith}</code>
             </pre>
           </div>

@@ -25,9 +25,9 @@ export default function CodeExample({ index, title, code, explanation, maxLines 
     : code;
 
   return (
-    <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
+    <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-800/50 sm:p-4">
       <h4 className="font-semibold text-slate-900 dark:text-slate-100">{label}</h4>
-      <pre className="mt-2 overflow-x-auto rounded bg-slate-800 p-3 text-sm text-slate-100">
+      <pre className="mt-2 overflow-x-auto rounded bg-slate-800 p-3 text-xs text-slate-100 sm:text-sm">
         <code>{displayCode}</code>
       </pre>
       {shouldTruncate && (
@@ -38,19 +38,19 @@ export default function CodeExample({ index, title, code, explanation, maxLines 
           {isExpanded ? 'Show less' : `Show ${codeLines.length - maxLines} more lines`}
         </button>
       )}
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{explanationText}</p>
-      <div className="mt-3 flex gap-2">
+      <p className="mt-2 text-xs text-slate-600 dark:text-slate-400 sm:text-sm">{explanationText}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
         <Link
           href={`/javascript/online-compiler?code=${encodeURIComponent(code)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-md bg-cyan-600 px-3 py-1 text-xs font-semibold text-white hover:bg-cyan-700"
+          className="inline-flex w-full items-center justify-center rounded-md bg-cyan-600 px-3 py-1 text-xs font-semibold text-white hover:bg-cyan-700 sm:w-auto"
         >
           Run Code
         </Link>
         <button
           onClick={() => navigator.clipboard.writeText(code)}
-          className="inline-flex items-center rounded-md border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
+          className="inline-flex w-full items-center justify-center rounded-md border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 sm:w-auto"
         >
           Copy
         </button>

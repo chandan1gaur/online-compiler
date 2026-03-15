@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+ï»¿import type { Metadata } from "next";
 import Script from "next/script";
 import CodeExample from "@/components/CodeExample";
 
@@ -105,7 +105,7 @@ console.log('a  b   c'.split(/\s+/)); // ['a', 'b', 'c']`}
             code={`const hasUppercase = /[A-Z]/;
 console.log(hasUppercase.test('hello')); // false
 console.log(hasUppercase.test('Hello')); // true`}
-            explanation="test() returns true or false depending on whether the pattern matches. It’s fast and easy for simple validations."
+            explanation="test() returns true or false depending on whether the pattern matches. Itâ€™s fast and easy for simple validations."
           />
 
           <CodeExample
@@ -166,7 +166,7 @@ console.log(titleized); // Apple,Banana,Cherry`}
           <h2 className="text-2xl font-semibold text-slate-900 mb-4">Common Gotchas</h2>
           <ul className="list-disc pl-6 text-slate-700">
             <li>
-              <strong>test() and global regex:</strong> With the <code>g</code> flag, <code>test()</code> advances the regex’ <code>lastIndex</code> each time it runs.
+              <strong>test() and global regex:</strong> With the <code>g</code> flag, <code>test()</code> advances the regexâ€™ <code>lastIndex</code> each time it runs.
               Reset <code>lastIndex</code> if you need repeatable results.
             </li>
             <li>

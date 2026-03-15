@@ -75,10 +75,6 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
           <div
             id="js-mobile-sidebar"
             className="relative mr-auto h-full w-[72%] min-w-[280px] max-w-[360px] overflow-y-auto border-r border-slate-300 bg-white"
-            onClickCapture={(event) => {
-              const target = event.target as HTMLElement;
-              if (target.closest("a")) setIsOpen(false);
-            }}
           >
             <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
               <button
@@ -97,6 +93,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setIsOpen(false)}
                   className={`block rounded px-1 py-2 text-sm ${
                     pathname === item.href ? "font-semibold text-slate-900" : "text-slate-700"
                   }`}
@@ -132,6 +129,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
                             <li key={`${section.id}-${topic.title}-${index}`}>
                               <Link
                                 href={href}
+                                onClick={() => setIsOpen(false)}
                                 className={`block px-5 py-3 text-base ${active ? "bg-cyan-100 text-cyan-800" : "text-slate-700"}`}
                               >
                                 {topic.title}
@@ -164,7 +162,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
         <div className="hidden lg:block lg:sticky lg:top-20 lg:h-fit">
           <JavascriptSidebar />
         </div>
-        <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-950 sm:p-4">
+        <div className="min-w-0 overflow-x-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-950 sm:p-4">
           {children}
         </div>
 

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
@@ -124,7 +124,7 @@ const faqs = [
 export default function HoistingPage() {
   return (
     <JsTutorialTemplate
-      title="JavaScript Hoisting � Complete Guide to Variables and Functions"
+      title="JavaScript Hoisting — Complete Guide to Variables and Functions"
       intro={[
         "Hoisting moves declarations to the top of their scope during compilation.",
         "Understanding how var, let, const, and functions behave prevents confusing runtime bugs.",
