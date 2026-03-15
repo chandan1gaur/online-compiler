@@ -351,6 +351,30 @@ const api = new ApiClient();
         { q: "What's duck typing?", a: "Checking capabilities rather than types — 'if it quacks like a duck...'." },
         { q: "How to migrate from dynamic to static?", a: "Gradually add TypeScript, starting with type assertions." },
       ]}
+      syntax={[
+        "let value = 42;",
+        "value = 'hello';",
+        "value = { ok: true };",
+      ]}
+      comparison={{
+        without: `// Dynamic typing\nlet value = 1;\nvalue = 'one';`,
+        with: `// With validation\nif (typeof value === 'number') {\n  // safe to use as number\n}`,
+      }}
+      interviewQuestions={[
+        { q: "What is dynamic typing?", a: "Types are determined at runtime and can change." },
+        { q: "How do you make dynamic code safe?", a: "Validate inputs and use type guards." },
+        { q: "When should you choose TypeScript?", a: "For larger codebases or when you need compile-time checks." },
+      ]}
+      practice={{
+        prompt: "Practice: Write a function that only accepts a string and throws otherwise.",
+        starterCode: `function onlyString(value) {\n  // TODO: validate type\n}\n`,
+        solution: `function onlyString(value) {\n  if (typeof value !== "string") throw new Error("string required");\n  return value.toUpperCase();\n}`,
+      }}
+      tryItYourself={{
+        code: `let value = 42;\nconsole.log(typeof value);\nvalue = 'hello';\nconsole.log(typeof value);`,
+        label: "Run Dynamic Demo",
+        description: "Watch a single variable change types at runtime.",
+      }}
       related={[{ label: "Data Types", href: "/javascript/variables/data-types" }, { label: "Type Conversion", href: "/javascript/variables/type-conversion" }, { label: "typeof Operator", href: "/javascript/variables/typeof-operator" }]}
     />
   );

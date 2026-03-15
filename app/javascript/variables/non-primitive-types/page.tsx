@@ -334,6 +334,30 @@ user.access(); // 'Accessed 2 times'
         { q: "What's the prototype chain?", a: "Objects inherit properties from prototypes. When accessing a property, JavaScript walks up the chain until found." },
         { q: "How do WeakMap/WeakSet work?", a: "They hold weak references to keys/objects, allowing garbage collection even when referenced. Perfect for caches." },
       ]}
+      syntax={[
+        "const obj = { name: 'Asha' };",
+        "const arr = [1, 2, 3];",
+        "const fn = () => {};",
+      ]}
+      comparison={{
+        without: `// Reference copy\nconst a = { x: 1 };\nconst b = a;\nb.x = 2;`,
+        with: `// Shallow clone\nconst a = { x: 1 };\nconst b = { ...a };\nb.x = 2;`,
+      }}
+      interviewQuestions={[
+        { q: "Why are objects compared by reference?", a: "They are stored in memory by reference, not by value." },
+        { q: "What's the difference between shallow and deep clone?", a: "Shallow clones share nested references; deep clones copy everything." },
+        { q: "How do you avoid mutation bugs?", a: "Use immutable updates and cloning." },
+      ]}
+      practice={{
+        prompt: "Practice: Create a shallow clone of an object and mutate the clone.",
+        starterCode: `const original = { a: 1, nested: { b: 2 } };\nconst clone = { ...original };\n\n// TODO: change clone.nested.b\n`,
+        solution: `const original = { a: 1, nested: { b: 2 } };\nconst clone = { ...original };\n\nclone.nested.b = 99;\nconsole.log(original.nested.b); // 99 (shared)`,
+      }}
+      tryItYourself={{
+        code: `const a = { x: 1 };\nconst b = a;\nb.x = 2;\nconsole.log(a.x); // 2`,
+        label: "Run Reference Demo",
+        description: "Run this snippet to see how references share mutations.",
+      }}
       related={[{ label: "Data Types", href: "/javascript/variables/data-types" }, { label: "Variables", href: "/javascript/variables" }, { label: "Objects", href: "/javascript/objects" }, { label: "Arrays", href: "/javascript/array-methods" }]}
     />
   );

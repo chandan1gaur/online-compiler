@@ -259,6 +259,30 @@ console.log(typeof obj.greet); // 'function'`,
         { q: "What's the most efficient way to copy an object?", a: "Depends on depth: shallow copy with spread {...obj}, deep copy with JSON.parse(JSON.stringify(obj)), or structuredClone()." },
         { q: "How does JavaScript handle very large numbers?", a: "Numbers are IEEE 754 doubles with limited precision. Use BigInt for arbitrary precision integers." },
       ]}
+      syntax={[
+        "typeof 42; // 'number'",
+        "typeof 'hi'; // 'string'",
+        "Array.isArray([]); // true",
+      ]}
+      comparison={{
+        without: `// Loose equality\nconsole.log('5' == 5); // true`,
+        with: `// Strict equality\nconsole.log('5' === 5); // false`,
+      }}
+      interviewQuestions={[
+        { q: "What are JavaScript primitive types?", a: "number, string, boolean, null, undefined, symbol, bigint." },
+        { q: "Why does typeof null return 'object'?", a: "It's a legacy quirk in JavaScript." },
+        { q: "How do you check for arrays?", a: "Use Array.isArray(value)." },
+      ]}
+      practice={{
+        prompt: "Practice: Log the types of a string, number, null, and array.",
+        starterCode: `const name = "Asha";\nconst age = 21;\nconst empty = null;\nconst items = [1, 2, 3];\n\n// TODO: log typeof for each\n`,
+        solution: `const name = "Asha";\nconst age = 21;\nconst empty = null;\nconst items = [1, 2, 3];\n\nconsole.log(typeof name);\nconsole.log(typeof age);\nconsole.log(typeof empty);\nconsole.log(Array.isArray(items));`,
+      }}
+      tryItYourself={{
+        code: `console.log(typeof 42); // 'number'\nconsole.log(typeof 'hello'); // 'string'\nconsole.log(typeof null); // 'object'\nconsole.log(Array.isArray([])); // true`,
+        label: "Run Type Checks",
+        description: "Run a few typeof checks and observe the results.",
+      }}
       related={[{ label: "Variables", href: "/javascript/variables" }, { label: "var, let, const", href: "/javascript/variables/var-let-const" }, { label: "Primitive Types", href: "/javascript/variables/primitive-types" }, { label: "Non-Primitive Types", href: "/javascript/variables/non-primitive-types" }]}
     />
   );

@@ -268,6 +268,30 @@ if (typeof localStorage !== 'undefined') {
         { q: "Can I override typeof behavior?", a: "No, typeof cannot be overridden or customized." },
         { q: "How does typeof work with symbols?", a: "typeof Symbol() returns 'symbol', introduced in ES6." },
       ]}
+      syntax={[
+        "typeof 42; // 'number'",
+        "typeof 'hi'; // 'string'",
+        "typeof undefined; // 'undefined'",
+      ]}
+      comparison={{
+        without: `// typeof null\nconsole.log(typeof null); // 'object'`,
+        with: `// Better null check\nconsole.log(value === null);`,
+      }}
+      interviewQuestions={[
+        { q: "What does typeof return for arrays?", a: "It returns 'object'; use Array.isArray instead." },
+        { q: "Why is typeof null 'object'?", a: "Legacy JavaScript bug kept for compatibility." },
+        { q: "How do you check for functions?", a: "typeof value === 'function'." },
+      ]}
+      practice={{
+        prompt: "Practice: Detect if a value is undefined without throwing an error.",
+        starterCode: `// TODO: safely check unknownVar without ReferenceError\n`,
+        solution: `if (typeof unknownVar === "undefined") {\n  console.log("undefined");\n}`,
+      }}
+      tryItYourself={{
+        code: `console.log(typeof 42);\nconsole.log(typeof 'hi');\nconsole.log(typeof null);`,
+        label: "Run typeof Demo",
+        description: "See the typeof results for common values.",
+      }}
       related={[{ label: "Type Conversion", href: "/javascript/variables/type-conversion" }, { label: "Data Types", href: "/javascript/variables/data-types" }, { label: "Primitive Types", href: "/javascript/variables/primitive-types" }]}
     />
   );

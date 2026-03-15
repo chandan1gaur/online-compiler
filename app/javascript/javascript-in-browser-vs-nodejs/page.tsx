@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
   title: "JavaScript in Browser vs Node.js: Real Differences Explained",
@@ -48,15 +47,6 @@ const sections = [
       "Make API requests using fetch",
       "Animate elements",
       "Store data in LocalStorage or SessionStorage",
-    ],
-    examples: [
-      {
-        title: "Browser Example (DOM Event)",
-        code: `document.getElementById("btn").addEventListener("click", () => {
-  alert("Button clicked!");
-});`,
-        explanation: "This works only in browser context because it relies on DOM APIs like document and event listeners.",
-      },
     ],
   },
   {
@@ -153,35 +143,11 @@ const sections = [
     paragraphs: [
       "Different runtime environments provide different global objects and APIs.",
     ],
-    examples: [
-      {
-        title: "Environment Globals",
-        code: `// Browser
-console.log(window.location.href);
-
-// Node.js
-console.log(__dirname);`,
-        explanation: "window exists in browser, while __dirname is a Node.js runtime global.",
-      },
-    ],
   },
   {
     heading: "Node.js Example (HTTP Server)",
     paragraphs: [
       "Node.js can create servers and handle network operations that browsers cannot do.",
-    ],
-    examples: [
-      {
-        title: "Node.js Example (HTTP Server)",
-        code: `const http = require("http");
-
-const server = http.createServer((req, res) => {
-  res.end("Hello from Node.js");
-});
-
-server.listen(3000);`,
-        explanation: "This works in Node.js runtime and creates a server, which browser JavaScript cannot do directly.",
-      },
     ],
   },
   {
@@ -241,130 +207,84 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a,
-    },
-  })),
-};
+const examples = [
+  {
+    title: "Browser Example (DOM Event)",
+    code: `document.getElementById("btn").addEventListener("click", () => {
+  alert("Button clicked!");
+});`,
+    explanation: "This works only in browser context because it relies on DOM APIs like document and event listeners.",
+  },
+  {
+    title: "Environment Globals",
+    code: `// Browser
+console.log(window.location.href);
+
+// Node.js
+console.log(__dirname);`,
+    explanation: "window exists in browsers, while __dirname is a Node.js runtime global.",
+  },
+  {
+    title: "Node.js Example (HTTP Server)",
+    code: `const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.end("Hello from Node.js");
+});
+
+server.listen(3000);`,
+    explanation: "This works in Node.js runtime and creates a server, which browser JavaScript cannot do directly.",
+  },
+];
 
 export default function JavascriptBrowserVsNodePage() {
   return (
-    <section className="w-full text-slate-900 dark:text-slate-100">
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-5 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">JavaScript Tutorial</p>
-        <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">JavaScript in the Browser vs Node.js: What Is the Real Difference?</h1>
-        <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
-          JavaScript was originally designed to run inside web browsers. Today, it also runs on servers using Node.js. Both use the same language, but they run in different environments and provide different capabilities.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link
-            href="/javascript/online-compiler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-md border border-cyan-600/60 bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-800 hover:bg-cyan-200 dark:border-cyan-500/60 dark:bg-cyan-500/20 dark:text-cyan-200 dark:hover:bg-cyan-500/30"
-          >
-            Open Compiler
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/90">
-        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Why this matters</p>
-        <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-          If you want to become a frontend, backend, or full-stack developer, understanding this distinction is essential.
-        </p>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        {sections.map((section) => (
-          <article
-            key={section.heading}
-            className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
-            {section.paragraphs.map((p, idx) => (
-              <p key={idx} className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                {p}
-              </p>
-            ))}
-            {section.bullets && section.bullets.length > 0 && (
-              <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-                {section.bullets.map((bullet, idx) => (
-                  <li key={idx}>{bullet}</li>
-                ))}
-              </ul>
-            )}
-            {section.examples && section.examples.length > 0 && (
-              <div className="mt-4 space-y-4">
-                {section.examples.map((ex) => (
-                  <CodeExample
-                    key={ex.title}
-                    title={ex.title}
-                    code={ex.code}
-                    explanation={ex.explanation}
-                  />
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Common Mistakes</h2>
-          <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-            {mistakes.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.title}:</strong> {m.fix}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          {faqs.map((item) => (
-            <div key={item.q} className="mt-2">
-              <p className="font-medium text-sm text-slate-900 dark:text-white">{item.q}</p>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.a}</p>
-            </div>
-          ))}
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Related Topics</h2>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {[
-              { label: "Introduction to JavaScript", href: "/javascript" },
-              { label: "How JavaScript Works", href: "/javascript/how-javascript-works" },
-              { label: "History of JavaScript", href: "/javascript/history-of-javascript" },
-              { label: "Async/Await", href: "/javascript/async-await" },
-              { label: "Promises", href: "/javascript/promises" },
-              { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="inline-flex rounded-md border border-slate-300 px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </article>
-      </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </section>
+    <JsTutorialTemplate
+      title="JavaScript in Browser vs Node.js — Real Differences Explained"
+      intro={[
+        "JavaScript runs in browsers to control the UI, and it runs on servers through Node.js to build APIs and backend logic.",
+        "The core language is the same, but the environments provide different APIs and capabilities.",
+      ]}
+      why={[
+        "Understanding the distinction helps you choose the right tools for frontend or backend work.",
+        "It also prevents common mistakes like trying to use DOM APIs on the server.",
+      ]}
+      syntax={[
+        "// Browser",
+        "document.getElementById(\"btn\").addEventListener(\"click\", handler);",
+        "// Node.js",
+        "const fs = require(\"fs\");",
+        "fs.readFileSync(\"data.txt\", \"utf8\");",
+      ]}
+      sections={sections}
+      examples={examples}
+      mistakes={mistakes}
+      faqs={faqs}
+      interviewQuestions={[
+        { q: "Is Node.js a programming language?", a: "No. Node.js is a runtime environment that executes JavaScript." },
+        { q: "Can Node.js access the DOM?", a: "Not natively. DOM APIs are provided by browsers, not Node.js." },
+        { q: "What is the biggest difference between browser and Node.js?", a: "The available APIs: browsers provide DOM/Web APIs, Node.js provides filesystem and server APIs." },
+      ]}
+      comparison={{
+        without: `// Browser-only APIs\nwindow.document.querySelector(\"#btn\");`,
+        with: `// Node.js-only APIs\nconst os = require(\"os\");\nconsole.log(os.platform());`,
+      }}
+      practice={{
+        prompt: "Practice: Detect whether the code is running in the browser or Node.js.",
+        starterCode: `if (typeof window !== \"undefined\") {\n  console.log(\"Browser\");\n} else {\n  console.log(\"Node.js\");\n}`,
+        solution: `if (typeof window !== "undefined") {\n  console.log("Browser");\n} else {\n  console.log("Node.js");\n}`,
+      }}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Browser Example",
+        description: "Try the DOM event example and see the code structure used in browsers.",
+      }}
+      related={[
+        { label: "Introduction to JavaScript", href: "/javascript" },
+        { label: "How JavaScript Works", href: "/javascript/how-javascript-works" },
+        { label: "History of JavaScript", href: "/javascript/history-of-javascript" },
+        { label: "Promises", href: "/javascript/promises" },
+      ]}
+    />
   );
 }

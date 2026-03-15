@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
   title: "Writing Your First JavaScript Program: From Hello World to Real Code",
@@ -426,102 +425,80 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+const examples = [
+  {
+    title: "Classic Hello World",
+    code: `console.log("Hello, World!");`,
+    explanation: "console.log() prints text to the console. This is your first output.",
+  },
+  {
+    title: "Running in Browser Console",
+    code: `console.log("Hello from the console!");\n\nconst message = "Test";\nconsole.log(message);`,
+    explanation: "Use DevTools Console for instant feedback while learning.",
+  },
+  {
+    title: "External JavaScript File Structure",
+    code: `<!-- index.html -->\n<!DOCTYPE html>\n<html>\n<body>\n  <script src="script.js"></script>\n</body>\n</html>\n\n// script.js\nconsole.log("External JavaScript file loaded!");`,
+    explanation: "Separating files is the professional standard for maintainable projects.",
+  },
+  {
+    title: "Running JavaScript with Node.js",
+    code: `// app.js\nconsole.log("Running in Node.js!");\n\nconst sum = 5 + 3;\nconsole.log(\`5 + 3 = \${sum}\`);\n\n// Run: node app.js`,
+    explanation: "Node.js lets you run JavaScript outside the browser.",
+  },
+  {
+    title: "A Complete Simple Program",
+    code: `const userName = "Sarah";\nconst userAge = 17;\nconst currentYear = 2024;\n\nconst birthYear = currentYear - userAge;\nconst isAdult = userAge >= 18;\n\nconsole.log(\`Hello, \${userName}!\`);\nconsole.log(\`Birth year: \${birthYear}\`);\nconsole.log(isAdult ? "Adult" : "Minor");`,
+    explanation: "Combines variables, template literals, and conditions into one program.",
+  },
+];
 
 export default function WritingFirstJavascriptProgramPage() {
   return (
-    <section className="w-full text-slate-900 dark:text-slate-100">
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-5 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
-          JavaScript Tutorial
-        </p>
-        <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-          Writing Your First JavaScript Program
-        </h1>
-        <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
-          Learn to write and run your first JavaScript program. From \"Hello World\" in the browser console to complete programs with variables, conditions, and logic. Master execution order and debugging.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link
-            href="/javascript/online-compiler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-md border border-cyan-600/60 bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-800 hover:bg-cyan-200 dark:border-cyan-500/60 dark:bg-cyan-500/20 dark:text-cyan-200 dark:hover:bg-cyan-500/30"
-          >
-            Open Compiler
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/90">
-        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Why this matters</p>
-        <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-          Your first program builds confidence and understanding of how code executes. It's the foundation for learning variables, functions, loops, and all advanced concepts. Every expert programmer started here.
-        </p>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        {sections.map((section) => (
-          <article
-            key={section.heading}
-            className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
-            {section.paragraphs.map((p, idx) => (
-              <p key={idx} className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                {p}
-              </p>
-            ))}
-            {section.examples && section.examples.length > 0 && (
-              <div className="mt-4 space-y-4">
-                {section.examples.map((ex) => (
-                  <CodeExample
-                    key={ex.title}
-                    title={ex.title}
-                    code={ex.code}
-                    explanation={ex.explanation}
-                  />
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Common Mistakes to Avoid</h2>
-          <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-            {mistakes.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.title}:</strong> {m.fix}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          {faqs.map((item) => (
-            <div key={item.q} className="mt-2">
-              <p className="font-medium text-sm text-slate-900 dark:text-white">{item.q}</p>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.a}</p>
-            </div>
-          ))}
-        </article>
-      </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </section>
+    <JsTutorialTemplate
+      title="Writing Your First JavaScript Program — From Hello World to Real Code"
+      intro={[
+        "Your first JavaScript program teaches the full input → logic → output flow.",
+        "Start simple with console.log, then expand into variables, conditions, and reusable logic.",
+      ]}
+      why={[
+        "This first program builds confidence and the mental model for how JavaScript executes.",
+        "It also sets the foundation for functions, loops, and real-world apps.",
+      ]}
+      syntax={[
+        "console.log(\"Hello, World!\");",
+        "const name = \"Asha\";",
+        "if (name) { console.log(name); }",
+      ]}
+      sections={sections}
+      examples={examples}
+      mistakes={mistakes}
+      faqs={faqs}
+      interviewQuestions={[
+        { q: "What does console.log do?", a: "It prints output to the console so you can see program results." },
+        { q: "What is the execution order in JavaScript?", a: "Code runs top-to-bottom, one statement at a time." },
+        { q: "What is a JavaScript program?", a: "A sequence of instructions executed by the JavaScript engine." },
+      ]}
+      comparison={{
+        without: `// No output\nconst name = "Asha";`,
+        with: `// With output\nconst name = "Asha";\nconsole.log("Hello, " + name);`,
+      }}
+      practice={{
+        prompt: "Practice: Print a greeting with a name and age.",
+        starterCode: `const name = "Riya";\nconst age = 20;\n\n// TODO: print greeting with name and age\n`,
+        solution: `const name = "Riya";\nconst age = 20;\n\nconsole.log(\`Hello, \${name}. You are \${age} years old.\`);`,
+      }}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Hello World",
+        description: "Run the classic Hello World example and then change the text.",
+      }}
+      related={[
+        { label: "JavaScript Syntax", href: "/javascript/javascript-syntax" },
+        { label: "Variables", href: "/javascript/variables" },
+        { label: "Functions", href: "/javascript/functions" },
+        { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
+      ]}
+    />
   );
 }

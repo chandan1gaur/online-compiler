@@ -137,6 +137,30 @@ console.log(config.mode);
           a: "`var` is function-scoped and can lead to unexpected behavior due to hoisting and leakage outside blocks. `let`/`const` are safer and clearer.",
         },
       ]}
+      syntax={[
+        "var name = \"Asha\";",
+        "let count = 0;",
+        "const MAX = 10;",
+      ]}
+      comparison={{
+        without: `// var leaks out of block\nif (true) {\n  var x = 1;\n}\nconsole.log(x); // 1`,
+        with: `// let stays in block\nif (true) {\n  let x = 1;\n}\n// console.log(x); // ReferenceError`,
+      }}
+      interviewQuestions={[
+        { q: "What is the difference between var and let?", a: "var is function-scoped; let is block-scoped." },
+        { q: "What is TDZ?", a: "Temporal Dead Zone prevents accessing let/const before declaration." },
+        { q: "Does const make objects immutable?", a: "No. It prevents reassignment, not mutation." },
+      ]}
+      practice={{
+        prompt: "Practice: Declare a const name and a let counter, then increment the counter.",
+        starterCode: `const name = "Riya";\nlet count = 0;\n\n// TODO: increment count and log name + count\n`,
+        solution: `const name = "Riya";\nlet count = 0;\n\ncount += 1;\nconsole.log(name, count);`,
+      }}
+      tryItYourself={{
+        code: `if (true) {\n  var oldWay = "visible outside block";\n  let modernWay = "only inside block";\n}\n\nconsole.log(oldWay); // works\n// console.log(modernWay); // ReferenceError`,
+        label: "Run var/let Demo",
+        description: "Run this snippet and see how var leaks outside the block.",
+      }}
       related={[
         { label: "Functions", href: "/javascript/functions" },
         { label: "Closures", href: "/javascript/closures" },

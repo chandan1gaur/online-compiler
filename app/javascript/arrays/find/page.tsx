@@ -1,217 +1,128 @@
-import CodeExample from '@/components/CodeExample';
-import { Metadata } from 'next';
+import type { Metadata } from "next";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
-  title: 'JavaScript find() and findIndex() Methods | Online Compiler',
-  description: 'Learn to find elements in arrays using find() and findIndex(). Get the first matching element or its index with practical examples.',
-  keywords: 'find method, findIndex, array search, JavaScript tutorials',
+  title: "JavaScript find(): First Match",
+  description: "Learn the JavaScript find() method with syntax, examples, and common mistakes.",
+  keywords: ["find", "array find", "javascript arrays"],
   openGraph: {
-    title: 'JavaScript find() and findIndex() Methods',
-    description: 'Search arrays for elements efficiently.',
-    type: 'article',
-    url: 'https://www.online-compiler.com/javascript/arrays/find',
+    title: "JavaScript find()",
+    description: "Learn the JavaScript find() method with syntax, examples, and common mistakes.",
+    url: "/javascript/arrays/find",
+    type: "article",
+    images: ["/og-find.svg"],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'JavaScript find() and findIndex()',
-    description: 'Search for elements in arrays.',
+    card: "summary_large_image",
+    title: "JavaScript find()",
+    description: "Learn the JavaScript find() method with syntax, examples, and common mistakes.",
+    images: ["/og-find.svg"],
   },
+  alternates: { canonical: "/javascript/arrays/find" },
 };
 
-export default function FindPage() {
+const sections = [
+  {
+    heading: "First Matching Item",
+    paragraphs: [
+      "find returns the first element that matches the condition.",
+      "If nothing matches, it returns undefined.",
+    ],
+  },
+  {
+    heading: "Stops Early",
+    paragraphs: [
+      "find stops searching after the first match.",
+      "It is more efficient than filter when you only need one item.",
+    ],
+  },
+  {
+    heading: "Use Cases",
+    paragraphs: [
+      "find is great for looking up items by id or key.",
+      "Combine with optional chaining for safe access.",
+    ],
+  },
+];
+
+const examples = [
+  {
+    title: "Find by id",
+    code: `const users = [{ id: 1 }, { id: 2 }];\nconst user = users.find((u) => u.id === 2);\n\nconsole.log(user);`,
+    explanation: "Returns the first user with id 2.",
+  },
+  {
+    title: "Not found",
+    code: `const nums = [1, 2, 3];\nconst result = nums.find((n) => n > 10);\n\nconsole.log(result); // undefined`,
+    explanation: "If nothing matches, you get undefined.",
+  },
+  {
+    title: "Safe access",
+    code: `const products = [{ sku: "A", price: 10 }];\nconst item = products.find((p) => p.sku === "B");\nconst price = item?.price ?? 0;\n\nconsole.log(price);`,
+    explanation: "Use optional chaining to avoid errors.",
+  },
+  {
+    title: "Find in strings",
+    code: `const names = ["ava", "noah", "liam"];\nconst result = names.find((n) => n.startsWith("n"));\n\nconsole.log(result);`,
+    explanation: "find works on any array of values.",
+  },
+];
+
+const mistakes = [
+  { title: "Using find for multiple results", fix: "Use filter when you need all matches." },
+  { title: "Not handling undefined", fix: "Check the result or use optional chaining." },
+  { title: "Expecting index", fix: "Use findIndex if you need the position." },
+];
+
+const faqs = [
+  { q: "What does find return?", a: "The first matching element or undefined." },
+  { q: "Does find mutate the array?", a: "No, it does not change the array." },
+  { q: "When should I use find?", a: "When you need only the first matching item." },
+];
+
+const related = [
+  { label: "findIndex()", href: "/javascript/arrays/findindex" },
+  { label: "filter()", href: "/javascript/arrays/filter" },
+  { label: "every()", href: "/javascript/arrays/every" },
+];
+
+export default function JavascriptFindPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <article className="w-full px-4 py-12">
-        <div className="mb-12">
-          <div className="inline-block bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            Array Methods
-          </div>
-          <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            JavaScript find() & findIndex()
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-            Search for specific elements in arrays and get the element itself or its index.
-          </p>
-        </div>
-
-        <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">find() Method</h2>
-          <p className="text-slate-700 dark:text-slate-300 mb-6">
-            The find() method returns the first element in the array that satisfies the testing function. If no element is found, it returns undefined.
-          </p>
-          <CodeExample
-          title='Find Object in Array by Property'
-            code={`const users = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-  { id: 3, name: 'Charlie' }
-];
-
-const user = users.find(u => u.id === 2);
-console.log(user); // { id: 2, name: 'Bob' }`}
-            explanation="Use the JavaScript find() method to return the first object that matches a condition."
-          />
-        </section>
-
-        <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">findIndex() Method</h2>
-          <p className="text-slate-700 dark:text-slate-300 mb-6">
-            The findIndex() method returns the index of the first element that satisfies the testing function. If no element is found, it returns -1.
-          </p>
-          <CodeExample
-          title='Find Index of Object in Array'
-            code={`const users = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-  { id: 3, name: 'Charlie' }
-];
-
-const index = users.findIndex(u => u.id === 2);
-console.log(index); // 1`}
-            explanation="The findIndex() method returns the index of the first element that satisfies a condition."
-          />
-        </section>
-
-        <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Examples</h2>
-          
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Number by Condition</h3>
-              <CodeExample
-              title='Find First Number Greater Than Value'
-                code={`const numbers = [5, 12, 8, 130, 44];
-const found = numbers.find(n => n > 10);
-console.log(found); // 12 (first match)`}
-                explanation="Use find() to return the first number in an array that matches a condition."
-              />
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Find Product by ID</h3>
-              <CodeExample
-              title='Find Product by ID in Array'
-                code={`const products = [
-  { id: 101, name: 'Laptop', price: 999 },
-  { id: 102, name: 'Mouse', price: 25 },
-  { id: 103, name: 'Keyboard', price: 75 }
-];
-
-const product = products.find(p => p.id === 102);
-console.log(product); 
-// { id: 102, name: 'Mouse', price: 25 }`}
-                explanation="Use find() to search an array of objects and return the matching item by ID."
-              />
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Get Index to Modify Element</h3>
-              <CodeExample
-              title='Modify Array Element Using findIndex()'
-                code={`const items = ['apple', 'banana', 'orange'];
-const index = items.findIndex(item => item === 'banana');
-if (index !== -1) {
-  items[index] = 'blueberry';
-}
-console.log(items); // ['apple', 'blueberry', 'orange']`}
-                explanation="Use findIndex() to locate an element's index and update the value in the array."
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">find() vs filter() vs indexOf()</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-100 dark:bg-slate-700">
-                <tr>
-                  <th className="px-4 py-3 font-bold">Method</th>
-                  <th className="px-4 py-3 font-bold">Returns</th>
-                  <th className="px-4 py-3 font-bold">Use Case</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-slate-200 dark:border-slate-700">
-                  <td className="px-4 py-3 font-mono text-blue-600">find()</td>
-                  <td className="px-4 py-3">First element</td>
-                  <td className="px-4 py-3">Get matching object</td>
-                </tr>
-                <tr className="border-t border-slate-200 dark:border-slate-700">
-                  <td className="px-4 py-3 font-mono text-blue-600">findIndex()</td>
-                  <td className="px-4 py-3">Index (or -1)</td>
-                  <td className="px-4 py-3">Get position to modify</td>
-                </tr>
-                <tr className="border-t border-slate-200 dark:border-slate-700">
-                  <td className="px-4 py-3 font-mono text-blue-600">filter()</td>
-                  <td className="px-4 py-3">All matching elements</td>
-                  <td className="px-4 py-3">Get multiple matches</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="mb-12 bg-red-50 dark:bg-red-900/20 rounded-lg p-8 border border-red-200 dark:border-red-800">
-          <h2 className="text-3xl font-bold text-red-900 dark:text-red-200 mb-6">Common Mistakes</h2>
-          
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Not Checking for undefined</h3>
-              <CodeExample
-              title='Handle Undefined Result from find()'
-                code={`const arr = [1, 2, 3];
-const found = arr.find(n => n > 10);
-console.log(found.something); // TypeError: Cannot read property
-
-// Better:
-if (found) {
-  console.log(found.something);
-}`}
-                explanation="Always check if find() returns undefined before accessing properties."
-              />
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-red-800 dark:text-red-300 mb-3">❌ Forgetting -1 Check for findIndex()</h3>
-              <CodeExample
-              title='Check -1 Result from findIndex()'
-                code={`const arr = ['a', 'b', 'c'];
-const idx = arr.findIndex(item => item === 'z');
-arr[idx] = 'new'; // This modifies arr[-1]!
-
-// Better:
-if (idx !== -1) {
-  arr[idx] = 'new';
-}`}
-                explanation="findIndex() returns -1 if no match is found, so always validate the index before modifying the array."
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-12 bg-white dark:bg-slate-800 rounded-lg p-8 shadow-sm">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">FAQs</h2>
-          
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">What's the performance difference with filter()?</h3>
-              <p className="text-slate-700 dark:text-slate-300">find() stops at the first match (faster), while filter() checks all elements. Use find() when you only need one element.</p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Can find() return multiple elements?</h3>
-              <p className="text-slate-700 dark:text-slate-300">No, find() returns only the first matching element. Use filter() to get multiple matches.</p>
-            </div>
-          </div>
-        </section>
-
-        <div className="mb-12">
-          <a href="/javascript/arrays" className="inline-block bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 font-bold py-3 px-6 rounded-lg transition-colors">
-            ← Back to Arrays Overview
-          </a>
-        </div>
-      </article>
-    </div>
+    <JsTutorialTemplate
+      title="JavaScript find()"
+      intro={[
+        "find returns the first item that matches a condition.",
+        "It is useful for lookups and searches by id.",
+      ]}
+      why={[
+        "Searching lists is common in apps. find makes it simple and efficient.",
+        "It stops early, which is faster than filtering everything.",
+      ]}
+      syntax={["array.find((value, index, array) => condition)"]}
+      examples={examples}
+      sections={sections}
+      comparison={{
+        without: `let found;\nfor (const u of users) {\n  if (u.id === 2) {\n    found = u;\n    break;\n  }\n}`,
+        with: `const found = users.find((u) => u.id === 2);`,
+      }}
+      mistakes={mistakes}
+      interviewQuestions={[
+        { q: "What does find return when nothing matches?", a: "Undefined." },
+        { q: "When is find better than filter?", a: "When you only need the first match." },
+        { q: "How do you avoid errors when find returns undefined?", a: "Check the result or use optional chaining." },
+      ]}
+      practice={{
+        prompt: "Practice: Find the first number greater than 50 in an array.",
+        starterCode: `const nums = [10, 60, 40];\n// TODO: find first > 50\n`,
+        solution: `const nums = [10, 60, 40];\nconst result = nums.find((n) => n > 50);\nconsole.log(result);`,
+      }}
+      faqs={faqs}
+      related={related}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run find() Demo",
+        description: "Try searching for different ids.",
+      }}
+    />
   );
 }

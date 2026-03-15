@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
   title: "Setting Up a JavaScript Development Environment - Complete Guide",
@@ -271,102 +270,81 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+const examples = [
+  {
+    title: "Quick JavaScript Sanity Check",
+    code: `console.log("JavaScript environment ready!");`,
+    explanation: "Use a simple console log to confirm your environment can run JavaScript.",
+  },
+  {
+    title: "Browser vs Server JavaScript",
+    code: "// BROWSER - Runs in user's browser after page loads\n// index.html\n<script>\n  console.log(\"Browser JavaScript\");\n  const btn = document.querySelector(\"button\");\n  btn?.addEventListener(\"click\", () => {\n    console.log(\"Button clicked!\");\n  });\n</script>\n\n// SERVER - Runs on your machine or cloud\n// app.js (Node.js)\nconsole.log(\"Server JavaScript\");\nconst express = require(\"express\");\nconst app = express();\n\napp.listen(3000, () => {\n  console.log(\"Server running on port 3000\");\n});",
+    explanation: "Browser JavaScript handles interactivity. Server JavaScript handles APIs and backend logic.",
+  },
+  {
+    title: "Install and Verify Node.js",
+    code: "// After installing Node.js\nnode --version\nnpm --version\n\n// Test Node.js works\nnode -e \"console.log('Node.js works!')\"",
+    explanation: "Verify Node.js and npm versions to confirm installation succeeded.",
+  },
+  {
+    title: "Initialize and Use npm",
+    code: "// Create project folder\nmkdir my-project\ncd my-project\n\n// Initialize npm\nnpm init -y\n\n// Install a package\nnpm install express",
+    explanation: "npm creates your project manifest and installs dependencies.",
+  },
+  {
+    title: "Environment Variables Setup",
+    code: "// .env\nAPI_KEY=abc123xyz789\nPORT=3000\n\n// app.js\nrequire(\"dotenv\").config();\nconsole.log(process.env.API_KEY);",
+    explanation: "Store secrets in .env and load them with dotenv.",
+  },
+];
 
 export default function SettingUpJavascriptEnvironmentPage() {
   return (
-    <section className="w-full text-slate-900 dark:text-slate-100">
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-5 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
-          JavaScript Tutorial
-        </p>
-        <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-          Setting Up Your JavaScript Development Environment
-        </h1>
-        <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
-          Complete guide to professional JavaScript development setup: Node.js, npm, VS Code, Git, environment variables, and modern tooling. Browser development to full-stack workflows.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link
-            href="/javascript/online-compiler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-md border border-cyan-600/60 bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-800 hover:bg-cyan-200 dark:border-cyan-500/60 dark:bg-cyan-500/20 dark:text-cyan-200 dark:hover:bg-cyan-500/30"
-          >
-            Open Compiler
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/90">
-        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Why this matters</p>
-        <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-          A proper development environment increases productivity, prevents frustration, and teaches professional workflows. Good setup habits from day one make you more effective and prepared for real job development.
-        </p>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        {sections.map((section) => (
-          <article
-            key={section.heading}
-            className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
-            {section.paragraphs.map((p, idx) => (
-              <p key={idx} className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                {p}
-              </p>
-            ))}
-            {section.examples && section.examples.length > 0 && (
-              <div className="mt-4 space-y-4">
-                {section.examples.map((ex) => (
-                  <CodeExample
-                    key={ex.title}
-                    title={ex.title}
-                    code={ex.code}
-                    explanation={ex.explanation}
-                  />
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Common Mistakes</h2>
-          <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-            {mistakes.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.title}:</strong> {m.fix}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          {faqs.map((item) => (
-            <div key={item.q} className="mt-2">
-              <p className="font-medium text-sm text-slate-900 dark:text-white">{item.q}</p>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.a}</p>
-            </div>
-          ))}
-        </article>
-      </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </section>
+    <JsTutorialTemplate
+      title="Setting Up a JavaScript Development Environment — Complete Guide"
+      intro={[
+        "A solid JavaScript environment makes learning easier and professional work faster.",
+        "This guide covers browsers, Node.js, npm, editors, Git, and common setup essentials.",
+      ]}
+      why={[
+        "A proper setup saves hours of frustration and helps you follow real-world development workflows.",
+        "It also prepares you to use modern tooling and frameworks confidently.",
+      ]}
+      syntax={[
+        "node --version",
+        "npm --version",
+        "npm init -y",
+        "npm install <package-name>",
+      ]}
+      sections={sections}
+      examples={examples}
+      mistakes={mistakes}
+      faqs={faqs}
+      interviewQuestions={[
+        { q: "Why is Node.js needed for frontend frameworks?", a: "Tools like React/Next.js use Node.js for builds, bundling, and dev servers." },
+        { q: "What does package.json do?", a: "It stores project metadata, dependencies, and scripts for your app." },
+        { q: "Should node_modules be committed to Git?", a: "No. It should be ignored and reinstalled with npm install." },
+      ]}
+      comparison={{
+        without: `// No tooling\n<script>\n  console.log("Manual setup");\n</script>`,
+        with: `// With tooling\nnpm init -y\nnpm install eslint prettier`,
+      }}
+      practice={{
+        prompt: "Practice: Initialize a project folder and install one npm package.",
+        starterCode: `mkdir my-project\ncd my-project\nnpm init -y\nnpm install lodash`,
+        solution: `// After install, check node_modules and package.json for lodash entry.`,
+      }}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Sanity Check",
+        description: "Use this simple log to confirm your compiler setup is working.",
+      }}
+      related={[
+        { label: "Introduction to JavaScript", href: "/javascript" },
+        { label: "JavaScript Syntax", href: "/javascript/javascript-syntax" },
+        { label: "JavaScript in Browser vs Node.js", href: "/javascript/javascript-in-browser-vs-nodejs" },
+        { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
+      ]}
+    />
   );
 }

@@ -1,200 +1,128 @@
 import type { Metadata } from "next";
-import Script from "next/script";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
-  title: "JavaScript Optional Chaining (?.) - Safe Property Access",
-  description: "Learn JavaScript optional chaining for safe property and method access with clear syntax, common patterns, and best practices.",
-  keywords: [
-    "javascript optional chaining",
-    "optional chaining operator",
-    "safe property access",
-    "null safety",
-    "javascript null checking",
-    "es2020 features",
-    "property access",
-    "javascript operators",
-    "safe navigation",
-    "null reference handling"
-  ],
+  title: "JavaScript Optional Chaining with Objects",
+  description: "Learn optional chaining for safe object property access with examples and best practices.",
+  keywords: ["optional chaining", "javascript objects", "safe access"],
   openGraph: {
-    title: "JavaScript Optional Chaining (?.) Guide",
-    description: "Learn JavaScript optional chaining for safe property and method access with clear syntax, common patterns, and best practices.",
+    title: "JavaScript Optional Chaining with Objects",
+    description: "Learn optional chaining for safe object property access with examples and best practices.",
     url: "/javascript/objects/optional-chaining",
     type: "article",
-    images: ["/og-image.svg"],
+    images: ["/og-object-optional.svg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "JavaScript Optional Chaining",
-    description: "Learn JavaScript optional chaining for safe property and method access with clear syntax, common patterns, and best practices.",
-    images: ["/og-image.svg"],
+    title: "JavaScript Optional Chaining with Objects",
+    description: "Learn optional chaining for safe object property access with examples and best practices.",
+    images: ["/og-object-optional.svg"],
   },
   alternates: { canonical: "/javascript/objects/optional-chaining" },
 };
 
-const optionalChainingSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "JavaScript Optional Chaining (?.) - Safe Property Access",
-  "description": "Learn JavaScript optional chaining for safe property and method access with clear syntax, common patterns, and best practices.",
-  "author": {
-    "@type": "Organization",
-    "name": "Online JavaScript Compiler"
+const sections = [
+  {
+    heading: "Safe Access",
+    paragraphs: [
+      "Optional chaining prevents errors when intermediate properties are null or undefined.",
+      "It returns undefined instead of throwing a TypeError.",
+    ],
   },
-  "datePublished": "2024-01-01",
-  "dateModified": "2024-01-01"
-};
+  {
+    heading: "Nested Objects",
+    paragraphs: [
+      "Use optional chaining when reading deeply nested data from APIs.",
+      "It keeps code short and safe.",
+    ],
+  },
+  {
+    heading: "Combine with Defaults",
+    paragraphs: [
+      "Pair optional chaining with nullish coalescing to provide fallbacks.",
+      "This is a common pattern in UI code.",
+    ],
+  },
+];
 
-export default function OptionalChainingPage() {
+const examples = [
+  {
+    title: "Basic usage",
+    code: `const user = { profile: { name: "Ava" } };\n\nconsole.log(user?.profile?.name);`,
+    explanation: "Safe access to nested properties.",
+  },
+  {
+    title: "Missing data",
+    code: `const user = {};\nconsole.log(user?.profile?.name); // undefined`,
+    explanation: "No error, returns undefined.",
+  },
+  {
+    title: "With fallback",
+    code: `const user = {};\nconst name = user?.profile?.name ?? "Guest";\n\nconsole.log(name);`,
+    explanation: "Provide a default with ?? .",
+  },
+  {
+    title: "Optional method",
+    code: `const user = { getName: null };\nconst name = user.getName?.();\n\nconsole.log(name);`,
+    explanation: "Safe method call if it exists.",
+  },
+];
+
+const mistakes = [
+  { title: "Using on undeclared variables", fix: "Optional chaining works only on declared variables." },
+  { title: "Skipping required validation", fix: "If data must exist, validate it explicitly." },
+  { title: "Assuming null result", fix: "Optional chaining returns undefined when it short-circuits." },
+];
+
+const faqs = [
+  { q: "What does optional chaining return?", a: "Undefined when any part is null or undefined." },
+  { q: "Can I use it with methods?", a: "Yes, use obj.method?.() syntax." },
+  { q: "When should I avoid it?", a: "When a missing value should throw or be validated." },
+];
+
+const related = [
+  { label: "Optional Chaining Operator", href: "/javascript/operators/optional-chaining-operator" },
+  { label: "Nullish Coalescing", href: "/javascript/operators/nullish-coalescing-operator" },
+  { label: "Object Properties", href: "/javascript/objects/properties" },
+];
+
+export default function JavascriptObjectOptionalChainingPage() {
   return (
-    <>
-      <Script id="optional-chaining-schema" type="application/ld+json">
-        {JSON.stringify(optionalChainingSchema)}
-      </Script>
-
-      <main className="mx-auto max-w-6xl px-3 py-12 sm:px-4">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-8">
-          JavaScript Optional Chaining (?.) - Safe Property Access
-        </h1>
-
-        <p className="text-lg text-slate-700 mb-8">
-          Optional chaining helps you access nested properties and call methods safely without throwing
-          errors when values are null or undefined. It makes defensive code shorter and easier to read.
-        </p>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">1. Core Syntax</h2>
-
-          <p className="text-slate-700 mb-4">
-            Use optional chaining before a property, a bracket access, or a function call. If the value
-            is null or undefined, the expression stops and returns undefined.
-          </p>
-
-          <CodeExample
-            title="Optional Chaining Basics"
-            code={`const user = {
-  profile: {
-    name: 'John',
-    address: { city: 'NYC' }
-  }
-};
-
-// Safe property access
-const city = user?.profile?.address?.city;
-
-// Safe array access
-const first = user?.roles?.[0];
-
-// Safe method call
-const upper = user?.profile?.name?.toUpperCase?.();
-
-console.log(city);
-console.log(first);
-console.log(upper);
-`}
-          />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">2. Common Patterns</h2>
-
-          <p className="text-slate-700 mb-4">
-            Optional chaining pairs well with nullish coalescing to provide defaults and keep UI code clean.
-          </p>
-
-          <CodeExample
-            title="Defaults and UI Friendly Values"
-            code={`const apiUser = null;
-
-const name = apiUser?.name ?? 'Guest';
-const email = apiUser?.profile?.email ?? 'No email';
-
-const items = apiUser?.cart?.items ?? [];
-const count = items.length;
-
-console.log(name, email, count);
-`}
-          />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">3. With Functions and Events</h2>
-
-          <p className="text-slate-700 mb-4">
-            Optional chaining can protect method calls and event handlers. It prevents errors if a callback
-            or object is missing.
-          </p>
-
-          <CodeExample
-            title="Safe Calls"
-            code={`const handlers = {
-  onSave(data) {
-    return { ok: true, data: data };
-  }
-};
-
-const result = handlers?.onSave?.({ id: 1 });
-console.log(result);
-
-const maybeHandler = null;
-maybeHandler?.('data');
-`}
-          />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">4. Pitfalls and Tips</h2>
-
-          <ul className="list-disc pl-6 text-slate-700 space-y-2">
-            <li>Optional chaining only stops on null or undefined, not on other falsy values.</li>
-            <li>Do not use optional chaining on the left side of an assignment.</li>
-            <li>Use nullish coalescing to provide defaults instead of logical OR.</li>
-            <li>Keep chains short and consider extracting variables for clarity.</li>
-          </ul>
-
-          <CodeExample
-            title="Fuzzy Values"
-            code={`const config = { retries: 0 };
-
-// Correct: 0 is valid
-const retries = config?.retries ?? 3;
-
-// Wrong: this would replace 0
-const retriesWrong = config?.retries || 3;
-
-console.log(retries, retriesWrong);
-`}
-          />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">Summary</h2>
-
-          <p className="text-lg text-slate-700 mb-6">
-            Optional chaining keeps property access safe and concise. Use it to protect nested access,
-            method calls, and UI data paths, and combine it with nullish coalescing for defaults.
-          </p>
-
-          <div className="bg-slate-50 p-6 rounded-lg mb-6">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Key Takeaways</h3>
-            <div className="space-y-3">
-              <div>
-                <h4 className="font-medium text-slate-800">Syntax:</h4>
-                <p className="text-slate-700">obj?.prop, obj?.[key], func?.(args)</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-slate-800">Behavior:</h4>
-                <p className="text-slate-700">Stops evaluation on null or undefined and returns undefined.</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-slate-800">Best Pair:</h4>
-                <p className="text-slate-700">Use ?? to provide safe defaults.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </>
+    <JsTutorialTemplate
+      title="JavaScript Optional Chaining with Objects"
+      intro={[
+        "Optional chaining lets you safely access nested properties without errors.",
+        "It returns undefined if something is missing.",
+      ]}
+      why={[
+        "API data is often incomplete. Optional chaining avoids crashes when fields are missing.",
+        "It keeps code concise and readable.",
+      ]}
+      syntax={["obj?.prop", "obj?.nested?.prop", "obj.method?.()"]}
+      examples={examples}
+      sections={sections}
+      comparison={{
+        without: `let name = "";\nif (user && user.profile) {\n  name = user.profile.name;\n}`,
+        with: `const name = user?.profile?.name;`,
+      }}
+      mistakes={mistakes}
+      interviewQuestions={[
+        { q: "What does optional chaining prevent?", a: "TypeErrors when accessing missing properties." },
+        { q: "Does it return null?", a: "No, it returns undefined." },
+        { q: "Can you use it on functions?", a: "Yes, with method?.() syntax." },
+      ]}
+      practice={{
+        prompt: "Practice: Safely access user.address.city with optional chaining.",
+        starterCode: `const user = {};\n// TODO: safely access city\n`,
+        solution: `const user = {};\nconst city = user?.address?.city;\nconsole.log(city);`,
+      }}
+      faqs={faqs}
+      related={related}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Optional Chaining Demo",
+        description: "Try different object shapes to see safe access.",
+      }}
+    />
   );
 }

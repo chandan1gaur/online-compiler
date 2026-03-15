@@ -1,132 +1,147 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
-  title: "JavaScript Objects Tutorial",
+  title: "JavaScript Objects: Complete Beginner Guide",
   description:
-    "Deep tutorial on JavaScript objects, property access, methods, cloning, and object iteration patterns.",
+    "Learn JavaScript objects with properties, methods, destructuring, and common utilities like Object.keys, values, and entries.",
   keywords: [
     "javascript objects",
-    "object tutorial",
-    "property access",
-    "cloning iteration",
-    "js data structures",
+    "object properties",
+    "object methods",
+    "object destructuring",
+    "object keys",
   ],
+  openGraph: {
+    title: "JavaScript Objects",
+    description:
+      "Learn JavaScript objects with properties, methods, destructuring, and common utilities like Object.keys, values, and entries.",
+    url: "/javascript/objects",
+    type: "article",
+    images: ["/og-objects.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JavaScript Objects",
+    description:
+      "Learn JavaScript objects with properties, methods, destructuring, and common utilities like Object.keys, values, and entries.",
+    images: ["/og-objects.svg"],
+  },
   alternates: { canonical: "/javascript/objects" },
 };
 
+const sections = [
+  {
+    heading: "Key-Value Data",
+    paragraphs: [
+      "Objects store data in key-value pairs, making them great for structured information.",
+      "They power most real-world data models in JavaScript.",
+    ],
+    bullets: ["Use objects for named fields.", "Access values by key.", "Nest objects for deeper structures."],
+  },
+  {
+    heading: "Properties and Methods",
+    paragraphs: [
+      "Properties store values and methods store functions.",
+      "Methods often use the this keyword to access other properties.",
+    ],
+  },
+  {
+    heading: "Modern Utilities",
+    paragraphs: [
+      "Use Object.keys, Object.values, and Object.entries to inspect objects.",
+      "Use Object.assign and spread to copy or merge objects.",
+    ],
+  },
+  {
+    heading: "Destructuring",
+    paragraphs: [
+      "Destructuring lets you unpack object properties into variables.",
+      "It reduces repetition and makes code cleaner.",
+    ],
+  },
+];
+
+const examples = [
+  {
+    title: "Create an object",
+    code: `const user = {\n  name: "Ava",\n  age: 22,\n};\n\nconsole.log(user.name);`,
+    explanation: "Objects group related data under named keys.",
+  },
+  {
+    title: "Add and update",
+    code: `const user = { name: "Ava" };\nuser.age = 22;\nuser.name = "Riya";\n\nconsole.log(user);`,
+    explanation: "You can add or update properties anytime.",
+  },
+  {
+    title: "Methods",
+    code: `const user = {\n  name: "Ava",\n  greet() {\n    return "Hi " + this.name;\n  }\n};\n\nconsole.log(user.greet());`,
+    explanation: "Methods are functions stored on objects.",
+  },
+  {
+    title: "Destructuring",
+    code: `const user = { name: "Ava", role: "admin" };\nconst { name, role } = user;\n\nconsole.log(name, role);`,
+    explanation: "Destructure to avoid repeated user.name access.",
+  },
+];
+
+const mistakes = [
+  { title: "Using dot for dynamic keys", fix: "Use bracket notation for dynamic property names." },
+  { title: "Mutating shared objects", fix: "Clone with spread or Object.assign when needed." },
+  { title: "Forgetting this in methods", fix: "Use this.property to access other fields inside methods." },
+];
+
+const faqs = [
+  { q: "Are objects ordered?", a: "Property order exists but should not be relied on for logic." },
+  { q: "How do I copy an object?", a: "Use spread: const copy = { ...obj }." },
+  { q: "What is a method?", a: "A function stored as a property of an object." },
+];
+
+const related = [
+  { label: "Object Properties", href: "/javascript/objects/properties" },
+  { label: "Object Methods", href: "/javascript/objects/methods" },
+  { label: "Object Destructuring", href: "/javascript/objects/destructuring" },
+  { label: "this Keyword", href: "/javascript/this-keyword" },
+  { label: "Object.keys()", href: "/javascript/objects/keys" },
+];
+
 export default function JavascriptObjectsPage() {
   return (
-    <>
-      <Script
-        id="json-ld-objects"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: 'JavaScript Objects Tutorial',
-            description: 'Deep tutorial on JavaScript objects, property access, methods, cloning, and object iteration patterns.',
-            author: {
-              '@type': 'Organization',
-              name: 'Online JavaScript Compiler',
-            },
-            datePublished: '2024-01-01',
-            dateModified: '2024-01-01',
-          }),
-        }}
-      />
-      <JsTutorialTemplate
-      title="JavaScript Objects: Structure, Methods, and Practical Patterns"
-      intro="Objects are core to modeling real-world entities in JavaScript. Mastering object behavior is essential for application architecture."
-      why="Most business data is represented as objects. Weak object handling creates mutation bugs and unpredictable state."
-      sections={[
-        {
-          heading: "Object Basics and Access Patterns",
-          paragraphs: [
-            "Use dot notation for known properties and bracket notation for dynamic keys.",
-            "Objects can contain nested objects, arrays, and methods for behavior grouping.",
-            "Optional chaining prevents crashes when intermediate properties are missing.",
-          ],
-        },
-        {
-          heading: "Cloning and Iteration",
-          paragraphs: [
-            "Spread syntax creates shallow copies. Nested objects still share references.",
-            "Use Object.keys, Object.values, and Object.entries for iteration and transformations.",
-            "Prefer immutable update patterns when managing UI or shared state.",
-          ],
-        },
+    <JsTutorialTemplate
+      title="JavaScript Objects"
+      intro={[
+        "Objects are the most common data structure in JavaScript for representing structured data.",
+        "They store information as key-value pairs and can include methods.",
       ]}
-      examples={[
-        {
-          title: "Object Access and Optional Chaining",
-          code: `const profile = {
-  name: "Asha",
-  address: { city: "Jaipur" },
-};
-
-console.log(profile.name);
-console.log(profile.address?.city);
-console.log(profile.company?.name); // undefined`,
-          explanation: "Optional chaining prevents runtime errors on missing paths.",
-        },
-        {
-          title: "Shallow Clone and Update",
-          code: `const state = { theme: "light", fontSize: 14 };
-const nextState = { ...state, theme: "dark" };
-console.log(state.theme, nextState.theme);`,
-          explanation: "Creates a new top-level object for safe state updates.",
-        },
-        {
-          title: "Object.entries Iteration",
-          code: `const stats = { users: 120, posts: 450, comments: 980 };
-for (const [key, value] of Object.entries(stats)) {
-  console.log(key, value);
-}`,
-          explanation: "entries provides key-value pairs for readable iteration.",
-        },
+      why={[
+        "Most app data looks like objects: users, settings, products, and more.",
+        "Understanding objects is essential for working with real-world JavaScript code.",
       ]}
-      mistakes={[
-        {
-          title: "Assuming spread deep clones nested objects",
-          fix: "Use structured clone approaches for deep copy needs.",
-        },
-        {
-          title: "Mutating shared objects directly",
-          fix: "Use immutable update style to avoid side effects.",
-        },
-        {
-          title: "No safe access for nested data",
-          fix: "Use optional chaining and fallback values for uncertain data structures.",
-        },
+      syntax={["const obj = { key: value }", "obj.key", "obj['key']"]}
+      examples={examples}
+      sections={sections}
+      comparison={{
+        without: `const name = user.name;\nconst role = user.role;`,
+        with: `const { name, role } = user;`,
+      }}
+      mistakes={mistakes}
+      interviewQuestions={[
+        { q: "What is an object?", a: "A collection of key-value pairs." },
+        { q: "Dot vs bracket access?", a: "Dot for static keys, bracket for dynamic keys." },
+        { q: "How do you add a property?", a: "Assign with obj.newKey = value or obj['newKey'] = value." },
       ]}
-      faqs={[
-        {
-          q: "Dot notation vs bracket notation, which is better?",
-          a: "Use dot for static keys, bracket for dynamic keys or invalid identifier names.",
-        },
-        {
-          q: "Does spread clone nested objects too?",
-          a: "No, spread is shallow at top level only.",
-        },
-        {
-          q: "How do I loop through object properties?",
-          a: "Use Object.keys, Object.values, or Object.entries based on what you need.",
-        },
-        {
-          q: "When should I freeze an object?",
-          a: "Use Object.freeze when you need to prevent top-level mutation in strict scenarios.",
-        },
-      ]}
-      related={[
-        { label: "Data Types", href: "/javascript/data-types" },
-        { label: "this Keyword", href: "/javascript/this-keyword" },
-        { label: "Functions", href: "/javascript/functions" },
-        { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
-      ]}
+      practice={{
+        prompt: "Practice: Create an object for a book with title and author, then log both.",
+        starterCode: `// TODO: create book object\n`,
+        solution: `const book = { title: "Clean Code", author: "Robert Martin" };\nconsole.log(book.title, book.author);`,
+      }}
+      faqs={faqs}
+      related={related}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Objects Demo",
+        description: "Try adding and updating properties on the object.",
+      }}
     />
-    </>
   );
 }

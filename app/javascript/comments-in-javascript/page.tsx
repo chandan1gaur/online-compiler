@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
   title: "Comments in JavaScript: Single-Line, Multi-Line, and JSDoc",
@@ -482,102 +481,80 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+const examples = [
+  {
+    title: "Comments Are Ignored by the Engine",
+    code: `// This entire line is a comment\nconsole.log("Hello World"); // Inline comment\n\n/* Multi-line\n   comment */\n\nconst name = "John"; // Comment ignored`,
+    explanation: "Comments are removed during parsing and never executed.",
+  },
+  {
+    title: "Single-Line Comment Patterns",
+    code: `// This is a single-line comment\nconst user = "Alice"; // Inline comment\n\n// Temporarily disable a line\n// console.log(user);`,
+    explanation: "Use // for short, quick explanations or inline notes.",
+  },
+  {
+    title: "Multi-Line Comment Usage",
+    code: `/*\n  File Header\n  Author: Team\n*/\n\n/* Disable a block temporarily\nconst oldApproach = () => \"disabled\";\n*/`,
+    explanation: "Use /* */ for longer explanations or block comments.",
+  },
+  {
+    title: "JSDoc for Functions",
+    code: `/**\n * Adds two numbers\n * @param {number} a\n * @param {number} b\n * @returns {number}\n */\nfunction add(a, b) {\n  return a + b;\n}`,
+    explanation: "JSDoc provides structured documentation and IDE hints.",
+  },
+  {
+    title: "Good vs Bad Comments",
+    code: `// BAD: Restates obvious code\nconst total = price + tax; // add tax\n\n// GOOD: Explains why\n// Include sales tax per state policy\nconst totalWithTax = price + tax;`,
+    explanation: "Comments should explain the why, not the obvious what.",
+  },
+];
 
 export default function CommentsInJavascriptPage() {
   return (
-    <section className="w-full text-slate-900 dark:text-slate-100">
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-5 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
-          JavaScript Tutorial
-        </p>
-        <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-          Comments in JavaScript
-        </h1>
-        <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
-          Master JavaScript comments: single-line, multi-line (/* */), and JSDoc documentation. Learn best practices for writing meaningful comments that improve code clarity and team collaboration.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link
-            href="/javascript/online-compiler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-md border border-cyan-600/60 bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-800 hover:bg-cyan-200 dark:border-cyan-500/60 dark:bg-cyan-500/20 dark:text-cyan-200 dark:hover:bg-cyan-500/30"
-          >
-            Open Compiler
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/90">
-        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Why this matters</p>
-        <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-          Professional code isn't just about being correct - it's about being understandable. Effective comments improve team collaboration, reduce debugging time, enable code reviews, and document business logic that code alone cannot convey.
-        </p>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        {sections.map((section) => (
-          <article
-            key={section.heading}
-            className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
-            {section.paragraphs.map((p, idx) => (
-              <p key={idx} className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                {p}
-              </p>
-            ))}
-            {section.examples && section.examples.length > 0 && (
-              <div className="mt-4 space-y-4">
-                {section.examples.map((ex) => (
-                  <CodeExample
-                    key={ex.title}
-                    title={ex.title}
-                    code={ex.code}
-                    explanation={ex.explanation}
-                  />
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Common Mistakes</h2>
-          <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-            {mistakes.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.title}:</strong> {m.fix}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          {faqs.map((item) => (
-            <div key={item.q} className="mt-2">
-              <p className="font-medium text-sm text-slate-900 dark:text-white">{item.q}</p>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.a}</p>
-            </div>
-          ))}
-        </article>
-      </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </section>
+    <JsTutorialTemplate
+      title="Comments in JavaScript — Single-Line, Multi-Line, and JSDoc"
+      intro={[
+        "Comments are notes in your code that the JavaScript engine ignores.",
+        "They help explain intent, document APIs, and improve team collaboration.",
+      ]}
+      why={[
+        "Good comments reduce debugging time and make code maintainable.",
+        "They also preserve the reasoning behind decisions long after the code is written.",
+      ]}
+      syntax={[
+        "// Single-line comment",
+        "/* Multi-line comment */",
+        "/** JSDoc comment */",
+      ]}
+      sections={sections}
+      examples={examples}
+      mistakes={mistakes}
+      faqs={faqs}
+      interviewQuestions={[
+        { q: "Do comments affect performance?", a: "No. Comments are stripped during parsing and never executed." },
+        { q: "When should you use JSDoc?", a: "Use it for shared functions, APIs, and larger codebases." },
+        { q: "What makes a comment good?", a: "It explains the why, not the obvious what." },
+      ]}
+      comparison={{
+        without: `// BAD\nconst total = price + tax; // add tax`,
+        with: `// GOOD\n// Include sales tax per policy\nconst total = price + tax;`,
+      }}
+      practice={{
+        prompt: "Practice: Add a single-line and multi-line comment to explain a function.",
+        starterCode: `function greet(name) {\n  return "Hello, " + name + "!";\n}\n`,
+        solution: `// Greets a user by name\nfunction greet(name) {\n  /* Returns a friendly greeting */\n  return "Hello, " + name + "!";\n}`,
+      }}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Comment Example",
+        description: "Try the comment example and see how only the code executes.",
+      }}
+      related={[
+        { label: "JavaScript Syntax", href: "/javascript/javascript-syntax" },
+        { label: "Functions", href: "/javascript/functions" },
+        { label: "Code Style", href: "/javascript/variables" },
+        { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
+      ]}
+    />
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CodeExample from "@/components/CodeExample";
+import JsTutorialTemplate from "@/components/JsTutorialTemplate";
 
 export const metadata: Metadata = {
   title: "JavaScript Syntax: Complete Guide from Basics to Advanced",
@@ -490,102 +489,80 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+const examples = [
+  {
+    title: "Valid vs Invalid Syntax",
+    code: `// Valid syntax\nconst name = "John";\nconsole.log(name);\n\n// Invalid syntax - missing quotation mark\n// const name = "John;  // SyntaxError!`,
+    explanation: "Valid syntax follows JavaScript rules. Invalid syntax throws SyntaxError.",
+  },
+  {
+    title: "Statements vs Expressions",
+    code: `let name = "Alice";      // Statement\n5 + 10;                  // Expression\nlet result = 5 + 10;      // Expression inside statement`,
+    explanation: "Statements perform actions. Expressions produce values.",
+  },
+  {
+    title: "Variables: let, const, var",
+    code: `const PI = 3.14;\nlet counter = 0;\ncounter = counter + 1;\n\n// Avoid var in modern code\nvar legacy = "old";`,
+    explanation: "Use const by default, let for reassignment, avoid var.",
+  },
+  {
+    title: "Operators and Precedence",
+    code: `5 + 10 * 2;    // 25\n(5 + 10) * 2; // 30`,
+    explanation: "Multiplication happens before addition unless you use parentheses.",
+  },
+  {
+    title: "Blocks and Scope",
+    code: `if (true) {\n  let x = 10;\n  console.log(x);\n}\n// console.log(x); // Error`,
+    explanation: "let and const are block-scoped, preventing accidental access outside blocks.",
+  },
+];
 
 export default function JavascriptSyntaxPage() {
   return (
-    <section className="w-full text-slate-900 dark:text-slate-100">
-      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-5 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
-          JavaScript Tutorial
-        </p>
-        <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-          JavaScript Syntax: Complete Guide
-        </h1>
-        <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
-          Master JavaScript syntax including statements, expressions, variables, data types, operators, scope, and best practices. From fundamentals to advanced patterns.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Link
-            href="/javascript/online-compiler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex rounded-md border border-cyan-600/60 bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-800 hover:bg-cyan-200 dark:border-cyan-500/60 dark:bg-cyan-500/20 dark:text-cyan-200 dark:hover:bg-cyan-500/30"
-          >
-            Open Compiler
-          </Link>
-        </div>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/90">
-        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Why this matters</p>
-        <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-          Strong syntax fundamentals are the foundation for writing bug-free, professional code. Correct syntax ensures your programs execute as intended, helps you debug efficiently, and makes your code maintainable and scalable.
-        </p>
-      </div>
-
-      <div className="mt-6 space-y-6">
-        {sections.map((section) => (
-          <article
-            key={section.heading}
-            className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80"
-          >
-            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.heading}</h2>
-            {section.paragraphs.map((p, idx) => (
-              <p key={idx} className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                {p}
-              </p>
-            ))}
-            {section.examples && section.examples.length > 0 && (
-              <div className="mt-4 space-y-4">
-                {section.examples.map((ex) => (
-                  <CodeExample
-                    key={ex.title}
-                    title={ex.title}
-                    code={ex.code}
-                    explanation={ex.explanation}
-                  />
-                ))}
-              </div>
-            )}
-          </article>
-        ))}
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Common Mistakes</h2>
-          <ul className="mt-2 ml-4 list-disc text-sm text-slate-700 dark:text-slate-300">
-            {mistakes.map((m, idx) => (
-              <li key={idx}>
-                <strong>{m.title}:</strong> {m.fix}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900/80">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          {faqs.map((item) => (
-            <div key={item.q} className="mt-2">
-              <p className="font-medium text-sm text-slate-900 dark:text-white">{item.q}</p>
-              <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.a}</p>
-            </div>
-          ))}
-        </article>
-      </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-    </section>
+    <JsTutorialTemplate
+      title="JavaScript Syntax — Complete Guide"
+      intro={[
+        "JavaScript syntax defines the rules for writing valid code.",
+        "Mastering syntax helps you avoid errors and write clean, professional programs.",
+      ]}
+      why={[
+        "Strong syntax fundamentals prevent bugs and make debugging faster.",
+        "Syntax knowledge is essential for interviews and real-world development.",
+      ]}
+      syntax={[
+        "const name = \"John\";",
+        "if (name) { console.log(name); }",
+        "for (let i = 0; i < 3; i++) { console.log(i); }",
+      ]}
+      sections={sections}
+      examples={examples}
+      mistakes={mistakes}
+      faqs={faqs}
+      interviewQuestions={[
+        { q: "What is JavaScript syntax?", a: "It is the set of rules that define valid JavaScript code structure." },
+        { q: "Is semicolon mandatory?", a: "Not strictly, but consistent semicolons help prevent edge cases." },
+        { q: "What is the difference between statement and expression?", a: "Statements perform actions; expressions produce values." },
+      ]}
+      comparison={{
+        without: `// Invalid syntax\nconst name = "John;`,
+        with: `// Valid syntax\nconst name = "John";`,
+      }}
+      practice={{
+        prompt: "Practice: Declare a const and log it only if it is truthy.",
+        starterCode: `const value = "JavaScript";\n\n// TODO: log the value if it exists\n`,
+        solution: `const value = "JavaScript";\n\nif (value) {\n  console.log(value);\n}`,
+      }}
+      tryItYourself={{
+        code: examples[0].code,
+        label: "Run Syntax Example",
+        description: "Run the valid vs invalid syntax sample and adjust it.",
+      }}
+      related={[
+        { label: "Variables", href: "/javascript/variables" },
+        { label: "Operators", href: "/javascript/operators" },
+        { label: "Control Flow", href: "/javascript/conditionals" },
+        { label: "JavaScript Compiler", href: "/javascript/online-compiler" },
+      ]}
+    />
   );
 }

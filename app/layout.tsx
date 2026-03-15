@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Sora } from "next/font/google";
 import CookieConsent from "@/components/CookieConsent";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const sora = Sora({
+  variable: "--font-display",
+  subsets: ["latin"],
+});
 const siteUrl = "https://www.codecompileronline.com";
 const siteTitle = "Online Compiler - Free HTML, CSS & JavaScript Editor";
 const siteDescription =
@@ -142,7 +146,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-white text-slate-900 antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} bg-white text-slate-900 antialiased`}>
         <Script id="theme-init" strategy="beforeInteractive">
           {`try {
   var saved = localStorage.getItem('oc-theme');

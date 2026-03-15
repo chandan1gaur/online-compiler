@@ -276,6 +276,31 @@ console.log(Calculator.recall()); // 42`,
         { q: "What's the performance impact of closures?", a: "Closures can retain more memory but modern JS engines optimize well. The main cost is in code clarity and potential memory retention." },
         { q: "How do modules relate to scope?", a: "Modules create their own scope, preventing global pollution and enabling better code organization and tree-shaking." },
       ]}
+      syntax={[
+        "const globalValue = 1;",
+        "function demo() {",
+        "  let blockScoped = 2;",
+        "}",
+      ]}
+      comparison={{
+        without: `// var leaks to function scope\nif (true) {\n  var x = 1;\n}\nconsole.log(x); // 1`,
+        with: `// let stays in block\nif (true) {\n  let x = 1;\n}\n// console.log(x); // ReferenceError`,
+      }}
+      interviewQuestions={[
+        { q: "What is lexical scope?", a: "Scope is determined by where a function is defined, not where it is called." },
+        { q: "Why are globals risky?", a: "They can be overwritten by other scripts and are hard to reason about." },
+        { q: "How do closures relate to scope?", a: "Closures capture variables from their defining scope." },
+      ]}
+      practice={{
+        prompt: "Practice: Create a function with a block-scoped variable and try accessing it outside.",
+        starterCode: `function demo() {\n  if (true) {\n    let secret = \"hidden\";\n  }\n  // TODO: try to log secret here\n}\n\ndemo();`,
+        solution: `function demo() {\n  if (true) {\n    let secret = \"hidden\";\n  }\n  // console.log(secret); // ReferenceError\n}\n\ndemo();`,
+      }}
+      tryItYourself={{
+        code: `function test() {\n  if (true) {\n    var a = 1;\n    let b = 2;\n  }\n  console.log(a); // 1\n  console.log(typeof b); // undefined\n}\n\ntest();`,
+        label: "Run Scope Demo",
+        description: "Run this example to see function scope vs block scope in action.",
+      }}
       related={[{ label: "Variables", href: "/javascript/variables" }, { label: "var, let, const", href: "/javascript/variables/var-let-const" }, { label: "Hoisting", href: "/javascript/variables/hoisting" }, { label: "Closures", href: "/javascript/closures" }]}
     />
     </>

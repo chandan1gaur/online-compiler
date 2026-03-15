@@ -290,6 +290,30 @@ console.log('5' - 3); // 2 (string to number)`,
         { q: "What are truthy and falsy values?", a: "Falsy: false, 0, '', null, undefined, NaN. Everything else is truthy, including objects and non-empty strings." },
         { q: "How to safely convert to number?", a: "Use Number.isNaN(Number(value)) to check if conversion succeeded, or use parseInt/parseFloat for strings." },
       ]}
+      syntax={[
+        "typeof 42; // 'number'",
+        "typeof 'hi'; // 'string'",
+        "typeof true; // 'boolean'",
+      ]}
+      comparison={{
+        without: `// Loose equality\nconsole.log(null == undefined); // true`,
+        with: `// Strict equality\nconsole.log(null === undefined); // false`,
+      }}
+      interviewQuestions={[
+        { q: "What are JavaScript primitives?", a: "number, string, boolean, null, undefined, symbol, bigint." },
+        { q: "Why are strings immutable?", a: "Operations create new strings to keep values predictable." },
+        { q: "Why is typeof null 'object'?", a: "Legacy JavaScript quirk." },
+      ]}
+      practice={{
+        prompt: "Practice: Convert a string number to a number and check its type.",
+        starterCode: `const value = "42";\n// TODO: convert to number and log typeof\n`,
+        solution: `const value = "42";\nconst num = Number(value);\nconsole.log(typeof num);`,
+      }}
+      tryItYourself={{
+        code: `console.log(Boolean(0));\nconsole.log(Boolean('')); \nconsole.log(Boolean([]));\nconsole.log(Boolean({}));`,
+        label: "Run Truthy/Falsy",
+        description: "Run these boolean conversions to see truthy/falsy behavior.",
+      }}
       related={[{ label: "Data Types", href: "/javascript/variables/data-types" }, { label: "var, let, const", href: "/javascript/variables/var-let-const" }, { label: "Type Conversion", href: "/javascript/variables/type-conversion" }]}
     />
   );

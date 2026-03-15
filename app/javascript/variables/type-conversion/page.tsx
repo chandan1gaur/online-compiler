@@ -237,6 +237,30 @@ console.log(num + 8); // 50`,
         { q: "Can I customize object coercion?", a: "Yes, implement toString() and valueOf() methods to control how objects convert to primitives." },
         { q: "Why avoid wrapper objects?", a: "They create unnecessary objects, are slower, and can cause typeof confusion. Use primitives instead." },
       ]}
+      syntax={[
+        "Number('42');",
+        "String(123);",
+        "Boolean(0);",
+      ]}
+      comparison={{
+        without: `// Implicit coercion\nconsole.log('1' + 2); // '12'`,
+        with: `// Explicit conversion\nconsole.log(Number('1') + 2); // 3`,
+      }}
+      interviewQuestions={[
+        { q: "What is type coercion?", a: "Automatic conversion of values between types in JavaScript." },
+        { q: "Why prefer === over ==?", a: "=== avoids coercion and is more predictable." },
+        { q: "How do you convert strings to numbers?", a: "Use Number(), parseInt(), or parseFloat() depending on input." },
+      ]}
+      practice={{
+        prompt: "Practice: Convert a string number to a number and add 10.",
+        starterCode: `const value = "15";\n// TODO: convert and add 10\n`,
+        solution: `const value = "15";\nconst result = Number(value) + 10;\nconsole.log(result); // 25`,
+      }}
+      tryItYourself={{
+        code: `console.log('1' + 2); // '12'\nconsole.log(Number('1') + 2); // 3`,
+        label: "Run Coercion Demo",
+        description: "Compare implicit coercion vs explicit conversion.",
+      }}
       related={[{ label: "Data Types", href: "/javascript/variables/data-types" }, { label: "Primitive Types", href: "/javascript/variables/primitive-types" }, { label: "typeof Operator", href: "/javascript/variables/typeof-operator" }]}
     />
   );
