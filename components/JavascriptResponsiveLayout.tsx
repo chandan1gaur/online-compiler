@@ -44,8 +44,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
   };
 
   const getTopicHref = (sectionId: number, title: string, href?: string) => {
-    if (sectionId === 1 && href) return href;
-    return "/javascript/coming-soon";
+    return href || "/javascript/coming-soon";
   };
 
   return (
@@ -123,7 +122,7 @@ export default function JavascriptResponsiveLayout({ children }: { children: Rea
                       <ul id={`mobile-section-${section.id}`} className="border-t border-slate-100 bg-slate-50">
                         {section.topics.map((topic, index) => {
                           const href = getTopicHref(section.id, topic.title, topic.href);
-                          const active = section.id === 1 ? pathname === href : pathname === "/javascript/coming-soon";
+                          const active = pathname === href;
 
                           return (
                             <li key={`${section.id}-${topic.title}-${index}`}>
